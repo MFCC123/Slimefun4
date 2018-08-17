@@ -49,7 +49,7 @@ public abstract class AutomatedCraftingChamber extends SlimefunItem {
 	public AutomatedCraftingChamber(Category category, ItemStack item, String name, RecipeType recipeType, ItemStack[] recipe) {
 		super(category, item, name, recipeType, recipe);
 		
-		new BlockMenuPreset(name, "&6Automated Crafting Chamber") {
+		new BlockMenuPreset(name, "&6自动合成机") {
 			
 			@Override
 			public void init() {
@@ -59,7 +59,7 @@ public abstract class AutomatedCraftingChamber extends SlimefunItem {
 			@Override
 			public void newInstance(final BlockMenu menu, final Block b) {
 				if (!BlockStorage.hasBlockInfo(b) || BlockStorage.getLocationInfo(b.getLocation(), "enabled") == null || BlockStorage.getLocationInfo(b.getLocation(), "enabled").equals("false")) {
-					menu.replaceExistingItem(6, new CustomItem(new MaterialData(Material.SULPHUR), "&7Enabled: &4\u2718", "", "&e> Click to enable this Machine"));
+					menu.replaceExistingItem(6, new CustomItem(new MaterialData(Material.SULPHUR), "&7启动状态: &4\u2718", "", "&e> 点击激活这个机器"));
 					menu.addMenuClickHandler(6, new MenuClickHandler() {
 
 						@Override
@@ -71,7 +71,7 @@ public abstract class AutomatedCraftingChamber extends SlimefunItem {
 					});
 				}
 				else {
-					menu.replaceExistingItem(6, new CustomItem(new MaterialData(Material.REDSTONE), "&7Enabled: &2\u2714", "", "&e> Click to disable this Machine"));
+					menu.replaceExistingItem(6, new CustomItem(new MaterialData(Material.REDSTONE), "&7启动状态: &2\u2714", "", "&e> 点击停止这个机器"));
 					menu.addMenuClickHandler(6, new MenuClickHandler() {
 
 						@Override
@@ -187,7 +187,7 @@ public abstract class AutomatedCraftingChamber extends SlimefunItem {
 			});
 		}
 
-		preset.addItem(2, new CustomItem(new MaterialData(Material.WORKBENCH), "&eRecipe", "", "&bPut in the Recipe you want to craft", "&4Enhanced Crafting Table Recipes ONLY"),
+		preset.addItem(2, new CustomItem(new MaterialData(Material.WORKBENCH), "&e合成蓝本", "", "&b放入合成方式示例(按合成方式摆放)", "&4只能是强化合成台所属的合成公式"),
 		new MenuClickHandler() {
 
 			@Override

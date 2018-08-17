@@ -53,7 +53,7 @@ public class WitherAssembler extends SlimefunItem {
 			public void newInstance(final BlockMenu menu, final Block b) {
 				try {
 					if (!BlockStorage.hasBlockInfo(b) || BlockStorage.getLocationInfo(b.getLocation(), "enabled") == null || BlockStorage.getLocationInfo(b.getLocation(), "enabled").equals("false")) {
-						menu.replaceExistingItem(22, new CustomItem(new MaterialData(Material.SULPHUR), "&7Enabled: &4\u2718", "", "&e> Click to enable this Machine"));
+						menu.replaceExistingItem(22, new CustomItem(new MaterialData(Material.SULPHUR), "&7激活状态: &4\u2718", "", "&e> 点击激活这个机器"));
 						menu.addMenuClickHandler(22, new MenuClickHandler() {
 
 							@Override
@@ -65,7 +65,7 @@ public class WitherAssembler extends SlimefunItem {
 						});
 					}
 					else {
-						menu.replaceExistingItem(22, new CustomItem(new MaterialData(Material.REDSTONE), "&7Enabled: &2\u2714", "", "&e> Click to disable this Machine"));
+						menu.replaceExistingItem(22, new CustomItem(new MaterialData(Material.REDSTONE), "&7激活状态: &2\u2714", "", "&e> 点击停止这个机器"));
 						menu.addMenuClickHandler(22, new MenuClickHandler() {
 
 							@Override
@@ -79,7 +79,7 @@ public class WitherAssembler extends SlimefunItem {
 					
 					double offset = (!BlockStorage.hasBlockInfo(b) || BlockStorage.getLocationInfo(b.getLocation(), "offset") == null) ? 3.0F: Double.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "offset"));
 					
-					menu.replaceExistingItem(31, new CustomItem(new MaterialData(Material.PISTON_BASE), "&7Offset: &3" + offset + " Block(s)", "", "&rLeft Click: &7+0.1", "&rRight Click: &7-0.1"));
+					menu.replaceExistingItem(31, new CustomItem(new MaterialData(Material.PISTON_BASE), "&7偏移: &3" + offset + " 方块", "", "&r左键点击: &7+0.1", "&r右键点击: &7-0.1"));
 					menu.addMenuClickHandler(31, new MenuClickHandler() {
 
 						@Override
@@ -185,7 +185,7 @@ public class WitherAssembler extends SlimefunItem {
 			});
 		}
 		
-		preset.addItem(1, new CustomItem(new MaterialData(Material.SKULL_ITEM, (byte) 1), "&7Wither Skull Slot", "", "&rThis Slot accepts Wither Skeleton Skulls"),
+		preset.addItem(1, new CustomItem(new MaterialData(Material.SKULL_ITEM, (byte) 1), "&7凋零头颅槽", "", "&r这个槽位用于放置凋零头颅"),
 		new MenuClickHandler() {
 
 			@Override
@@ -195,7 +195,7 @@ public class WitherAssembler extends SlimefunItem {
 							
 		});
 		
-		preset.addItem(7, new CustomItem(new MaterialData(Material.SOUL_SAND), "&7Soul Sand Slot", "", "&rThis Slot accepts Soul Sand"),
+		preset.addItem(7, new CustomItem(new MaterialData(Material.SOUL_SAND), "&7灵魂沙槽", "", "&r这个槽位用于放置灵魂沙"),
 		new MenuClickHandler() {
 
 			@Override
@@ -205,7 +205,7 @@ public class WitherAssembler extends SlimefunItem {
 							
 		});
 		
-		preset.addItem(13, new CustomItem(new MaterialData(Material.WATCH), "&7Cooldown: &b30 Seconds", "", "&rThis Machine takes up to half a Minute to operate", "&rso give it some Time!"),
+		preset.addItem(13, new CustomItem(new MaterialData(Material.WATCH), "&7冷却: &b30 秒", "", "&r这个机器需要半分钟的时间来作运转准备", "&r请耐心等待!"),
 		new MenuClickHandler() {
 
 			@Override
@@ -217,7 +217,7 @@ public class WitherAssembler extends SlimefunItem {
 	}
 	
 	public String getInventoryTitle() {
-		return "&5Wither Assembler";
+		return "&5凋零组装机";
 	}
 
 	public int[] getInputSlots() {

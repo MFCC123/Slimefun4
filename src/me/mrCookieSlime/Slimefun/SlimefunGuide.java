@@ -82,15 +82,15 @@ public class SlimefunGuide {
 
 	public static ItemStack getItem(BookDesign design) {
 		switch (design) {
-		case BOOK: {
-			return new CustomItem(new MaterialData(Material.ENCHANTED_BOOK), "&aSlimefun Guide &7(Book GUI)", "", "&eRight Click &8\u21E8 &7Browse Items", "&eShift + Right Click &8\u21E8 &7Open Settings / Credits");
-		}
-		case CHEAT_SHEET: {
-			return new CustomItem(new MaterialData(Material.ENCHANTED_BOOK), "&cSlimefun Guide &4(Cheat Sheet)", "", "&4&lOnly openable by Admins", "", "&eRight Click &8\u21E8 &7Browse Items", "&eShift + Right Click &8\u21E8 &7Open Settings / Credits");
-		}
-		case CHEST: {
-			return new CustomItem(new MaterialData(Material.ENCHANTED_BOOK), "&aSlimefun Guide &7(Chest GUI)", "", "&eRight Click &8\u21E8 &7Browse Items", "&eShift + Right Click &8\u21E8 &7Open Settings / Credits");
-		}
+			case BOOK: {
+				return new CustomItem(new MaterialData(Material.ENCHANTED_BOOK), "&e远古工艺之书 &7(书本界面)", "", "&e右键点击 &8\u21E8 &7浏览物品", "&eShift + 右键点击 &8\u21E8 &7打开界面设置菜单");
+			}
+			case CHEAT_SHEET: {
+				return new CustomItem(new MaterialData(Material.ENCHANTED_BOOK), "&c远古工艺之书 &4(作弊面板)", "", "&4&l仅供管理员使用", "", "&e右键点击 &8\u21E8 &7浏览物品", "&eShift + 右键点击 &8\u21E8 &7打开界面设置菜单");
+			}
+			case CHEST: {
+				return new CustomItem(new MaterialData(Material.ENCHANTED_BOOK), "&e远古工艺之书 &7(箱子界面)", "", "&e右键点击 &8\u21E8 &7浏览物品", "&eShift + 右键点击 &8\u21E8 &7打开界面设置菜单");
+			}
 		default:
 			return null;
 		}
@@ -102,14 +102,14 @@ public class SlimefunGuide {
 	}
 	
 	public static ItemStack getDeprecatedItem(boolean book) {
-		return new CustomItem(new MaterialData(Material.ENCHANTED_BOOK), "&eSlimefun Guide &7(Right Click)", (book ? "": "&2"), "&rThis is your basic Guide for Slimefun", "&rYou can see all Items added by this Plugin", "&ror its Addons including their Recipes", "&ra bit of information and more");
+		return new CustomItem(new MaterialData(Material.ENCHANTED_BOOK), "&e远古工艺之书 &8(右键点击打开)", (book ? "": "&2"), "&7这是远古工艺的使用向导书", "&7书本虽已泛黄, 知识却历久弥新", "&7你可以在书中解锁物品", "&7查看机器搭建方法以及物品制作、合成方法");
 	}
 	
 	private static final int[] slots = new int[] {0, 2, 3, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35};
 	
 	@SuppressWarnings("deprecation")
 	public static void openSettings(Player p, final ItemStack guide) {
-		final ChestMenu menu = new ChestMenu("Settings / Info");
+		final ChestMenu menu = new ChestMenu("设置 / 信息");
 		
 		menu.setEmptySlotsClickable(false);
 		menu.addMenuOpeningHandler(new MenuOpeningHandler() {
@@ -134,7 +134,7 @@ public class SlimefunGuide {
 		
 		if (SlimefunManager.isItemSimiliar(guide, getItem(BookDesign.CHEST), true)) {
 			if (p.hasPermission("slimefun.cheat.items")) {
-				menu.addItem(19, new CustomItem(new MaterialData(Material.CHEST), "&7Guide Layout: &eChest GUI", "", "&aChest GUI", "&7Book GUI", "&7Cheat Sheet", "", "&e Click &8\u21E8 &7Change Layout"));
+				menu.addItem(19, new CustomItem(new MaterialData(Material.CHEST), "&7界面布局: &e箱子界面", "", "&a箱子界面", "&7书本界面", "&7作弊面板", "", "&e 点击 &8\u21E8 &7修改布局"));
 				menu.addMenuClickHandler(19, new MenuClickHandler() {
 					
 					@Override
@@ -146,7 +146,7 @@ public class SlimefunGuide {
 				});
 			}
 			else {
-				menu.addItem(19, new CustomItem(new MaterialData(Material.CHEST), "&7Guide Layout: &eChest GUI", "", "&aChest GUI", "&7Book GUI", "", "&e Click &8\u21E8 &7Change Layout"));
+				menu.addItem(19, new CustomItem(new MaterialData(Material.CHEST), "&7界面布局: &e箱子界面", "", "&a箱子界面", "&7书本界面", "", "&e 点击 &8\u21E8 &7修改布局"));
 				menu.addMenuClickHandler(19, new MenuClickHandler() {
 					
 					@Override
@@ -160,7 +160,7 @@ public class SlimefunGuide {
 		}
 		else if (SlimefunManager.isItemSimiliar(guide, getItem(BookDesign.BOOK), true)) {
 			if (p.hasPermission("slimefun.cheat.items")) {
-				menu.addItem(19, new CustomItem(new MaterialData(Material.CHEST), "&7Guide Layout: &eBook GUI", "", "&7Chest GUI", "&aBook GUI", "&7Cheat Sheet", "", "&e Click &8\u21E8 &7Change Layout"));
+				menu.addItem(19, new CustomItem(new MaterialData(Material.CHEST), "&7界面布局: &e书本界面", "", "&7箱子界面", "&a书本界面", "&7作弊面板", "", "&e 点击 &8\u21E8 &7修改布局"));
 				menu.addMenuClickHandler(19, new MenuClickHandler() {
 					
 					@Override
@@ -172,7 +172,7 @@ public class SlimefunGuide {
 				});
 			}
 			else {
-				menu.addItem(19, new CustomItem(new MaterialData(Material.CHEST), "&7Guide Layout: &eBook GUI", "", "&7Chest GUI", "&aBook GUI", "", "&e Click &8\u21E8 &7Change Layout"));
+				menu.addItem(19, new CustomItem(new MaterialData(Material.CHEST), "&7界面布局: &e书本界面", "", "&7箱子界面", "&a书本界面", "", "&e 点击 &8\u21E8 &7修改布局"));
 				menu.addMenuClickHandler(19, new MenuClickHandler() {
 					
 					@Override
@@ -185,7 +185,7 @@ public class SlimefunGuide {
 			}
 		}
 		else if (SlimefunManager.isItemSimiliar(guide, getItem(BookDesign.CHEAT_SHEET), true)) {
-			menu.addItem(19, new CustomItem(new MaterialData(Material.CHEST), "&7Guide Layout: &eCheat Sheet", "", "&7Chest GUI", "&7Book GUI", "&aCheat Sheet", "", "&e Click &8\u21E8 &7Change Layout"));
+			menu.addItem(19, new CustomItem(new MaterialData(Material.CHEST), "&7界面布局: &e作弊面板", "", "&7箱子界面", "&7书本界面", "&a作弊面板", "", "&e 点击 &8\u21E8 &7修改布局"));
 			menu.addMenuClickHandler(19, new MenuClickHandler() {
 				
 				@Override
@@ -196,8 +196,8 @@ public class SlimefunGuide {
 				}
 			});
 		}
-		
-		menu.addItem(1, new CustomItem(new MaterialData(Material.BOOK_AND_QUILL), "&aCredits", "", "&7Version: &a" + SlimefunStartup.instance.getDescription().getVersion(), "&7Contributors: &e" + contributors.size(), "", "&7\u21E8 Click to see the people behind this Plugin"));
+
+		menu.addItem(1, new CustomItem(new MaterialData(Material.BOOK_AND_QUILL), "&a版本信息", "", "&7版本: &a" + SlimefunStartup.instance.getDescription().getVersion(), "&7贡献者: &e" + contributors.size(), "", "&7\u21E8 点击查看Slimefun项目的贡献者们"));
 		menu.addMenuClickHandler(1, new MenuClickHandler() {
 			
 			@Override
@@ -208,7 +208,7 @@ public class SlimefunGuide {
 		});
 		
 		try {
-			menu.addItem(4, new CustomItem(new MaterialData(Material.REDSTONE_COMPARATOR), "&eSource Code", "", "&7Bytes of Code: &6" + IntegerFormat.formatBigNumber(code_bytes), "&7Last Update: &a" + IntegerFormat.timeDelta(last_update) + " ago", "&7Forks: &e" + forks, "&7Stars: &e" + stars, "", "&7&oSlimefun 4 is a community project,", "&7&othe source code is available on GitHub", "&7&oand if you want to keep this Plugin alive,", "&7&othen please consider contributing to it", "", "&7\u21E8 Click to go to GitHub"));
+			menu.addItem(4, new CustomItem(new MaterialData(Material.REDSTONE_COMPARATOR), "&e源码", "", "&7代码行数: &6" + IntegerFormat.formatBigNumber(code_bytes), "&7上次更新时间: &a" + IntegerFormat.timeDelta(last_update) + " 之前", "&7Forks: &e" + forks, "&7Stars: &e" + stars, "", "&7&oSlimefun 4 是一个社区项目,", "&7&o源代码可以在GitHub上查看", "&7&o如果你想保持这个项目的活跃,", "&7&o请考虑为这个项目作贡献", "", "&7\u21E8 点击前往GitHub"));
 			menu.addMenuClickHandler(4, new MenuClickHandler() {
 				
 				@Override
@@ -224,7 +224,7 @@ public class SlimefunGuide {
 			e.printStackTrace();
 		}
 		
-		menu.addItem(7, new CustomItem(new MaterialData(Material.REDSTONE), "&4Bug Tracker", "", "&7Unsolved Issues: &a" + issues, "", "&7\u21E8 Click to go to the Slimefun Bug Tracker"));
+		menu.addItem(7, new CustomItem(new MaterialData(Material.REDSTONE), "&4Bug追踪器", "", "&7未解决问题: &a" + issues, "", "&7\u21E8 点击前往 Slimefun Bug追踪器"));
 		menu.addMenuClickHandler(7, new MenuClickHandler() {
 			
 			@Override
@@ -242,7 +242,7 @@ public class SlimefunGuide {
 
 	@SuppressWarnings("deprecation")
 	public static void openCredits(Player p, final ItemStack guide) {
-		final ChestMenu menu = new ChestMenu("Credits");
+		final ChestMenu menu = new ChestMenu("鸣谢");
 		
 		menu.setEmptySlotsClickable(false);
 		menu.addMenuOpeningHandler(new MenuOpeningHandler() {
@@ -265,7 +265,7 @@ public class SlimefunGuide {
 				});
 			}
 			else {
-				menu.addItem(4, new CustomItem(new MaterialData(Material.EMERALD), "&7\u21E6 Back to Settings"));
+				menu.addItem(4, new CustomItem(new MaterialData(Material.EMERALD), "&7\u21E6 返回设置界面"));
 				menu.addMenuClickHandler(4, new MenuClickHandler() {
 					
 					@Override
@@ -293,10 +293,10 @@ public class SlimefunGuide {
 			if (contributor.getCommits() > 0) {
 				double percentage = DoubleHandler.fixDouble((contributor.getCommits() * 100.0) / total, 2);
 				
-				meta.setLore(Arrays.asList("", ChatColor.translateAlternateColorCodes('&', "&7Role: &r" + contributor.getJob()), ChatColor.translateAlternateColorCodes('&', "&7Contributions: &r" + contributor.getCommits() + " commits &7(&r" + percentage + "%&7)"), "", ChatColor.translateAlternateColorCodes('&', "&7\u21E8 Click to view my GitHub profile")));
+				meta.setLore(Arrays.asList("", ChatColor.translateAlternateColorCodes('&', "&7负责: &r" + contributor.getJob()), ChatColor.translateAlternateColorCodes('&', "&7贡献次数: &r" + contributor.getCommits() + " commits &7(&r" + percentage + "%&7)"), "", ChatColor.translateAlternateColorCodes('&', "&7\u21E8 点击查看我的Github个人信息页面")));
 			}
 			else {
-				meta.setLore(Arrays.asList("", ChatColor.translateAlternateColorCodes('&', "&7Role: &r" + contributor.getJob())));
+				meta.setLore(Arrays.asList("", ChatColor.translateAlternateColorCodes('&', "&7负责: &r" + contributor.getJob())));
 			}
 
 			skull.setItemMeta(meta);
@@ -399,12 +399,12 @@ public class SlimefunGuide {
 								actions.add(null);
 							}
 						}
-						texts.add(ChatColor.translateAlternateColorCodes('&', "&8\u21E8 &6Tier " + tier));
+						texts.add(ChatColor.translateAlternateColorCodes('&', "&8\u21E8 &6品级 " + tier));
 						tooltips.add(null);
 						actions.add(null);
 					}
 					if (category instanceof LockedCategory && !((LockedCategory) category).hasUnlocked(p)) {
-						StringBuilder parents = new StringBuilder(ChatColor.translateAlternateColorCodes('&', "&4&lLOCKED\n\n&7In order to unlock this Category,\n&7you need to unlock all Items from\n&7the following Categories first:\n"));
+						StringBuilder parents = new StringBuilder("&4&l未解锁\n\n&7如果想要解锁这个系列,\n&7你需要先解锁所有来自\n&7以下系列的物品:\n");
 						
 						for (Category parent: ((LockedCategory) category).getParents()) {
 							parents.append(ChatColor.translateAlternateColorCodes('&', "\n&c" + StringUtils.formatItemName(parent.getItem(), false)));
@@ -417,7 +417,7 @@ public class SlimefunGuide {
 					else if (category instanceof SeasonCategory) {
 						if (((SeasonCategory) category).isUnlocked()) {
 							texts.add(ChatColor.translateAlternateColorCodes('&', shorten("&a", StringUtils.formatItemName(category.getItem(), false))));
-							tooltips.add(ChatColor.translateAlternateColorCodes('&', "&eClick to open the following Category:\n" + StringUtils.formatItemName(category.getItem(), false)));
+							tooltips.add("&e点击打开以下系列:\n" + StringUtils.formatItemName(category.getItem(), false));
 							actions.add(new PlayerRunnable(1) {
 								
 								@Override
@@ -435,7 +435,7 @@ public class SlimefunGuide {
 					}
 					else {
 						texts.add(ChatColor.translateAlternateColorCodes('&', shorten("&a", StringUtils.formatItemName(category.getItem(), false))));
-						tooltips.add(ChatColor.translateAlternateColorCodes('&', "&eClick to open the following Category:\n" + StringUtils.formatItemName(category.getItem(), false)));
+						tooltips.add("&e点击打开以下系列:\n" + StringUtils.formatItemName(category.getItem(), false));
 						actions.add(new PlayerRunnable(1) {
 							
 							@Override
@@ -468,7 +468,7 @@ public class SlimefunGuide {
 			
 			for (int i = 0; i < texts.size(); i = i + 10) {
 				TellRawMessage page = new TellRawMessage();
-				page.addText(ChatColor.translateAlternateColorCodes('&', "&b&l- Slimefun Guide -\n\n"));
+				page.addText(ChatColor.translateAlternateColorCodes('&', "&b&l- 远古工艺向导 -\n\n"));
 				for (int j = i; j < texts.size() && j < i + 10; j++) {
 					page.addText(texts.get(j) + "\n");
 					if (tooltips.get(j) != null) page.addHoverEvent(HoverAction.SHOW_TEXT, tooltips.get(j));
@@ -490,10 +490,10 @@ public class SlimefunGuide {
 				pages.add(page);
 			}
 			
-			new CustomBookOverlay("Slimefun Guide", "mrCookieSlime", pages.toArray(new TellRawMessage[pages.size()])).open(p);
+			new CustomBookOverlay("远古工艺向导", "mrCookieSlime", pages.toArray(new TellRawMessage[pages.size()])).open(p);
 		}
 		else {
-			final ChestMenu menu = new ChestMenu("Slimefun Guide");
+			final ChestMenu menu = new ChestMenu("远古工艺向导");
 			
 			menu.setEmptySlotsClickable(false);
 			menu.addMenuOpeningHandler(new MenuOpeningHandler() {
@@ -604,13 +604,13 @@ public class SlimefunGuide {
 					else {
 						List<String> parents = new ArrayList<String>();
 						parents.add("");
-						parents.add(ChatColor.translateAlternateColorCodes('&', "&rYou need to unlock all Items"));
-						parents.add(ChatColor.translateAlternateColorCodes('&', "&rfrom the following Categories first:"));
+						parents.add(ChatColor.translateAlternateColorCodes('&', "&r你需要先解锁所有"));
+						parents.add(ChatColor.translateAlternateColorCodes('&', "&r来自以下系列的物品:"));
 						parents.add("");
 						for (Category parent: ((LockedCategory) category).getParents()) {
 							parents.add(parent.getItem().getItemMeta().getDisplayName());
 						}
-						menu.addItem(index, new CustomItem(Material.BARRIER, "&4LOCKED &7- &r" + category.getItem().getItemMeta().getDisplayName(), 0, parents.toArray(new String[parents.size()])));
+						menu.addItem(index, new CustomItem(Material.BARRIER, "&4未解锁 &7- &r" + category.getItem().getItemMeta().getDisplayName(), 0, parents.toArray(new String[parents.size()])));
 						menu.addMenuClickHandler(index, new MenuClickHandler() {
 							
 							@Override
@@ -625,7 +625,7 @@ public class SlimefunGuide {
 
 			final int finalPages = pages;
 			
-			menu.addItem(46, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 5), "&r\u21E6 Previous Page", "", "&7(" + selected_page + " / " + pages + ")"));
+			menu.addItem(46, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 5), "&r\u21E6 上一页", "", "&7(" + selected_page + " / " + pages + ")"));
 			menu.addMenuClickHandler(46, new MenuClickHandler() {
 				
 				@Override
@@ -637,7 +637,7 @@ public class SlimefunGuide {
 				}
 			});
 			
-			menu.addItem(52, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 5), "&rNext Page \u21E8", "", "&7(" + selected_page + " / " + pages + ")"));
+			menu.addItem(52, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 5), "&r下一页 \u21E8", "", "&7(" + selected_page + " / " + pages + ")"));
 			menu.addMenuClickHandler(52, new MenuClickHandler() {
 				
 				@Override
@@ -675,7 +675,7 @@ public class SlimefunGuide {
 						    final Research research = item.getResearch();
 						    
 							texts.add(ChatColor.translateAlternateColorCodes('&', shorten("&7", StringUtils.formatItemName(item.getItem(), false))));
-							tooltips.add(ChatColor.translateAlternateColorCodes('&', StringUtils.formatItemName(item.getItem(), false) + "\n&c&lLOCKED\n\n&7Cost: " + (p.getLevel() >= research.getCost() ? "&b": "&4") + research.getCost() + " Levels\n\n&a> Click to unlock"));
+							tooltips.add(ChatColor.translateAlternateColorCodes('&', StringUtils.formatItemName(item.getItem(), false) + "\n&c&l未解锁\n\n&7需要花费: " + (p.getLevel() >= research.getCost() ? "&b": "&4") + research.getCost() + " 等级\n\n&a> 点击进行解锁"));
 							actions.add(new PlayerRunnable(2) {
 								
 								@Override
@@ -727,7 +727,7 @@ public class SlimefunGuide {
 								}
 							}
 							
-							tooltip.append(ChatColor.translateAlternateColorCodes('&', "\n\n&e&oClick for more Info"));
+							tooltip.append(ChatColor.translateAlternateColorCodes('&', "\n\n&e&o点击查看详细信息"));
 							
 							tooltips.add(tooltip.toString());
 							actions.add(new PlayerRunnable(2) {
@@ -742,22 +742,22 @@ public class SlimefunGuide {
 				}
 				else {
 					texts.add(ChatColor.translateAlternateColorCodes('&', shorten("&4", StringUtils.formatItemName(item.getItem(), false))));
-					tooltips.add(ChatColor.translateAlternateColorCodes('&', "&cNo Permission!"));
+					tooltips.add(ChatColor.translateAlternateColorCodes('&', "&c无权限!"));
 					actions.add(null);
 				}
 			}
 			
 			for (int i = 0; i < texts.size(); i = i + 10) {
 				TellRawMessage page = new TellRawMessage();
-				page.addText(ChatColor.translateAlternateColorCodes('&', "&b&l- Slimefun Guide -\n\n"));
+				page.addText(ChatColor.translateAlternateColorCodes('&', "&b&l- 远古工艺向导 -\n\n"));
 				for (int j = i; j < texts.size() && j < i + 10; j++) {
 					page.addText(texts.get(j) + "\n");
 					if (tooltips.get(j) != null) page.addHoverEvent(HoverAction.SHOW_TEXT, tooltips.get(j));
 					if (actions.get(j) != null) page.addClickEvent(actions.get(j));
 				}
 				page.addText("\n");
-				page.addText(ChatColor.translateAlternateColorCodes('&', "&6\u21E6 &lBack"));
-				page.addHoverEvent(HoverAction.SHOW_TEXT, ChatColor.translateAlternateColorCodes('&', "&eClick to go back to the Category Overview"));
+				page.addText(ChatColor.translateAlternateColorCodes('&', "&6\u21E6 &l返回"));
+				page.addHoverEvent(HoverAction.SHOW_TEXT, ChatColor.translateAlternateColorCodes('&', "&e点击返回系列项目概览界面"));
 				page.addClickEvent(new PlayerRunnable(2) {
 					
 					@Override
@@ -774,10 +774,10 @@ public class SlimefunGuide {
 				pages.add(page);
 			}
 			
-			new CustomBookOverlay("Slimefun Guide", "mrCookieSlime", pages.toArray(new TellRawMessage[pages.size()])).open(p);
+			new CustomBookOverlay("远古工艺向导", "mrCookieSlime", pages.toArray(new TellRawMessage[pages.size()])).open(p);
 		}
 		else {
-			final ChestMenu menu = new ChestMenu("Slimefun Guide");
+			final ChestMenu menu = new ChestMenu("远古工艺向导");
 			
 			menu.setEmptySlotsClickable(false);
 			menu.addMenuOpeningHandler(new MenuOpeningHandler() {
@@ -801,7 +801,7 @@ public class SlimefunGuide {
 				});
 			}
 			
-			menu.addItem(4, new CustomItem(new MaterialData(Material.ENCHANTED_BOOK), "&7\u21E6 Back"));
+			menu.addItem(4, new CustomItem(new MaterialData(Material.ENCHANTED_BOOK), "&7\u21E6 返回"));
 			menu.addMenuClickHandler(4, new MenuClickHandler() {
 				
 				@Override
@@ -833,7 +833,7 @@ public class SlimefunGuide {
 				});
 			}
 			
-			menu.addItem(46, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 5), "&r\u21E6 Previous Page", "", "&7(" + selected_page + " / " + pages + ")"));
+			menu.addItem(46, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 5), "&r\u21E6 上一页", "", "&7(" + selected_page + " / " + pages + ")"));
 			menu.addMenuClickHandler(46, new MenuClickHandler() {
 				
 				@Override
@@ -845,7 +845,7 @@ public class SlimefunGuide {
 				}
 			});
 			
-			menu.addItem(52, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 5), "&rNext Page \u21E8", "", "&7(" + selected_page + " / " + pages + ")"));
+			menu.addItem(52, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 5), "&r下一页 \u21E8", "", "&7(" + selected_page + " / " + pages + ")"));
 			menu.addMenuClickHandler(52, new MenuClickHandler() {
 				
 				@Override
@@ -866,7 +866,7 @@ public class SlimefunGuide {
 					if (survival && !Slimefun.hasUnlocked(p, sfitem.getItem(), false) && sfitem.getResearch() != null) {
 						if (Slimefun.hasPermission(p, sfitem, false)) {
 						    final Research research = sfitem.getResearch();
-							menu.addItem(index, new CustomItem(Material.BARRIER, "&r" + StringUtils.formatItemName(sfitem.getItem(), false), 0, new String[] {"&4&lLOCKED", "", "&a> Click to unlock", "", "&7Cost: &b" + research.getCost() + " Level"}));
+							menu.addItem(index, new CustomItem(Material.BARRIER, "&r" + StringUtils.formatItemName(sfitem.getItem(), false), 0, new String[] {"&4&l未解锁", "", "&a> Click to unlock", "", "&7Cost: &b" + research.getCost() + " Level"}));
 							menu.addMenuClickHandler(index, new MenuClickHandler() {
 								
 								@Override
@@ -902,7 +902,7 @@ public class SlimefunGuide {
 							index++;
 						}
 						else {
-							menu.addItem(index, new CustomItem(Material.BARRIER, StringUtils.formatItemName(sfitem.getItem(), false), 0, new String[] {"", "&rYou do not have Permission", "&rto access this Item"}));
+							menu.addItem(index, new CustomItem(Material.BARRIER, StringUtils.formatItemName(sfitem.getItem(), false), 0, new String[] {"", "&r你没有权限", "&r查看这个物品"}));
 							menu.addMenuClickHandler(index, new MenuClickHandler() {
 								
 								@Override
@@ -970,7 +970,7 @@ public class SlimefunGuide {
 		ItemStack recipeType = null;
 		ItemStack recipeOutput = item;
 		
-		ChestMenu menu = new ChestMenu("Slimefun Guide");
+		ChestMenu menu = new ChestMenu("远古工艺向导");
 		
 		menu.setEmptySlotsClickable(false);
 		menu.addMenuOpeningHandler(new MenuOpeningHandler() {
@@ -998,7 +998,7 @@ public class SlimefunGuide {
 			 Recipe r = recipes.get(page);
 			 
 			 if (recipes.size() > page + 1) {
-				 menu.addItem(1, new CustomItem(new MaterialData(Material.ENCHANTED_BOOK), "&7Next \u21E8", "", "&e&l! &rThere are multiple recipes for this Item"));
+				 menu.addItem(1, new CustomItem(new MaterialData(Material.ENCHANTED_BOOK), "&7下一页 \u21E8", "", "&e&l! &r这个物品有多重合成方式"));
 					menu.addMenuClickHandler(1, new MenuClickHandler() {
 						
 						@Override
@@ -1058,7 +1058,7 @@ public class SlimefunGuide {
 		if (addToHistory) addToHistory(p, sfItem != null ? sfItem.getURID(): URID.nextURID(item, true));
 		
 		if (history.containsKey(p.getUniqueId()) && history.get(p.getUniqueId()).size() > 1) {
-			menu.addItem(0, new CustomItem(new MaterialData(Material.ENCHANTED_BOOK), "&7\u21E6 Back", "", "&rLeft Click: &7Go back to previous Page", "&rShift + left Click: &7Go back to Main Menu"));
+			menu.addItem(0, new CustomItem(new MaterialData(Material.ENCHANTED_BOOK), "&7\u21E6 返回", "", "&r左键点击: &7返回上一页", "&rShift + 左键点击: &7返回主菜单"));
 			menu.addMenuClickHandler(0, new MenuClickHandler() {
 				
 				@Override
@@ -1076,7 +1076,7 @@ public class SlimefunGuide {
 			});
 		}
 		else {
-			menu.addItem(0, new CustomItem(new MaterialData(Material.ENCHANTED_BOOK), "&7\u21E6 Back", "", "&rLeft Click: &7Go back to Main Menu"));
+			menu.addItem(0, new CustomItem(new MaterialData(Material.ENCHANTED_BOOK), "&7\u21E6 返回", "", "&r左键点击: &7返回主菜单"));
 			menu.addMenuClickHandler(0, new MenuClickHandler() {
 				
 				@Override
@@ -1087,7 +1087,7 @@ public class SlimefunGuide {
 			});
 		}
 		
-		menu.addItem(3, Slimefun.hasUnlocked(p, recipe[0], false) ? recipe[0]: new CustomItem(Material.BARRIER, StringUtils.formatItemName(recipe[0], false), 0, new String[] {"&4&lLOCKED", "", Slimefun.hasPermission(p, SlimefunItem.getByItem(recipe[0]), false) ? "&rNeeds to be unlocked elsewhere" : "&rNo Permission"}));
+		menu.addItem(3, Slimefun.hasUnlocked(p, recipe[0], false) ? recipe[0]: new CustomItem(Material.BARRIER, StringUtils.formatItemName(recipe[0], false), 0, new String[] {"&4&l未解锁", "", Slimefun.hasPermission(p, SlimefunItem.getByItem(recipe[0]), false) ? "&r需要在其他地方解锁" : "&r无权限"}));
 		menu.addMenuClickHandler(3, new MenuClickHandler() {
 			
 			@Override
@@ -1097,7 +1097,7 @@ public class SlimefunGuide {
 			}
 		});
 		
-		menu.addItem(4, Slimefun.hasUnlocked(p, recipe[1], false) ? recipe[1]: new CustomItem(Material.BARRIER, StringUtils.formatItemName(recipe[1], false), 0, new String[] {"&4&lLOCKED", "", Slimefun.hasPermission(p, SlimefunItem.getByItem(recipe[1]), false) ? "&rNeeds to be unlocked elsewhere" : "&rNo Permission"}));
+		menu.addItem(4, Slimefun.hasUnlocked(p, recipe[1], false) ? recipe[1]: new CustomItem(Material.BARRIER, StringUtils.formatItemName(recipe[1], false), 0, new String[] {"&4&l未解锁", "", Slimefun.hasPermission(p, SlimefunItem.getByItem(recipe[1]), false) ? "&r需要在其他地方解锁" : "&r无权限"}));
 		menu.addMenuClickHandler(4, new MenuClickHandler() {
 			
 			@Override
@@ -1107,7 +1107,7 @@ public class SlimefunGuide {
 			}
 		});
 		
-		menu.addItem(5, Slimefun.hasUnlocked(p, recipe[2], false) ? recipe[2]: new CustomItem(Material.BARRIER, StringUtils.formatItemName(recipe[2], false), 0, new String[] {"&4&lLOCKED", "", Slimefun.hasPermission(p, SlimefunItem.getByItem(recipe[2]), false) ? "&rNeeds to be unlocked elsewhere" : "&rNo Permission"}));
+		menu.addItem(5, Slimefun.hasUnlocked(p, recipe[2], false) ? recipe[2]: new CustomItem(Material.BARRIER, StringUtils.formatItemName(recipe[2], false), 0, new String[] {"&4&l未解锁", "", Slimefun.hasPermission(p, SlimefunItem.getByItem(recipe[2]), false) ? "&r需要在其他地方解锁" : "&r无权限"}));
 		menu.addMenuClickHandler(5, new MenuClickHandler() {
 			
 			@Override
@@ -1120,7 +1120,7 @@ public class SlimefunGuide {
 		if (sfItem != null) {
 			if (Slimefun.getItemConfig().contains(sfItem.getID() + ".wiki")) {
 				try {
-					menu.addItem(8, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzY2OTJmOTljYzZkNzgyNDIzMDQxMTA1NTM1ODk0ODQyOThiMmU0YTAyMzNiNzY3NTNmODg4ZTIwN2VmNSJ9fX0="), "&rView this Item in our Wiki &7(Slimefun Wiki)", "", "&7\u21E8 Click to open"));
+					menu.addItem(8, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzY2OTJmOTljYzZkNzgyNDIzMDQxMTA1NTM1ODk0ODQyOThiMmU0YTAyMzNiNzY3NTNmODg4ZTIwN2VmNSJ9fX0="), "&r查看这个物品的介绍百科 &7(Slimefun Wiki)", "", "&7\u21E8 点击打开"));
 					menu.addMenuClickHandler(8, new MenuClickHandler() {
 						
 						@Override
@@ -1138,7 +1138,7 @@ public class SlimefunGuide {
 			}
 			if (Slimefun.getItemConfig().contains(sfItem.getID() + ".youtube")) {
 				try {
-					menu.addItem(7, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjQzNTNmZDBmODYzMTQzNTM4NzY1ODYwNzViOWJkZjBjNDg0YWFiMDMzMWI4NzJkZjExYmQ1NjRmY2IwMjllZCJ9fX0="), "&rDemonstration Video &7(Youtube)", "", "&7\u21E8 Click to watch"));
+					menu.addItem(7, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjQzNTNmZDBmODYzMTQzNTM4NzY1ODYwNzViOWJkZjBjNDg0YWFiMDMzMWI4NzJkZjExYmQ1NjRmY2IwMjllZCJ9fX0="), "&r示例视频 &7(Youtube)", "", "&7\u21E8 点击观看"));
 					menu.addMenuClickHandler(7, new MenuClickHandler() {
 						
 						@Override
@@ -1165,7 +1165,7 @@ public class SlimefunGuide {
 			}
 		});
 		
-		menu.addItem(12, Slimefun.hasUnlocked(p, recipe[3], false) ? recipe[3]: new CustomItem(Material.BARRIER, StringUtils.formatItemName(recipe[3], false), 0, new String[] {"&4&lLOCKED", "", Slimefun.hasPermission(p, SlimefunItem.getByItem(recipe[3]), false) ? "&rNeeds to be unlocked elsewhere" : "&rNo Permission"}));
+		menu.addItem(12, Slimefun.hasUnlocked(p, recipe[3], false) ? recipe[3]: new CustomItem(Material.BARRIER, StringUtils.formatItemName(recipe[3], false), 0, new String[] {"&4&l未解锁", "", Slimefun.hasPermission(p, SlimefunItem.getByItem(recipe[3]), false) ? "&r需要在其他地方解锁" : "&r无权限"}));
 		menu.addMenuClickHandler(12, new MenuClickHandler() {
 			
 			@Override
@@ -1175,7 +1175,7 @@ public class SlimefunGuide {
 			}
 		});
 		
-		menu.addItem(13, Slimefun.hasUnlocked(p, recipe[4], false) ? recipe[4]: new CustomItem(Material.BARRIER, StringUtils.formatItemName(recipe[4], false), 0, new String[] {"&4&lLOCKED", "", Slimefun.hasPermission(p, SlimefunItem.getByItem(recipe[4]), false) ? "&rNeeds to be unlocked elsewhere" : "&rNo Permission"}));
+		menu.addItem(13, Slimefun.hasUnlocked(p, recipe[4], false) ? recipe[4]: new CustomItem(Material.BARRIER, StringUtils.formatItemName(recipe[4], false), 0, new String[] {"&4&l未解锁", "", Slimefun.hasPermission(p, SlimefunItem.getByItem(recipe[4]), false) ? "&r需要在其他地方解锁" : "&r无权限"}));
 		menu.addMenuClickHandler(13, new MenuClickHandler() {
 			
 			@Override
@@ -1185,7 +1185,7 @@ public class SlimefunGuide {
 			}
 		});
 		
-		menu.addItem(14, Slimefun.hasUnlocked(p, recipe[5], false) ? recipe[5]: new CustomItem(Material.BARRIER, StringUtils.formatItemName(recipe[5], false), 0, new String[] {"&4&lLOCKED", "", Slimefun.hasPermission(p, SlimefunItem.getByItem(recipe[5]), false) ? "&rNeeds to be unlocked elsewhere" : "&rNo Permission"}));
+		menu.addItem(14, Slimefun.hasUnlocked(p, recipe[5], false) ? recipe[5]: new CustomItem(Material.BARRIER, StringUtils.formatItemName(recipe[5], false), 0, new String[] {"&4&l未解锁", "", Slimefun.hasPermission(p, SlimefunItem.getByItem(recipe[5]), false) ? "&r需要在其他地方解锁" : "&r无权限"}));
 		menu.addMenuClickHandler(14, new MenuClickHandler() {
 			
 			@Override
@@ -1204,7 +1204,7 @@ public class SlimefunGuide {
 			}
 		});
 		
-		menu.addItem(21, Slimefun.hasUnlocked(p, recipe[6], false) ? recipe[6]: new CustomItem(Material.BARRIER, StringUtils.formatItemName(recipe[6], false), 0, new String[] {"&4&lLOCKED", "", Slimefun.hasPermission(p, SlimefunItem.getByItem(recipe[6]), false) ? "&rNeeds to be unlocked elsewhere" : "&rNo Permission"}));
+		menu.addItem(21, Slimefun.hasUnlocked(p, recipe[6], false) ? recipe[6]: new CustomItem(Material.BARRIER, StringUtils.formatItemName(recipe[6], false), 0, new String[] {"&4&l未解锁", "", Slimefun.hasPermission(p, SlimefunItem.getByItem(recipe[6]), false) ? "&r需要在其他地方解锁" : "&r无权限"}));
 		menu.addMenuClickHandler(21, new MenuClickHandler() {
 			
 			@Override
@@ -1214,7 +1214,7 @@ public class SlimefunGuide {
 			}
 		});
 		
-		menu.addItem(22, Slimefun.hasUnlocked(p, recipe[7], false) ? recipe[7]: new CustomItem(Material.BARRIER, StringUtils.formatItemName(recipe[7], false), 0, new String[] {"&4&lLOCKED", "", Slimefun.hasPermission(p, SlimefunItem.getByItem(recipe[7]), false) ? "&rNeeds to be unlocked elsewhere" : "&rNo Permission"}));
+		menu.addItem(22, Slimefun.hasUnlocked(p, recipe[7], false) ? recipe[7]: new CustomItem(Material.BARRIER, StringUtils.formatItemName(recipe[7], false), 0, new String[] {"&4&l未解锁", "", Slimefun.hasPermission(p, SlimefunItem.getByItem(recipe[7]), false) ? "&r需要在其他地方解锁" : "&r无权限"}));
 		menu.addMenuClickHandler(22, new MenuClickHandler() {
 			
 			@Override
@@ -1224,7 +1224,7 @@ public class SlimefunGuide {
 			}
 		});
 		
-		menu.addItem(23, Slimefun.hasUnlocked(p, recipe[8], false) ? recipe[8]: new CustomItem(Material.BARRIER, StringUtils.formatItemName(recipe[8], false), 0, new String[] {"&4&lLOCKED", "", Slimefun.hasPermission(p, SlimefunItem.getByItem(recipe[8]), false) ? "&rNeeds to be unlocked elsewhere" : "&rNo Permission"}));
+		menu.addItem(23, Slimefun.hasUnlocked(p, recipe[8], false) ? recipe[8]: new CustomItem(Material.BARRIER, StringUtils.formatItemName(recipe[8], false), 0, new String[] {"&4&l未解锁", "", Slimefun.hasPermission(p, SlimefunItem.getByItem(recipe[8]), false) ? "&r需要在其他地方解锁" : "&r无权限"}));
 		menu.addMenuClickHandler(23, new MenuClickHandler() {
 			
 			@Override
@@ -1238,7 +1238,7 @@ public class SlimefunGuide {
 			
 			if ((sfItem instanceof SlimefunMachine && ((SlimefunMachine) sfItem).getDisplayRecipes().size() > 0) || (sfItem instanceof SlimefunGadget && ((SlimefunGadget) sfItem).getRecipes().size() > 0)) {
 				for (int i = 27; i < 36; i++) {
-					menu.addItem(i, new CustomItem(Material.STAINED_GLASS_PANE, SlimefunItem.getByItem(item) instanceof SlimefunMachine ? "&7\u21E9 Recipes made in this Machine \u21E9": " ", 7));
+					menu.addItem(i, new CustomItem(Material.STAINED_GLASS_PANE, SlimefunItem.getByItem(item) instanceof SlimefunMachine ? "&7\u21E9 合成需要在这个机器中进行 \u21E9": " ", 7));
 					menu.addMenuClickHandler(i, new MenuClickHandler() {
 						
 						@Override
@@ -1281,9 +1281,9 @@ public class SlimefunGuide {
 					ItemStack fItem = fuel.getInput().clone();
 					ItemMeta im = fItem.getItemMeta();
 					List<String> lore = new ArrayList<String>();
-					lore.add(ChatColor.translateAlternateColorCodes('&', "&8\u21E8 &7Lasts " + getTimeLeft(fuel.getTicks() / 2)));
+					lore.add(ChatColor.translateAlternateColorCodes('&', "&8\u21E8 &7耗时 " + getTimeLeft(fuel.getTicks() / 2)));
 					lore.add(ChatColor.translateAlternateColorCodes('&', "&8\u21E8 &e\u26A1 &7" + (((AGenerator) sfItem).getEnergyProduction() * 2) + " J/s"));
-					lore.add(ChatColor.translateAlternateColorCodes('&', "&8\u21E8 &e\u26A1 &7" + DoubleHandler.getFancyDouble(fuel.getTicks() * ((AGenerator) sfItem).getEnergyProduction()) + " J in total"));
+					lore.add(ChatColor.translateAlternateColorCodes('&', "&8\u21E8 &e\u26A1 &7总计能量 " + DoubleHandler.getFancyDouble(fuel.getTicks() * ((AGenerator) sfItem).getEnergyProduction()) + " J"));
 					im.setLore(lore);
 					fItem.setItemMeta(im);
 					menu.addItem(slot, fItem);
@@ -1304,9 +1304,9 @@ public class SlimefunGuide {
 					ItemStack fItem = fuel.getInput().clone();
 					ItemMeta im = fItem.getItemMeta();
 					List<String> lore = new ArrayList<String>();
-					lore.add(ChatColor.translateAlternateColorCodes('&', "&8\u21E8 &7Lasts " + getTimeLeft(fuel.getTicks() / 2)));
+					lore.add(ChatColor.translateAlternateColorCodes('&', "&8\u21E8 &7耗时 " + getTimeLeft(fuel.getTicks() / 2)));
 					lore.add(ChatColor.translateAlternateColorCodes('&', "&8\u21E8 &e\u26A1 &7" + (((AReactor) sfItem).getEnergyProduction() * 2) + " J/s"));
-					lore.add(ChatColor.translateAlternateColorCodes('&', "&8\u21E8 &e\u26A1 &7" + DoubleHandler.getFancyDouble(fuel.getTicks() * ((AReactor) sfItem).getEnergyProduction()) + " J in total"));
+					lore.add(ChatColor.translateAlternateColorCodes('&', "&8\u21E8 &e\u26A1 &7总计能量 " + DoubleHandler.getFancyDouble(fuel.getTicks() * ((AReactor) sfItem).getEnergyProduction()) + " J"));
 					im.setLore(lore);
 					fItem.setItemMeta(im);
 					menu.addItem(slot, fItem);

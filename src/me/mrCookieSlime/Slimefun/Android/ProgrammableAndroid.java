@@ -48,13 +48,18 @@ import java.util.*;
 
 public abstract class ProgrammableAndroid extends SlimefunItem {
 
-	private static final int[] border = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 18, 24, 25, 26, 27, 33, 35, 36, 42, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53};
+	private static final int[] border = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 18, 24, 25, 26, 27, 33, 35, 36, 42, 44,
+			45, 46, 47, 48, 49, 50, 51, 52, 53};
 	private static final int[] border_out = {10, 11, 12, 13, 14, 19, 23, 28, 32, 37, 38, 39, 40, 41};
 
 	@SuppressWarnings("deprecation")
-	private static final ItemStack[] fish = new ItemStack[] {new MaterialData(Material.RAW_FISH, (byte) 0).toItemStack(1), new MaterialData(Material.RAW_FISH, (byte) 1).toItemStack(1), new MaterialData(Material.RAW_FISH, (byte) 2).toItemStack(1), new MaterialData(Material.RAW_FISH, (byte) 3).toItemStack(1), new ItemStack(Material.STRING), new ItemStack(Material.BONE), new ItemStack(Material.STICK)};
+	private static final ItemStack[] fish = new ItemStack[] {new MaterialData(Material.RAW_FISH, (byte)
+			0).toItemStack(1), new MaterialData(Material.RAW_FISH, (byte) 1).toItemStack(1), new MaterialData
+			(Material.RAW_FISH, (byte) 2).toItemStack(1), new MaterialData(Material.RAW_FISH, (byte) 3).toItemStack(1), new
+			ItemStack(Material.STRING), new ItemStack(Material.BONE), new ItemStack(Material.STICK)};
 
-	private static final List<BlockFace> directions = Arrays.asList(BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST);
+	private static final List<BlockFace> directions = Arrays.asList(BlockFace.NORTH, BlockFace.EAST,
+			BlockFace.SOUTH, BlockFace.WEST);
 	private static final List<Material> blockblacklist = new ArrayList<Material>();
 
 	static {
@@ -81,13 +86,16 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 	public abstract int getTier();
 
 	@SuppressWarnings("deprecation")
-	public ProgrammableAndroid(Category category, ItemStack item, String name, RecipeType recipeType, ItemStack[] recipe) {
+	public ProgrammableAndroid(Category category, ItemStack item, String name, RecipeType recipeType,
+							   ItemStack[] recipe) {
 		super(category, item, name, recipeType, recipe);
 
 
 		if (getTier() == 1) {
-			registerFuel(new MachineFuel(80, new MaterialData(Material.COAL, (byte) 0).toItemStack(1)));
-			registerFuel(new MachineFuel(80, new MaterialData(Material.COAL, (byte) 1).toItemStack(1)));
+			registerFuel(new MachineFuel(80, new MaterialData(Material.COAL, (byte) 0).toItemStack
+					(1)));
+			registerFuel(new MachineFuel(80, new MaterialData(Material.COAL, (byte) 1).toItemStack
+					(1)));
 			registerFuel(new MachineFuel(800, new ItemStack(Material.COAL_BLOCK)));
 			registerFuel(new MachineFuel(45, new ItemStack(Material.BLAZE_ROD)));
 
@@ -96,8 +104,10 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 			registerFuel(new MachineFuel(4, new MaterialData(Material.LOG, (byte) 1).toItemStack(1)));
 			registerFuel(new MachineFuel(4, new MaterialData(Material.LOG, (byte) 2).toItemStack(1)));
 			registerFuel(new MachineFuel(4, new MaterialData(Material.LOG, (byte) 3).toItemStack(1)));
-			registerFuel(new MachineFuel(4, new MaterialData(Material.LOG_2, (byte) 0).toItemStack(1)));
-			registerFuel(new MachineFuel(4, new MaterialData(Material.LOG_2, (byte) 1).toItemStack(1)));
+			registerFuel(new MachineFuel(4, new MaterialData(Material.LOG_2, (byte) 0).toItemStack
+					(1)));
+			registerFuel(new MachineFuel(4, new MaterialData(Material.LOG_2, (byte) 1).toItemStack
+					(1)));
 
 			// Wooden Planks
 			registerFuel(new MachineFuel(1, new MaterialData(Material.WOOD, (byte) 0).toItemStack(1)));
@@ -131,7 +141,8 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 
 			@Override
 			public boolean canOpen(Block b, Player p) {
-				boolean open = BlockStorage.getLocationInfo(b.getLocation(), "owner").equals(p.getUniqueId().toString()) || p.hasPermission("slimefun.android.bypass");
+				boolean open = BlockStorage.getLocationInfo(b.getLocation(), "owner").equals
+						(p.getUniqueId().toString()) || p.hasPermission("slimefun.android.bypass");
 				if (!open) {
 					Messages.local.sendTranslation(p, "inventory.no-access", true);
 				}
@@ -141,44 +152,51 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 			@Override
 			public void newInstance(BlockMenu menu, final Block b) {
 				try {
-					menu.replaceExistingItem(15, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTAxYzdiNTcyNjE3ODk3NGIzYjNhMDFiNDJhNTkwZTU0MzY2MDI2ZmQ0MzgwOGYyYTc4NzY0ODg0M2E3ZjVhIn19fQ=="), "&aStart/Continue"));
-					menu.addMenuClickHandler(15, new MenuClickHandler() {
+					menu.replaceExistingItem(15, new CustomItem(CustomSkull.getItem
+							("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTAxYzdiNTcyNjE3ODk3NGIzYjNhMDFiNDJhNTkwZTU0MzY2MDI2ZmQ0MzgwOGYyYTc4NzY0ODg0M2E3ZjVhIn19fQ=="), "&a开始/继续"));
+									menu.addMenuClickHandler(15, new MenuClickHandler() {
 
-						@Override
-						public boolean onClick(Player p, int arg1, ItemStack arg2, ClickAction arg3) {
-							Messages.local.sendTranslation(p, "robot.started", true);
-							BlockStorage.addBlockInfo(b, "paused", "false");
-							p.closeInventory();
-							return false;
-						}
-					});
+										@Override
+										public boolean onClick(Player p, int arg1, ItemStack arg2,
+															   ClickAction arg3) {
+											Messages.local.sendTranslation(p, "robot.started", true);
+											BlockStorage.addBlockInfo(b, "paused", "false");
+											p.closeInventory();
+											return false;
+										}
+									});
 
-					menu.replaceExistingItem(17, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTYxMzlmZDFjNTY1NGU1NmU5ZTRlMmM4YmU3ZWIyYmQ1YjQ5OWQ2MzM2MTY2NjNmZWVlOTliNzQzNTJhZDY0In19fQ=="), "&4Pause"));
-					menu.addMenuClickHandler(17, new MenuClickHandler() {
+					menu.replaceExistingItem(17, new CustomItem(CustomSkull.getItem
+							("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTYxMzlmZDFjNTY1NGU1NmU5ZTRlMmM4YmU3ZWIyYmQ1YjQ5OWQ2MzM2MTY2NjNmZWVlOTliNzQzNTJhZDY0In19fQ=="), "&4暂停"));
+									menu.addMenuClickHandler(17, new MenuClickHandler() {
 
-						@Override
-						public boolean onClick(Player p, int arg1, ItemStack arg2, ClickAction arg3) {
-							BlockStorage.addBlockInfo(b, "paused", "true");
-							Messages.local.sendTranslation(p, "robot.stopped", true);
-							return false;
-						}
-					});
+										@Override
+										public boolean onClick(Player p, int arg1, ItemStack arg2,
+															   ClickAction arg3) {
+											BlockStorage.addBlockInfo(b, "paused", "true");
+											Messages.local.sendTranslation(p, "robot.stopped", true);
+											return false;
+										}
+									});
 
-					menu.replaceExistingItem(16, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDc4ZjJiN2U1ZTc1NjM5ZWE3ZmI3OTZjMzVkMzY0YzRkZjI4YjQyNDNlNjZiNzYyNzdhYWRjZDYyNjEzMzcifX19"), "&bMemory Core", "", "&8\u21E8 &7Click to open the Script Editor"));
-					menu.addMenuClickHandler(16, new MenuClickHandler() {
+					menu.replaceExistingItem(16, new CustomItem(CustomSkull.getItem
+							("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDc4ZjJiN2U1ZTc1NjM5ZWE3ZmI3OTZjMzVkMzY0YzRkZjI4YjQyNDNlNjZiNzYyNzdhYWRjZDYyNjEzMzcifX19"), "&b记忆核心", "", "&8\u21E8 &7点击打开脚本编辑器"));
+									menu.addMenuClickHandler(16, new MenuClickHandler() {
 
-						@Override
-						public boolean onClick(Player p, int arg1, ItemStack arg2, ClickAction arg3) {
-							try {
-								BlockStorage.addBlockInfo(b, "paused", "true");
-								Messages.local.sendTranslation(p, "robot.stopped", true);
-								openScriptEditor(p, b);
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-							return false;
-						}
-					});
+										@Override
+										public boolean onClick(Player p, int arg1, ItemStack arg2,
+															   ClickAction arg3) {
+											try {
+												BlockStorage.addBlockInfo(b, "paused", "true");
+												Messages.local.sendTranslation(p, "robot.stopped",
+														true);
+												openScriptEditor(p, b);
+											} catch (Exception e) {
+												e.printStackTrace();
+											}
+											return false;
+										}
+									});
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -208,18 +226,22 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 
 			@Override
 			public boolean onBreak(Player p, Block b, SlimefunItem item, UnregisterReason reason) {
-				boolean allow =  reason.equals(UnregisterReason.PLAYER_BREAK) && (BlockStorage.getLocationInfo(b.getLocation(), "owner").equals(p.getUniqueId().toString()) || p.hasPermission("slimefun.android.bypass"));
+				boolean allow =  reason.equals(UnregisterReason.PLAYER_BREAK) &&
+						(BlockStorage.getLocationInfo(b.getLocation(), "owner").equals(p.getUniqueId().toString()) || p.hasPermission
+								("slimefun.android.bypass"));
 
 				if (allow) {
 					BlockMenu inv = BlockStorage.getInventory(b);
 					if (inv != null) {
 						if (inv.getItemInSlot(43) != null) {
-							b.getWorld().dropItemNaturally(b.getLocation(), inv.getItemInSlot(43));
+							b.getWorld().dropItemNaturally(b.getLocation(),
+									inv.getItemInSlot(43));
 							inv.replaceExistingItem(43, null);
 						}
 						for (int slot: getOutputSlots()) {
 							if (inv.getItemInSlot(slot) != null) {
-								b.getWorld().dropItemNaturally(b.getLocation(), inv.getItemInSlot(slot));
+								b.getWorld().dropItemNaturally(b.getLocation(),
+										inv.getItemInSlot(slot));
 								inv.replaceExistingItem(slot, null);
 							}
 						}
@@ -248,20 +270,25 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 				ItemStack item = BlockStorage.getInventory(b).getItemInSlot(43);
 				if (item != null) {
 					for (MachineFuel recipe: recipes) {
-						if (SlimefunManager.isItemSimiliar(item, recipe.getInput(), true)) {
-							BlockStorage.getInventory(b).replaceExistingItem(43, InvUtils.decreaseItem(item, 1));
+						if (SlimefunManager.isItemSimiliar(item, recipe.getInput(), true))
+						{
+							BlockStorage.getInventory(b).replaceExistingItem(43,
+									InvUtils.decreaseItem(item, 1));
 							if (getTier() == 2) {
 								pushItems(b, new ItemStack(Material.BUCKET));
 							}
-							BlockStorage.addBlockInfo(b, "fuel", String.valueOf((int) (recipe.getTicks() * this.getFuelEfficiency())));
+							BlockStorage.addBlockInfo(b, "fuel", String.valueOf((int)
+									(recipe.getTicks() * this.getFuelEfficiency())));
 							break;
 						}
 					}
 				}
 			}
 			else {
-				String[] script = BlockStorage.getLocationInfo(b.getLocation(), "script").split("-");
-				int index = Integer.parseInt(BlockStorage.getLocationInfo(b.getLocation(), "index")) + 1;
+				String[] script = BlockStorage.getLocationInfo(b.getLocation(), "script").split
+						("-");
+				int index = Integer.parseInt(BlockStorage.getLocationInfo(b.getLocation(),
+						"index")) + 1;
 				if (index >= script.length) index = 0;
 				boolean refresh = true;
 				BlockStorage.addBlockInfo(b, "fuel", String.valueOf(fuel - 1));
@@ -269,422 +296,518 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 
 				if (getAndroidType().isType(part.getRequiredType())) {
 					switch(part) {
-					case GO_DOWN: {
-						try {
-							BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "rotation"));
-							Block block = b.getRelative(BlockFace.DOWN);
-							move(b, face, block);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						break;
-					}
-					case GO_FORWARD: {
-						try {
-							BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "rotation"));
-							Block block = b.getRelative(face);
-							move(b, face, block);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						break;
-					}
-					case GO_UP: {
-						try {
-							BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "rotation"));
-							Block block = b.getRelative(BlockFace.UP);
-							move(b, face, block);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						break;
-					}
-					case REPEAT: {
-						BlockStorage.addBlockInfo(b, "index", String.valueOf(0));
-						break;
-					}
-					case TURN_LEFT: {
-						int rotIndex = directions.indexOf(BlockFace.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "rotation"))) - 1;
-						if (rotIndex < 0) rotIndex = directions.size() - 1;
-						BlockFace dir = directions.get(rotIndex);
-						Skull skull = (Skull) b.getState();
-						skull.setRotation(dir);
-						skull.update(true, false);
-						BlockStorage.addBlockInfo(b, "rotation", dir.toString());
-						break;
-					}
-					case TURN_RIGHT: {
-						int rotIndex = directions.indexOf(BlockFace.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "rotation"))) + 1;
-						if (rotIndex == directions.size()) rotIndex = 0;
-						BlockFace dir = directions.get(rotIndex);
-						Skull skull = (Skull) b.getState();
-						skull.setRotation(dir);
-						skull.update(true, false);
-						BlockStorage.addBlockInfo(b, "rotation", dir.toString());
-						break;
-					}
-					case DIG_FORWARD: {
-						Block block = b.getRelative(BlockFace.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "rotation")));
-						mine(b, block);
-						break;
-					}
-					case DIG_UP: {
-						Block block = b.getRelative(BlockFace.UP);
-						mine(b, block);
-						break;
-					}
-					case DIG_DOWN: {
-						Block block = b.getRelative(BlockFace.DOWN);
-						mine(b, block);
-						break;
-					}
-					case CATCH_FISH: {
-						Block block = b.getRelative(BlockFace.DOWN);
-						if (block.getType().equals(Material.STATIONARY_WATER)) {
-							block.getWorld().playSound(block.getLocation(), Sound.ENTITY_PLAYER_SPLASH, 1F, 1F);
-							if (CSCoreLib.randomizer().nextInt(100) < 10 * getTier()) {
-								ItemStack drop = fish[CSCoreLib.randomizer().nextInt(fish.length)];
-								if (fits(b, drop)) pushItems(b, drop);
+						case GO_DOWN: {
+							try {
+								BlockFace face = BlockFace.valueOf
+										(BlockStorage.getLocationInfo(b.getLocation(), "rotation"));
+								Block block = b.getRelative(BlockFace.DOWN);
+								move(b, face, block);
+							} catch (Exception e) {
+								e.printStackTrace();
 							}
-
+							break;
 						}
-						break;
-					}
-					case MOVE_AND_DIG_FORWARD: {
-						BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "rotation"));
-						Block block = b.getRelative(face);
-						movedig(b, face, block);
-						break;
-					}
-					case MOVE_AND_DIG_UP: {
-						BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "rotation"));
-						Block block = b.getRelative(BlockFace.UP);
-						movedig(b, face, block);
-						break;
-					}
-					case MOVE_AND_DIG_DOWN: {
-						BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "rotation"));
-						Block block = b.getRelative(BlockFace.DOWN);
-						movedig(b, face, block);
-						break;
-					}
-					case INTERFACE_ITEMS: {
-						BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "rotation"));
-						Block block = b.getRelative(face);
-						if (BlockStorage.check(block, "ANDROID_INTERFACE_ITEMS") && block.getState() instanceof Dispenser) {
-							Dispenser d = (Dispenser) block.getState();
-							for (int slot: getOutputSlots()) {
-								ItemStack stack = BlockStorage.getInventory(b).getItemInSlot(slot);
-								if (stack != null) {
-									Map<Integer, ItemStack> items = d.getInventory().addItem(stack);
-									if (items.isEmpty()) BlockStorage.getInventory(b).replaceExistingItem(slot, null);
-									else {
-										for (Map.Entry<Integer, ItemStack> entry: items.entrySet()) {
-											BlockStorage.getInventory(b).replaceExistingItem(slot, entry.getValue());
+						case GO_FORWARD: {
+							try {
+								BlockFace face = BlockFace.valueOf
+										(BlockStorage.getLocationInfo(b.getLocation(), "rotation"));
+								Block block = b.getRelative(face);
+								move(b, face, block);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+							break;
+						}
+						case GO_UP: {
+							try {
+								BlockFace face = BlockFace.valueOf
+										(BlockStorage.getLocationInfo(b.getLocation(), "rotation"));
+								Block block = b.getRelative(BlockFace.UP);
+								move(b, face, block);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+							break;
+						}
+						case REPEAT: {
+							BlockStorage.addBlockInfo(b, "index", String.valueOf(0));
+							break;
+						}
+						case TURN_LEFT: {
+							int rotIndex = directions.indexOf(BlockFace.valueOf
+									(BlockStorage.getLocationInfo(b.getLocation(), "rotation"))) - 1;
+							if (rotIndex < 0) rotIndex = directions.size() - 1;
+							BlockFace dir = directions.get(rotIndex);
+							Skull skull = (Skull) b.getState();
+							skull.setRotation(dir);
+							skull.update(true, false);
+							BlockStorage.addBlockInfo(b, "rotation", dir.toString());
+							break;
+						}
+						case TURN_RIGHT: {
+							int rotIndex = directions.indexOf(BlockFace.valueOf
+									(BlockStorage.getLocationInfo(b.getLocation(), "rotation"))) + 1;
+							if (rotIndex == directions.size()) rotIndex = 0;
+							BlockFace dir = directions.get(rotIndex);
+							Skull skull = (Skull) b.getState();
+							skull.setRotation(dir);
+							skull.update(true, false);
+							BlockStorage.addBlockInfo(b, "rotation", dir.toString());
+							break;
+						}
+						case DIG_FORWARD: {
+							Block block = b.getRelative(BlockFace.valueOf
+									(BlockStorage.getLocationInfo(b.getLocation(), "rotation")));
+							mine(b, block);
+							break;
+						}
+						case DIG_UP: {
+							Block block = b.getRelative(BlockFace.UP);
+							mine(b, block);
+							break;
+						}
+						case DIG_DOWN: {
+							Block block = b.getRelative(BlockFace.DOWN);
+							mine(b, block);
+							break;
+						}
+						case CATCH_FISH: {
+							Block block = b.getRelative(BlockFace.DOWN);
+							if (block.getType().equals(Material.STATIONARY_WATER)) {
+								block.getWorld().playSound(block.getLocation(),
+										Sound.ENTITY_PLAYER_SPLASH, 1F, 1F);
+								if (CSCoreLib.randomizer().nextInt(100) < 10 * getTier()) {
+									ItemStack drop = fish[CSCoreLib.randomizer
+											().nextInt(fish.length)];
+									if (fits(b, drop)) pushItems(b, drop);
+								}
+
+							}
+							break;
+						}
+						case MOVE_AND_DIG_FORWARD: {
+							BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo
+									(b.getLocation(), "rotation"));
+							Block block = b.getRelative(face);
+							movedig(b, face, block);
+							break;
+						}
+						case MOVE_AND_DIG_UP: {
+							BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo
+									(b.getLocation(), "rotation"));
+							Block block = b.getRelative(BlockFace.UP);
+							movedig(b, face, block);
+							break;
+						}
+						case MOVE_AND_DIG_DOWN: {
+							BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo
+									(b.getLocation(), "rotation"));
+							Block block = b.getRelative(BlockFace.DOWN);
+							movedig(b, face, block);
+							break;
+						}
+						case INTERFACE_ITEMS: {
+							BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo
+									(b.getLocation(), "rotation"));
+							Block block = b.getRelative(face);
+							if (BlockStorage.check(block, "ANDROID_INTERFACE_ITEMS") &&
+									block.getState() instanceof Dispenser) {
+								Dispenser d = (Dispenser) block.getState();
+								for (int slot: getOutputSlots()) {
+									ItemStack stack = BlockStorage.getInventory
+											(b).getItemInSlot(slot);
+									if (stack != null) {
+										Map<Integer, ItemStack> items =
+												d.getInventory().addItem(stack);
+										if (items.isEmpty())
+											BlockStorage.getInventory(b).replaceExistingItem(slot, null);
+										else {
+											for (Map.Entry<Integer, ItemStack>
+													entry: items.entrySet()) {
+												BlockStorage.getInventory
+														(b).replaceExistingItem(slot, entry.getValue());
+												break;
+											}
+										}
+									}
+								}
+							}
+							break;
+						}
+						case INTERFACE_FUEL: {
+							BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo
+									(b.getLocation(), "rotation"));
+							Block block = b.getRelative(face);
+							if (BlockStorage.check(block, "ANDROID_INTERFACE_FUEL") &&
+									block.getState() instanceof Dispenser) {
+								Dispenser d = (Dispenser) block.getState();
+								for (int slot = 0; slot < 9; slot++) {
+									ItemStack item = d.getInventory().getItem(slot);
+									if (item != null) {
+										if (BlockStorage.getInventory
+												(b).getItemInSlot(43) == null) {
+											BlockStorage.getInventory
+													(b).replaceExistingItem(43, item);
+											d.getInventory().setItem(slot,
+													null);
+											break;
+										}
+										else if (SlimefunManager.isItemSimiliar
+												(item, BlockStorage.getInventory(b).getItemInSlot(43), true)) {
+											int rest = item.getType
+													().getMaxStackSize() - BlockStorage.getInventory(b).getItemInSlot(43).getAmount();
+											if (rest > 0) {
+												int amt = item.getAmount()
+														> rest ? rest: item.getAmount();
+												BlockStorage.getInventory
+														(b).replaceExistingItem(43, new CustomItem(item, BlockStorage.getInventory(b).getItemInSlot(43).getAmount() +
+														amt));
+												d.getInventory().setItem
+														(slot, InvUtils.decreaseItem(item, amt));
+											}
 											break;
 										}
 									}
 								}
 							}
+							break;
 						}
-						break;
-					}
-					case INTERFACE_FUEL: {
-						BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "rotation"));
-						Block block = b.getRelative(face);
-						if (BlockStorage.check(block, "ANDROID_INTERFACE_FUEL") && block.getState() instanceof Dispenser) {
-							Dispenser d = (Dispenser) block.getState();
-							for (int slot = 0; slot < 9; slot++) {
-								ItemStack item = d.getInventory().getItem(slot);
-								if (item != null) {
-									if (BlockStorage.getInventory(b).getItemInSlot(43) == null) {
-										BlockStorage.getInventory(b).replaceExistingItem(43, item);
-										d.getInventory().setItem(slot, null);
-										break;
+						case FARM_FORWARD: {
+							BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo
+									(b.getLocation(), "rotation"));
+							Block block = b.getRelative(face);
+							farm(b, block);
+							break;
+						}
+						case FARM_DOWN: {
+							Block block = b.getRelative(BlockFace.DOWN);
+							farm(b, block);
+							break;
+						}
+						case FARM_EXOTIC_FORWARD: {
+							BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo
+									(b.getLocation(), "rotation"));
+							Block block = b.getRelative(face);
+							exoticFarm(b, block);
+							break;
+						}
+						case FARM_EXOTIC_DOWN: {
+							Block block = b.getRelative(BlockFace.DOWN);
+							exoticFarm(b, block);
+							break;
+						}
+						case CHOP_TREE: {
+							BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo
+									(b.getLocation(), "rotation"));
+							Block block = b.getRelative(face);
+							if (block.getType().equals(Material.LOG) || block.getType().equals
+									(Material.LOG_2)) {
+								List<Location> list = new ArrayList<Location>();
+								list.add(block.getLocation());
+								TreeCalculator.getTree(block.getLocation(), block.getLocation(),
+										list);
+								if (!list.isEmpty()) {
+									refresh = false;
+									Block log = list.get(list.size() - 1).getBlock();
+									Collection<ItemStack> drops = log.getDrops();
+									log.getWorld().playEffect(log.getLocation(),
+											Effect.STEP_SOUND, log.getType());
+									if (!drops.isEmpty() && CSCoreLib.getLib
+											().getProtectionManager().canBuild(UUID.fromString(BlockStorage.getLocationInfo(b.getLocation(), "owner")), log)) {
+										ItemStack[] items = drops.toArray(new
+												ItemStack[drops.size()]);
+										if (fits(b, items)) {
+											pushItems(b, items);
+											log.getWorld().playEffect
+													(log.getLocation(), Effect.STEP_SOUND, log.getType());
+											if (log.getY() == block.getY()) {
+												byte data = log.getData();
+												if (log.getType() ==
+														Material.LOG_2) data = (byte) (data + 4);
+												log.setType(Material.SAPLING);
+												log.setData(data);
+											}
+											else log.setType(Material.AIR);
+										}
+
 									}
-									else if (SlimefunManager.isItemSimiliar(item, BlockStorage.getInventory(b).getItemInSlot(43), true)) {
-										int rest = item.getType().getMaxStackSize() - BlockStorage.getInventory(b).getItemInSlot(43).getAmount();
-										if (rest > 0) {
-											int amt = item.getAmount() > rest ? rest: item.getAmount();
-											BlockStorage.getInventory(b).replaceExistingItem(43, new CustomItem(item, BlockStorage.getInventory(b).getItemInSlot(43).getAmount() + amt));
-											d.getInventory().setItem(slot, InvUtils.decreaseItem(item, amt));
+								}
+							}
+							break;
+						}
+						case ATTACK_MOBS_ANIMALS: {
+							double damage = getTier() < 2 ? 20D: 4D * getTier();
+
+							entities:
+							for (Entity n: AndroidStatusHologram.getNearbyEntities(b, 4D +
+									getTier())) {
+								switch (BlockFace.valueOf(BlockStorage.getLocationInfo
+										(b.getLocation(), "rotation"))) {
+									case NORTH: {
+										if (n instanceof LivingEntity && !(n instanceof
+												ArmorStand) && !(n instanceof Player) && n.getLocation().getZ() < b.getZ()) {
+											if (n.hasMetadata("android_killer"))
+												n.removeMetadata("android_killer", SlimefunStartup.instance);
+											n.setMetadata("android_killer", new
+													FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
+
+											((LivingEntity) n).damage(damage);
+											break entities;
 										}
 										break;
 									}
-								}
-							}
-						}
-						break;
-					}
-					case FARM_FORWARD: {
-						BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "rotation"));
-						Block block = b.getRelative(face);
-						farm(b, block);
-						break;
-					}
-					case FARM_DOWN: {
-						Block block = b.getRelative(BlockFace.DOWN);
-						farm(b, block);
-						break;
-					}
-					case FARM_EXOTIC_FORWARD: {
-						BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "rotation"));
-						Block block = b.getRelative(face);
-						exoticFarm(b, block);
-						break;
-					}
-					case FARM_EXOTIC_DOWN: {
-						Block block = b.getRelative(BlockFace.DOWN);
-						exoticFarm(b, block);
-						break;
-					}
-					case CHOP_TREE: {
-						BlockFace face = BlockFace.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "rotation"));
-						Block block = b.getRelative(face);
-						if (block.getType().equals(Material.LOG) || block.getType().equals(Material.LOG_2)) {
-							List<Location> list = new ArrayList<Location>();
-							list.add(block.getLocation());
-		        			TreeCalculator.getTree(block.getLocation(), block.getLocation(), list);
-		        			if (!list.isEmpty()) {
-		        				refresh = false;
-		        				Block log = list.get(list.size() - 1).getBlock();
-								Collection<ItemStack> drops = log.getDrops();
-		        				log.getWorld().playEffect(log.getLocation(), Effect.STEP_SOUND, log.getType());
-		        				if (!drops.isEmpty() && CSCoreLib.getLib().getProtectionManager().canBuild(UUID.fromString(BlockStorage.getLocationInfo(b.getLocation(), "owner")), log)) {
-									ItemStack[] items = drops.toArray(new ItemStack[drops.size()]);
-									if (fits(b, items)) {
-										pushItems(b, items);
-										log.getWorld().playEffect(log.getLocation(), Effect.STEP_SOUND, log.getType());
-										if (log.getY() == block.getY()) {
-											byte data = log.getData();
-											if (log.getType() == Material.LOG_2) data = (byte) (data + 4);
-				        					log.setType(Material.SAPLING);
-				        					log.setData(data);
+									case EAST: {
+										if (n instanceof LivingEntity && !(n instanceof
+												ArmorStand) && !(n instanceof Player) && n.getLocation().getX() > b.getX()) {
+											if (n.hasMetadata("android_killer"))
+												n.removeMetadata("android_killer", SlimefunStartup.instance);
+											n.setMetadata("android_killer", new
+													FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
+
+											((LivingEntity) n).damage(damage);
+											break entities;
 										}
-										else log.setType(Material.AIR);
+										break;
 									}
+									case SOUTH: {
+										if (n instanceof LivingEntity && !(n instanceof
+												ArmorStand) && !(n instanceof Player) && n.getLocation().getZ() > b.getZ()) {
+											if (n.hasMetadata("android_killer"))
+												n.removeMetadata("android_killer", SlimefunStartup.instance);
+											n.setMetadata("android_killer", new
+													FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
 
+											((LivingEntity) n).damage(damage);
+											break entities;
+										}
+										break;
+									}
+									case WEST: {
+										if (n instanceof LivingEntity && !(n instanceof
+												ArmorStand) && !(n instanceof Player) && n.getLocation().getX() < b.getX()) {
+											if (n.hasMetadata("android_killer"))
+												n.removeMetadata("android_killer", SlimefunStartup.instance);
+											n.setMetadata("android_killer", new
+													FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
+
+											((LivingEntity) n).damage(damage);
+											break entities;
+										}
+										break;
+									}
+									default:
+										break;
 								}
-		        			}
+							}
+							break;
 						}
-	        			break;
-					}
-					case ATTACK_MOBS_ANIMALS: {
-						double damage = getTier() < 2 ? 20D: 4D * getTier();
+						case ATTACK_MOBS: {
+							double damage = getTier() < 2 ? 20D: 4D * getTier();
 
-						entities:
-						for (Entity n: AndroidStatusHologram.getNearbyEntities(b, 4D + getTier())) {
-							switch (BlockFace.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "rotation"))) {
-							case NORTH: {
-								if (n instanceof LivingEntity && !(n instanceof ArmorStand) && !(n instanceof Player) && n.getLocation().getZ() < b.getZ()) {
-									if (n.hasMetadata("android_killer")) n.removeMetadata("android_killer", SlimefunStartup.instance);
-									n.setMetadata("android_killer", new FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
+							entities:
+							for (Entity n: AndroidStatusHologram.getNearbyEntities(b, 4D +
+									getTier())) {
+								if (n instanceof Animals) continue;
+								switch (BlockFace.valueOf(BlockStorage.getLocationInfo
+										(b.getLocation(), "rotation"))) {
+									case NORTH: {
+										if (n instanceof LivingEntity && !(n instanceof
+												ArmorStand) && !(n instanceof Player) && n.getLocation().getZ() < b.getZ()) {
+											if (n.hasMetadata("android_killer"))
+												n.removeMetadata("android_killer", SlimefunStartup.instance);
+											n.setMetadata("android_killer", new
+													FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
 
-									((LivingEntity) n).damage(damage);
-									break entities;
+											((LivingEntity) n).damage(damage);
+											break entities;
+										}
+										break;
+									}
+									case EAST: {
+										if (n instanceof LivingEntity && !(n instanceof
+												ArmorStand) && !(n instanceof Player) && n.getLocation().getX() > b.getX()) {
+											if (n.hasMetadata("android_killer"))
+												n.removeMetadata("android_killer", SlimefunStartup.instance);
+											n.setMetadata("android_killer", new
+													FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
+
+											((LivingEntity) n).damage(damage);
+											break entities;
+										}
+										break;
+									}
+									case SOUTH: {
+										if (n instanceof LivingEntity && !(n instanceof
+												ArmorStand) && !(n instanceof Player) && n.getLocation().getZ() > b.getZ()) {
+											if (n.hasMetadata("android_killer"))
+												n.removeMetadata("android_killer", SlimefunStartup.instance);
+											n.setMetadata("android_killer", new
+													FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
+
+											((LivingEntity) n).damage(damage);
+											break entities;
+										}
+										break;
+									}
+									case WEST: {
+										if (n instanceof LivingEntity && !(n instanceof
+												ArmorStand) && !(n instanceof Player) && n.getLocation().getX() < b.getX()) {
+											if (n.hasMetadata("android_killer"))
+												n.removeMetadata("android_killer", SlimefunStartup.instance);
+											n.setMetadata("android_killer", new
+													FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
+
+											((LivingEntity) n).damage(damage);
+											break entities;
+										}
+										break;
+									}
+									default:
+										break;
 								}
-								break;
 							}
-							case EAST: {
-								if (n instanceof LivingEntity && !(n instanceof ArmorStand) && !(n instanceof Player) && n.getLocation().getX() > b.getX()) {
-									if (n.hasMetadata("android_killer")) n.removeMetadata("android_killer", SlimefunStartup.instance);
-									n.setMetadata("android_killer", new FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
-
-									((LivingEntity) n).damage(damage);
-									break entities;
-								}
-								break;
-							}
-							case SOUTH: {
-								if (n instanceof LivingEntity && !(n instanceof ArmorStand) && !(n instanceof Player) && n.getLocation().getZ() > b.getZ()) {
-									if (n.hasMetadata("android_killer")) n.removeMetadata("android_killer", SlimefunStartup.instance);
-									n.setMetadata("android_killer", new FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
-
-									((LivingEntity) n).damage(damage);
-									break entities;
-								}
-								break;
-							}
-							case WEST: {
-								if (n instanceof LivingEntity && !(n instanceof ArmorStand) && !(n instanceof Player) && n.getLocation().getX() < b.getX()) {
-									if (n.hasMetadata("android_killer")) n.removeMetadata("android_killer", SlimefunStartup.instance);
-									n.setMetadata("android_killer", new FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
-
-									((LivingEntity) n).damage(damage);
-									break entities;
-								}
-								break;
-							}
-							default:
-								break;
-							}
+							break;
 						}
-						break;
-					}
-					case ATTACK_MOBS: {
-						double damage = getTier() < 2 ? 20D: 4D * getTier();
 
-						entities:
-						for (Entity n: AndroidStatusHologram.getNearbyEntities(b, 4D + getTier())) {
-							if (n instanceof Animals) continue;
-							switch (BlockFace.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "rotation"))) {
-							case NORTH: {
-								if (n instanceof LivingEntity && !(n instanceof ArmorStand) && !(n instanceof Player) && n.getLocation().getZ() < b.getZ()) {
-									if (n.hasMetadata("android_killer")) n.removeMetadata("android_killer", SlimefunStartup.instance);
-									n.setMetadata("android_killer", new FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
+						case ATTACK_ANIMALS: {
+							double damage = getTier() < 2 ? 20D: 4D * getTier();
 
-									((LivingEntity) n).damage(damage);
-									break entities;
+							entities:
+							for (Entity n: AndroidStatusHologram.getNearbyEntities(b, 4D +
+									getTier())) {
+								if (n instanceof Monster) continue;
+								switch (BlockFace.valueOf(BlockStorage.getLocationInfo
+										(b.getLocation(), "rotation"))) {
+									case NORTH: {
+										if (n instanceof LivingEntity && !(n instanceof
+												ArmorStand) && !(n instanceof Player) && n.getLocation().getZ() < b.getZ()) {
+											if (n.hasMetadata("android_killer"))
+												n.removeMetadata("android_killer", SlimefunStartup.instance);
+											n.setMetadata("android_killer", new
+													FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
+
+											((LivingEntity) n).damage(damage);
+											break entities;
+										}
+										break;
+									}
+									case EAST: {
+										if (n instanceof LivingEntity && !(n instanceof
+												ArmorStand) && !(n instanceof Player) && n.getLocation().getX() > b.getX()) {
+											if (n.hasMetadata("android_killer"))
+												n.removeMetadata("android_killer", SlimefunStartup.instance);
+											n.setMetadata("android_killer", new
+													FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
+
+											((LivingEntity) n).damage(damage);
+											break entities;
+										}
+										break;
+									}
+									case SOUTH: {
+										if (n instanceof LivingEntity && !(n instanceof
+												ArmorStand) && !(n instanceof Player) && n.getLocation().getZ() > b.getZ()) {
+											if (n.hasMetadata("android_killer"))
+												n.removeMetadata("android_killer", SlimefunStartup.instance);
+											n.setMetadata("android_killer", new
+													FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
+
+											((LivingEntity) n).damage(damage);
+											break entities;
+										}
+										break;
+									}
+									case WEST: {
+										if (n instanceof LivingEntity && !(n instanceof
+												ArmorStand) && !(n instanceof Player) && n.getLocation().getX() < b.getX()) {
+											if (n.hasMetadata("android_killer"))
+												n.removeMetadata("android_killer", SlimefunStartup.instance);
+											n.setMetadata("android_killer", new
+													FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
+
+											((LivingEntity) n).damage(damage);
+											break entities;
+										}
+										break;
+									}
+									default:
+										break;
 								}
-								break;
 							}
-							case EAST: {
-								if (n instanceof LivingEntity && !(n instanceof ArmorStand) && !(n instanceof Player) && n.getLocation().getX() > b.getX()) {
-									if (n.hasMetadata("android_killer")) n.removeMetadata("android_killer", SlimefunStartup.instance);
-									n.setMetadata("android_killer", new FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
-
-									((LivingEntity) n).damage(damage);
-									break entities;
-								}
-								break;
-							}
-							case SOUTH: {
-								if (n instanceof LivingEntity && !(n instanceof ArmorStand) && !(n instanceof Player) && n.getLocation().getZ() > b.getZ()) {
-									if (n.hasMetadata("android_killer")) n.removeMetadata("android_killer", SlimefunStartup.instance);
-									n.setMetadata("android_killer", new FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
-
-									((LivingEntity) n).damage(damage);
-									break entities;
-								}
-								break;
-							}
-							case WEST: {
-								if (n instanceof LivingEntity && !(n instanceof ArmorStand) && !(n instanceof Player) && n.getLocation().getX() < b.getX()) {
-									if (n.hasMetadata("android_killer")) n.removeMetadata("android_killer", SlimefunStartup.instance);
-									n.setMetadata("android_killer", new FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
-
-									((LivingEntity) n).damage(damage);
-									break entities;
-								}
-								break;
-							}
-							default:
-								break;
-							}
+							break;
 						}
-						break;
-					}
 
-					case ATTACK_ANIMALS: {
-						double damage = getTier() < 2 ? 20D: 4D * getTier();
+						case ATTACK_ANIMALS_ADULT: {
+							double damage = getTier() < 2 ? 20D: 4D * getTier();
 
-						entities:
-						for (Entity n: AndroidStatusHologram.getNearbyEntities(b, 4D + getTier())) {
-							if (n instanceof Monster) continue;
-							switch (BlockFace.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "rotation"))) {
-							case NORTH: {
-								if (n instanceof LivingEntity && !(n instanceof ArmorStand) && !(n instanceof Player) && n.getLocation().getZ() < b.getZ()) {
-									if (n.hasMetadata("android_killer")) n.removeMetadata("android_killer", SlimefunStartup.instance);
-									n.setMetadata("android_killer", new FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
+							entities:
+							for (Entity n: AndroidStatusHologram.getNearbyEntities(b, 4D +
+									getTier())) {
+								if (n instanceof Monster) continue;
+								if (n instanceof Ageable && !((Ageable) n).isAdult())
+									continue;
+								switch (BlockFace.valueOf(BlockStorage.getLocationInfo
+										(b.getLocation(), "rotation"))) {
+									case NORTH: {
+										if (n instanceof LivingEntity && !(n instanceof
+												ArmorStand) && !(n instanceof Player) && n.getLocation().getZ() < b.getZ()) {
+											if (n.hasMetadata("android_killer"))
+												n.removeMetadata("android_killer", SlimefunStartup.instance);
+											n.setMetadata("android_killer", new
+													FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
 
-									((LivingEntity) n).damage(damage);
-									break entities;
+											((LivingEntity) n).damage(damage);
+											break entities;
+										}
+										break;
+									}
+									case EAST: {
+										if (n instanceof LivingEntity && !(n instanceof
+												ArmorStand) && !(n instanceof Player) && n.getLocation().getX() > b.getX()) {
+											if (n.hasMetadata("android_killer"))
+												n.removeMetadata("android_killer", SlimefunStartup.instance);
+											n.setMetadata("android_killer", new
+													FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
+
+											((LivingEntity) n).damage(damage);
+											break entities;
+										}
+										break;
+									}
+									case SOUTH: {
+										if (n instanceof LivingEntity && !(n instanceof
+												ArmorStand) && !(n instanceof Player) && n.getLocation().getZ() > b.getZ()) {
+											if (n.hasMetadata("android_killer"))
+												n.removeMetadata("android_killer", SlimefunStartup.instance);
+											n.setMetadata("android_killer", new
+													FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
+
+											((LivingEntity) n).damage(damage);
+											break entities;
+										}
+										break;
+									}
+									case WEST: {
+										if (n instanceof LivingEntity && !(n instanceof
+												ArmorStand) && !(n instanceof Player) && n.getLocation().getX() < b.getX()) {
+											if (n.hasMetadata("android_killer"))
+												n.removeMetadata("android_killer", SlimefunStartup.instance);
+											n.setMetadata("android_killer", new
+													FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
+
+											((LivingEntity) n).damage(damage);
+											break entities;
+										}
+										break;
+									}
+									default:
+										break;
 								}
-								break;
 							}
-							case EAST: {
-								if (n instanceof LivingEntity && !(n instanceof ArmorStand) && !(n instanceof Player) && n.getLocation().getX() > b.getX()) {
-									if (n.hasMetadata("android_killer")) n.removeMetadata("android_killer", SlimefunStartup.instance);
-									n.setMetadata("android_killer", new FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
-
-									((LivingEntity) n).damage(damage);
-									break entities;
-								}
-								break;
-							}
-							case SOUTH: {
-								if (n instanceof LivingEntity && !(n instanceof ArmorStand) && !(n instanceof Player) && n.getLocation().getZ() > b.getZ()) {
-									if (n.hasMetadata("android_killer")) n.removeMetadata("android_killer", SlimefunStartup.instance);
-									n.setMetadata("android_killer", new FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
-
-									((LivingEntity) n).damage(damage);
-									break entities;
-								}
-								break;
-							}
-							case WEST: {
-								if (n instanceof LivingEntity && !(n instanceof ArmorStand) && !(n instanceof Player) && n.getLocation().getX() < b.getX()) {
-									if (n.hasMetadata("android_killer")) n.removeMetadata("android_killer", SlimefunStartup.instance);
-									n.setMetadata("android_killer", new FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
-
-									((LivingEntity) n).damage(damage);
-									break entities;
-								}
-								break;
-							}
-							default:
-								break;
-							}
+							break;
 						}
-						break;
-					}
-
-					case ATTACK_ANIMALS_ADULT: {
-						double damage = getTier() < 2 ? 20D: 4D * getTier();
-
-						entities:
-						for (Entity n: AndroidStatusHologram.getNearbyEntities(b, 4D + getTier())) {
-							if (n instanceof Monster) continue;
-							if (n instanceof Ageable && !((Ageable) n).isAdult()) continue;
-							switch (BlockFace.valueOf(BlockStorage.getLocationInfo(b.getLocation(), "rotation"))) {
-							case NORTH: {
-								if (n instanceof LivingEntity && !(n instanceof ArmorStand) && !(n instanceof Player) && n.getLocation().getZ() < b.getZ()) {
-									if (n.hasMetadata("android_killer")) n.removeMetadata("android_killer", SlimefunStartup.instance);
-									n.setMetadata("android_killer", new FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
-
-									((LivingEntity) n).damage(damage);
-									break entities;
-								}
-								break;
-							}
-							case EAST: {
-								if (n instanceof LivingEntity && !(n instanceof ArmorStand) && !(n instanceof Player) && n.getLocation().getX() > b.getX()) {
-									if (n.hasMetadata("android_killer")) n.removeMetadata("android_killer", SlimefunStartup.instance);
-									n.setMetadata("android_killer", new FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
-
-									((LivingEntity) n).damage(damage);
-									break entities;
-								}
-								break;
-							}
-							case SOUTH: {
-								if (n instanceof LivingEntity && !(n instanceof ArmorStand) && !(n instanceof Player) && n.getLocation().getZ() > b.getZ()) {
-									if (n.hasMetadata("android_killer")) n.removeMetadata("android_killer", SlimefunStartup.instance);
-									n.setMetadata("android_killer", new FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
-
-									((LivingEntity) n).damage(damage);
-									break entities;
-								}
-								break;
-							}
-							case WEST: {
-								if (n instanceof LivingEntity && !(n instanceof ArmorStand) && !(n instanceof Player) && n.getLocation().getX() < b.getX()) {
-									if (n.hasMetadata("android_killer")) n.removeMetadata("android_killer", SlimefunStartup.instance);
-									n.setMetadata("android_killer", new FixedMetadataValue(SlimefunStartup.instance, new AndroidObject(this, b)));
-
-									((LivingEntity) n).damage(damage);
-									break entities;
-								}
-								break;
-							}
-							default:
-								break;
-							}
-						}
-						break;
-					}
-					default:
-						break;
+						default:
+							break;
 					}
 				}
 				if (refresh) BlockStorage.addBlockInfo(b, "index", String.valueOf(index));
@@ -711,15 +834,20 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 
 	private void mine(Block b, Block block) {
 		Collection<ItemStack> drops = block.getDrops();
-		if (!blockblacklist.contains(block.getType()) && !drops.isEmpty() && CSCoreLib.getLib().getProtectionManager().canBuild(UUID.fromString(BlockStorage.getLocationInfo(b.getLocation(), "owner")), block)) {
+		if (!blockblacklist.contains(block.getType()) && !drops.isEmpty() && CSCoreLib.getLib
+				().getProtectionManager().canBuild(UUID.fromString(BlockStorage.getLocationInfo(b.getLocation(), "owner")), block))
+		{
 			SlimefunItem item = BlockStorage.check(block);
 			if (item != null) {
 				if (fits(b, item.getItem())) {
 					if (SlimefunItem.blockhandler.containsKey(item.getID())) {
-						if (SlimefunItem.blockhandler.get(item.getID()).onBreak(null, block, item, UnregisterReason.ANDROID_DIG)) {
+						if (SlimefunItem.blockhandler.get(item.getID()).onBreak(null,
+								block, item, UnregisterReason.ANDROID_DIG)) {
 							pushItems(b, BlockStorage.retrieve(block));
-							if (SlimefunItem.blockhandler.containsKey(item.getID())) SlimefunItem.blockhandler.get(item.getID()).onBreak(null, block, item, UnregisterReason.ANDROID_DIG);
-							block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
+							if (SlimefunItem.blockhandler.containsKey(item.getID()))
+								SlimefunItem.blockhandler.get(item.getID()).onBreak(null, block, item, UnregisterReason.ANDROID_DIG);
+							block.getWorld().playEffect(block.getLocation(),
+									Effect.STEP_SOUND, block.getType());
 							block.setType(Material.AIR);
 						}
 					}
@@ -729,7 +857,8 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 				ItemStack[] items = drops.toArray(new ItemStack[drops.size()]);
 				if (fits(b, items)) {
 					pushItems(b, items);
-					block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
+					block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND,
+							block.getType());
 					block.setType(Material.AIR);
 				}
 			}
@@ -739,26 +868,32 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 	@SuppressWarnings("deprecation")
 	private void movedig(Block b, BlockFace face, Block block) {
 		Collection<ItemStack> drops = block.getDrops();
-		if (!blockblacklist.contains(block.getType()) && !drops.isEmpty() && CSCoreLib.getLib().getProtectionManager().canBuild(UUID.fromString(BlockStorage.getLocationInfo(b.getLocation(), "owner")), block)) {
+		if (!blockblacklist.contains(block.getType()) && !drops.isEmpty() && CSCoreLib.getLib
+				().getProtectionManager().canBuild(UUID.fromString(BlockStorage.getLocationInfo(b.getLocation(), "owner")), block))
+		{
 			try {
 				SlimefunItem item = BlockStorage.check(block);
 				if (item != null) {
 					if (fits(b, item.getItem())) {
 						if (SlimefunItem.blockhandler.containsKey(item.getID())) {
-							if (SlimefunItem.blockhandler.get(item.getID()).onBreak(null, block, item, UnregisterReason.ANDROID_DIG)) {
+							if (SlimefunItem.blockhandler.get(item.getID()).onBreak
+									(null, block, item, UnregisterReason.ANDROID_DIG)) {
 								pushItems(b, BlockStorage.retrieve(block));
-								
-								block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
-								
+
+								block.getWorld().playEffect(block.getLocation(),
+										Effect.STEP_SOUND, block.getType());
+
 								block.setType(Material.SKULL);
 								block.setData((byte) 1);
-			
+
 								Skull skull = (Skull) block.getState();
 								skull.setRotation(face);
 								skull.update(true, false);
-								CustomSkull.setSkull(block, CustomSkull.getTexture(getItem()));
+								CustomSkull.setSkull(block, CustomSkull.getTexture
+										(getItem()));
 								b.setType(Material.AIR);
-								BlockStorage.moveBlockInfo(b.getLocation(), block.getLocation());
+								BlockStorage.moveBlockInfo(b.getLocation(),
+										block.getLocation());
 							}
 						}
 					}
@@ -767,10 +902,11 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 					ItemStack[] items = drops.toArray(new ItemStack[drops.size()]);
 					if (fits(b, items)) {
 						pushItems(b, items);
-						block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
+						block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND,
+								block.getType());
 						block.setType(Material.SKULL);
 						block.setData((byte) 1);
-	
+
 						Skull skull = (Skull) block.getState();
 						skull.setRotation(face);
 						skull.update(true, false);
@@ -792,95 +928,96 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 		}
 	}
 
-    @SuppressWarnings("deprecation")
-    private void farm(Block b, Block block) {
-        switch (block.getType()) {
-            case CROPS: {
-                if (block.getData() >= 7) {
-                    ItemStack drop = new ItemStack(Material.WHEAT, CSCoreLib.randomizer().nextInt(3) + 1);
-                    if (fits(b, drop)) {
-                        pushItems(b, drop);
-                        block.setData((byte) 0);
-                        block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
-                    }
-                }
-                break;
-            }
-            case POTATO: {
-                if (block.getData() >= 7) {
-                    ItemStack drop = new ItemStack(Material.POTATO_ITEM, CSCoreLib.randomizer().nextInt(3) + 1);
-                    if (fits(b, drop)) {
-                        pushItems(b, drop);
-                        block.setData((byte) 0);
-                        block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
-                    }
-                }
-                break;
-            }
-            case CARROT: {
-                if (block.getData() >= 7) {
-                    ItemStack drop = new ItemStack(Material.CARROT_ITEM, CSCoreLib.randomizer().nextInt(3) + 1);
-                    if (fits(b, drop)) {
-                        pushItems(b, drop);
-                        block.setData((byte) 0);
-                        block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
-                    }
-                }
-                break;
-            }
-            case BEETROOT_BLOCK: {
-                if (block.getData() >= 3) {
-                    ItemStack drop = new ItemStack(Material.BEETROOT, CSCoreLib.randomizer().nextInt(3) + 1);
-                    if (fits(b, drop)) {
-                        pushItems(b, drop);
-                        block.setData((byte) 0);
-                        block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
-                    }
-                }
-                break;
-            }
-            case COCOA: {
-                if (block.getData() >= 8) {
-                    ItemStack drop = new MaterialData(Material.INK_SACK, (byte) 3).toItemStack(CSCoreLib.randomizer().nextInt(3) + 1);
-                    if (fits(b, drop)) {
-                        pushItems(b, drop);
-                        block.setData((byte) (block.getData() - 8));
-                        block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
-                    }
-                }
-                break;
-            }
-            case NETHER_WARTS: {
-                if (block.getData() >= 3) {
-                    ItemStack drop = new ItemStack(Material.NETHER_STALK, CSCoreLib.randomizer().nextInt(3) + 1);
-                    if (fits(b, drop)) {
-                        pushItems(b, drop);
-                        block.setData((byte) 0);
-                        block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
-                    }
-                }
-                break;
-            }
-            default:
-                break;
-        }
-    }
+	@SuppressWarnings("deprecation")
+	private void farm(Block b, Block block) {
+		switch (block.getType()) {
+			case CROPS: {
+				if (block.getData() >= 7) {
+					ItemStack drop = new ItemStack(Material.WHEAT, CSCoreLib.randomizer().nextInt(3) + 1);
+					if (fits(b, drop)) {
+						pushItems(b, drop);
+						block.setData((byte) 0);
+						block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
+					}
+				}
+				break;
+			}
+			case POTATO: {
+				if (block.getData() >= 7) {
+					ItemStack drop = new ItemStack(Material.POTATO_ITEM, CSCoreLib.randomizer().nextInt(3) + 1);
+					if (fits(b, drop)) {
+						pushItems(b, drop);
+						block.setData((byte) 0);
+						block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
+					}
+				}
+				break;
+			}
+			case CARROT: {
+				if (block.getData() >= 7) {
+					ItemStack drop = new ItemStack(Material.CARROT_ITEM, CSCoreLib.randomizer().nextInt(3) + 1);
+					if (fits(b, drop)) {
+						pushItems(b, drop);
+						block.setData((byte) 0);
+						block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
+					}
+				}
+				break;
+			}
+			case BEETROOT_BLOCK: {
+				if (block.getData() >= 3) {
+					ItemStack drop = new ItemStack(Material.BEETROOT, CSCoreLib.randomizer().nextInt(3) + 1);
+					if (fits(b, drop)) {
+						pushItems(b, drop);
+						block.setData((byte) 0);
+						block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
+					}
+				}
+				break;
+			}
+			case COCOA: {
+				if (block.getData() >= 8) {
+					ItemStack drop = new MaterialData(Material.INK_SACK, (byte) 3).toItemStack
+							(CSCoreLib.randomizer().nextInt(3) + 1);
+					if (fits(b, drop)) {
+						pushItems(b, drop);
+						block.setData((byte) (block.getData() - 8));
+						block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
+					}
+				}
+				break;
+			}
+			case NETHER_WARTS: {
+				if (block.getData() >= 3) {
+					ItemStack drop = new ItemStack(Material.NETHER_STALK, CSCoreLib.randomizer().nextInt(3) + 1);
+					if (fits(b, drop)) {
+						pushItems(b, drop);
+						block.setData((byte) 0);
+						block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
+					}
+				}
+				break;
+			}
+			default:
+				break;
+		}
+	}
 
-    private void exoticFarm(Block b, Block block) {
+	private void exoticFarm(Block b, Block block) {
 		farm(b, block);
-        if (SlimefunStartup.instance.isExoticGardenInstalled()) {
-            ItemStack drop = ExoticGarden.harvestPlant(block);
-            if (drop != null && fits(b, drop)) {
-                pushItems(b, drop);
-                block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
-            }
-        }
-    }
+		if (SlimefunStartup.instance.isExoticGardenInstalled()) {
+			ItemStack drop = ExoticGarden.harvestPlant(block);
+			if (drop != null && fits(b, drop)) {
+				pushItems(b, drop);
+				block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getType());
+			}
+		}
+	}
 
 	@SuppressWarnings("deprecation")
 	private void constructMenu(BlockMenuPreset preset) throws Exception {
 		for (int i: border) {
-			preset.addItem(i, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 7), " "),
+			preset.addItem(i, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 7), ""),
 			new MenuClickHandler() {
 
 				@Override
@@ -891,7 +1028,7 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 			});
 		}
 		for (int i: border_out) {
-			preset.addItem(i, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 1), " "),
+			preset.addItem(i, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 1), ""),
 			new MenuClickHandler() {
 
 				@Override
@@ -911,14 +1048,17 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 				}
 
 				@Override
-				public boolean onClick(InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action) {
-					return cursor == null || cursor.getType() == null || cursor.getType() == Material.AIR;
+				public boolean onClick(InventoryClickEvent e, Player p, int slot, ItemStack cursor,
+									   ClickAction action) {
+					return cursor == null || cursor.getType() == null || cursor.getType() ==
+							Material.AIR;
 				}
 			});
 		}
 
 		if (getTier() == 1) {
-			preset.addItem(34, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTM0M2NlNThkYTU0Yzc5OTI0YTJjOTMzMWNmYzQxN2ZlOGNjYmJlYTliZTQ1YTdhYzg1ODYwYTZjNzMwIn19fQ=="), "&8\u21E9 &cFuel Input &8\u21E9", "", "&rThis Android runs on solid Fuel", "&re.g. Coal, Wood, etc..."),
+			preset.addItem(34, new CustomItem(CustomSkull.getItem
+					("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTM0M2NlNThkYTU0Yzc5OTI0YTJjOTMzMWNmYzQxN2ZlOGNjYmJlYTliZTQ1YTdhYzg1ODYwYTZjNzMwIn19fQ=="), "&8\u21E9 &c燃料输入槽 &8\u21E9", "", "&r需要固体燃料", "&r例如: 煤炭, 木炭等..."),
 			new MenuClickHandler() {
 
 				@Override
@@ -928,17 +1068,19 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 			});
 		}
 		else if (getTier() == 2){
-			preset.addItem(34, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTM0M2NlNThkYTU0Yzc5OTI0YTJjOTMzMWNmYzQxN2ZlOGNjYmJlYTliZTQ1YTdhYzg1ODYwYTZjNzMwIn19fQ=="), "&8\u21E9 &cFuel Input &8\u21E9", "", "&rThis Android runs on liquid Fuel", "&re.g. Lava, Oil, Fuel, etc..."),
-			new MenuClickHandler() {
+			preset.addItem(34, new CustomItem(CustomSkull.getItem
+					("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTM0M2NlNThkYTU0Yzc5OTI0YTJjOTMzMWNmYzQxN2ZlOGNjYmJlYTliZTQ1YTdhYzg1ODYwYTZjNzMwIn19fQ=="), "&8\u21E9 &c燃料输入槽 &8\u21E9", "", "&r需要液体燃料\", \"&r例如: 岩浆, 石油等..."),
+					new MenuClickHandler() {
 
-				@Override
-				public boolean onClick(Player p, int slot, ItemStack stack, ClickAction action) {
-					return false;
-				}
-			});
+						@Override
+						public boolean onClick(Player p, int slot, ItemStack stack, ClickAction action) {
+							return false;
+						}
+					});
 		}
 		else {
-			preset.addItem(34, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTM0M2NlNThkYTU0Yzc5OTI0YTJjOTMzMWNmYzQxN2ZlOGNjYmJlYTliZTQ1YTdhYzg1ODYwYTZjNzMwIn19fQ=="), "&8\u21E9 &cFuel Input &8\u21E9", "", "&rThis Android runs on radioactive Fuel", "&re.g. Uranium, Neptunium or Boosted Uranium"),
+			preset.addItem(34, new CustomItem(CustomSkull.getItem
+					("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTM0M2NlNThkYTU0Yzc5OTI0YTJjOTMzMWNmYzQxN2ZlOGNjYmJlYTliZTQ1YTdhYzg1ODYwYTZjNzMwIn19fQ=="), "&8\u21E9 &c燃料输入槽 &8\u21E9", "", "&r需要放射性燃料", "&r例如: 铀, 镎, 活性铀"),
 			new MenuClickHandler() {
 
 				@Override
@@ -950,9 +1092,10 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 	}
 
 	public void openScriptEditor(Player p, final Block b) throws Exception {
-		ChestMenu menu = new ChestMenu("&eScript Editor");
+		ChestMenu menu = new ChestMenu("&e脚本编辑器");
 
-		menu.addItem(2, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDliZjZkYjRhZWRhOWQ4ODIyYjlmNzM2NTM4ZThjMThiOWE0ODQ0Zjg0ZWI0NTUwNGFkZmJmZWU4N2ViIn19fQ=="), "&2> Edit Script", "", "&aEdits your current Script"),
+		menu.addItem(2, new CustomItem(CustomSkull.getItem
+				("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDliZjZkYjRhZWRhOWQ4ODIyYjlmNzM2NTM4ZThjMThiOWE0ODQ0Zjg0ZWI0NTUwNGFkZmJmZWU4N2ViIn19fQ=="), "&2> 编辑脚本", "", "&a编辑当前脚本"),
 		new MenuClickHandler() {
 
 			@Override
@@ -966,7 +1109,8 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 			}
 		});
 
-		menu.addItem(4, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTcxZDg5NzljMTg3OGEwNTk4N2E3ZmFmMjFiNTZkMWI3NDRmOWQwNjhjNzRjZmZjZGUxZWExZWRhZDU4NTIifX19"), "&4> Create new Script", "", "&cDeletes your current Script", "&cand creates a blank one"),
+		menu.addItem(4, new CustomItem(CustomSkull.getItem
+				("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTcxZDg5NzljMTg3OGEwNTk4N2E3ZmFmMjFiNTZkMWI3NDRmOWQwNjhjNzRjZmZjZGUxZWExZWRhZDU4NTIifX19"), "&4> 创建新脚本", "", "&c删除当前脚本", "&c并创建一个空白脚本"),
 		new MenuClickHandler() {
 
 			@Override
@@ -980,25 +1124,26 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 			}
 		});
 
-		menu.addItem(6, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzAxNTg2ZTM5ZjZmZmE2M2I0ZmIzMDFiNjVjYTdkYThhOTJmNzM1M2FhYWI4OWQzODg2NTc5MTI1ZGZiYWY5In19fQ=="), "&6> Download a Script", "", "&eDownload a Script from the Server", "&eYou can edit or simply use it"),
-		new MenuClickHandler() {
+		menu.addItem(6, new CustomItem(CustomSkull.getItem
+				("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzAxNTg2ZTM5ZjZmZmE2M2I0ZmIzMDFiNjVjYTdkYThhOTJmNzM1M2FhYWI4OWQzODg2NTc5MTI1ZGZiYWY5In19fQ=="), "&6> 下载脚本", "", "&e从云端下载一个脚本", "&e你可以对下载的脚本进行编辑或直接使用"),
+				new MenuClickHandler() {
 
-			@Override
-			public boolean onClick(Player p, int slot, ItemStack stack, ClickAction action) {
-				try {
-					openScriptDownloader(p, b, 1);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				return false;
-			}
-		});
+					@Override
+					public boolean onClick(Player p, int slot, ItemStack stack, ClickAction action) {
+						try {
+							openScriptDownloader(p, b, 1);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						return false;
+					}
+				});
 
 		menu.open(p);
 	}
 
 	public void openScript(final Player p, final Block b, final String script) throws Exception {
-		ChestMenu menu = new ChestMenu("&eScript Editor");
+		ChestMenu menu = new ChestMenu("&e脚本编辑器");
 		final String[] commands = script.split("-");
 
 		menu.addItem(0, ScriptPart.START.toItemStack());
@@ -1016,11 +1161,13 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 				int additional = commands.length == 54 ? 0: 1;
 
 				if (additional == 1) {
-					menu.addItem(i, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTcxZDg5NzljMTg3OGEwNTk4N2E3ZmFmMjFiNTZkMWI3NDRmOWQwNjhjNzRjZmZjZGUxZWExZWRhZDU4NTIifX19"), "&7> Add new Command"));
+					menu.addItem(i, new CustomItem(CustomSkull.getItem
+							("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTcxZDg5NzljMTg3OGEwNTk4N2E3ZmFmMjFiNTZkMWI3NDRmOWQwNjhjNzRjZmZjZGUxZWExZWRhZDU4NTIifX19"), "&7> 添加新命令"));
 					menu.addMenuClickHandler(i, new MenuClickHandler() {
 
 						@Override
-						public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
+						public boolean onClick(Player arg0, int arg1, ItemStack arg2,
+											   ClickAction arg3) {
 							try {
 								openScriptComponentEditor(p, b, script, index);
 							} catch (Exception e) {
@@ -1035,18 +1182,21 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 				menu.addMenuClickHandler(i + additional, new MenuClickHandler() {
 
 					@Override
-					public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
+					public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction
+							arg3) {
 						return false;
 					}
 				});
 			}
 			else {
 				ItemStack stack = ScriptPart.valueOf(commands[i]).toItemStack();
-				menu.addItem(i, new CustomItem(stack, stack.getItemMeta().getDisplayName(), "", "&7\u21E8 &eLeft Click &7to edit", "&7\u21E8 &eRight Click &7to delete", "&7\u21E8 &eShift + Right Click &7to duplicate"));
+				menu.addItem(i, new CustomItem(stack, stack.getItemMeta().getDisplayName(), "",
+						"&7\u21E8 &e左键点击 &e进行编辑", "&7\u21E8 &e邮件点击 &7进行删除", "&7\u21E8 &eShift + 右键点击 &7复制"));
 				menu.addMenuClickHandler(i, new MenuClickHandler() {
 
 					@Override
-					public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction action) {
+					public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction
+							action) {
 						if (action.isRightClicked() && action.isShiftClicked()) {
 							if (commands.length == 54) return false;
 
@@ -1058,7 +1208,8 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 										builder.append(commands[i] + "-");
 										builder.append(commands[i] + "-");
 									}
-									else if (i < commands.length - 1) builder.append(command + "-");
+									else if (i < commands.length - 1)
+										builder.append(command + "-");
 								}
 								i++;
 							}
@@ -1075,7 +1226,8 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 							int i = 0;
 							StringBuilder builder = new StringBuilder("START-");
 							for (String command: commands) {
-								if (i != index && i > 0 && i < commands.length - 1) builder.append(command + "-");
+								if (i != index && i > 0 && i < commands.length - 1)
+									builder.append(command + "-");
 								i++;
 							}
 							builder.append("REPEAT");
@@ -1104,7 +1256,7 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 
 	@SuppressWarnings("deprecation")
 	private void openScriptDownloader(final Player p, final Block b, final int page) throws Exception {
-		final ChestMenu menu = new ChestMenu("Slimefun Guide");
+		final ChestMenu menu = new ChestMenu("远古工艺向导");
 
 		menu.addMenuOpeningHandler(new MenuOpeningHandler() {
 
@@ -1120,17 +1272,17 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 		final int pages = (scripts.size() / 45) + 1;
 
 		for (int i = 45; i < 54; i++) {
-			menu.addItem(i, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 7), " "));
-			menu.addMenuClickHandler(i, new MenuClickHandler() {
+			menu.addItem(i, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 7), ""));
+					menu.addMenuClickHandler(i, new MenuClickHandler() {
 
-				@Override
-				public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
-					return false;
-				}
-			});
+						@Override
+						public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
+							return false;
+						}
+					});
 		}
 
-		menu.addItem(46, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 5), "&r\u21E6 Previous Page", "", "&7(" + page + " / " + pages + ")"));
+		menu.addItem(46, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 5), "&r\u21E6上一页", "", "&7(" + page + " / " + pages + ")"));
 		menu.addMenuClickHandler(46, new MenuClickHandler() {
 
 			@Override
@@ -1148,58 +1300,62 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 			}
 		});
 
-		menu.addItem(49, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTA1YTJjYWI4YjY4ZWE1N2UzYWY5OTJhMzZlNDdjOGZmOWFhODdjYzg3NzYyODE5NjZmOGMzY2YzMWEzOCJ9fX0="), "&eUpload a Script", "", "&6Click &7to upload your Android's Script", "&7to the Database"));
-		menu.addMenuClickHandler(49, new MenuClickHandler() {
+		menu.addItem(49, new CustomItem(CustomSkull.getItem
+				("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTA1YTJjYWI4YjY4ZWE1N2UzYWY5OTJhMzZlNDdjOGZmOWFhODdjYzg3NzYyODE5NjZmOGMzY2YzMWEzOCJ9fX0="), "&e上传脚本", "", "&6点击 &7上传你机器人的脚本至云端", "&7分享给他人使用"));
+						menu.addMenuClickHandler(49, new MenuClickHandler() {
 
-			@Override
-			public boolean onClick(Player p, int arg1, ItemStack arg2, ClickAction arg3) {
-				final String code = BlockStorage.getLocationInfo(b.getLocation(), "script");
-				int num = 1;
+							@Override
+							public boolean onClick(Player p, int arg1, ItemStack arg2, ClickAction arg3) {
+								final String code = BlockStorage.getLocationInfo(b.getLocation(), "script");
+								int num = 1;
 
-				for (Config script: getUploadedScripts()) {
-					if (script.getString("author").equals(p.getUniqueId().toString())) num++;
-					if (script.getString("code").equals(code)) {
-						Messages.local.sendTranslation(p, "android.scripts.already-uploaded", true);
-						return false;
-					}
-				}
+								for (Config script: getUploadedScripts()) {
+									if (script.getString("author").equals(p.getUniqueId().toString())) num++;
+									if (script.getString("code").equals(code)) {
+										Messages.local.sendTranslation(p, "android.scripts.already-uploaded", true);
+										return false;
+									}
+								}
 
-				final int id = num;
+								final int id = num;
 
-				p.closeInventory();
-				Messages.local.sendTranslation(p, "android.scripts.enter-name", true);
+								p.closeInventory();
+								Messages.local.sendTranslation(p, "android.scripts.enter-name", true);
 
-				MenuHelper.awaitChatInput(p, new ChatHandler() {
+								MenuHelper.awaitChatInput(p, new ChatHandler() {
 
-					@Override
-					public boolean onChat(Player p, String message) {
-						Config script = new Config("plugins/Slimefun/scripts/" + getAndroidType().toString() + "/" + p.getName() + " " + id + ".sfs");
+									@Override
+									public boolean onChat(Player p, String message) {
+										Config script = new Config("plugins/Slimefun/scripts/" +
+												getAndroidType().toString() + "/" + p.getName() + " " + id + ".sfs");
 
-						script.setValue("author", p.getUniqueId().toString());
-						script.setValue("author_name", p.getName());
-						script.setValue("name", ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', message)));
-						script.setValue("code", code);
-						script.setValue("downloads", 0);
-						script.setValue("android", getAndroidType().toString());
-						script.setValue("rating.positive", new ArrayList<String>());
-						script.setValue("rating.negative", new ArrayList<String>());
-						script.save();
+										script.setValue("author", p.getUniqueId().toString());
+										script.setValue("author_name", p.getName());
+										script.setValue("name", ChatColor.stripColor
+												(ChatColor.translateAlternateColorCodes('&', message)));
+										script.setValue("code", code);
+										script.setValue("downloads", 0);
+										script.setValue("android", getAndroidType().toString());
+										script.setValue("rating.positive", new ArrayList<String>());
+										script.setValue("rating.negative", new ArrayList<String>());
+										script.save();
 
-						try {
-							Messages.local.sendTranslation(p, "android.uploaded", true);
-							openScriptDownloader(p, b, page);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+										try {
+											Messages.local.sendTranslation(p, "android.uploaded",
+													true);
+											openScriptDownloader(p, b, page);
+										} catch (Exception e) {
+											e.printStackTrace();
+										}
 
-						return false;
-					}
-				});
-				return false;
-			}
-		});
+										return false;
+									}
+								});
+								return false;
+							}
+						});
 
-		menu.addItem(52, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 5), "&rNext Page \u21E8", "", "&7(" + page + " / " + pages + ")"));
+		menu.addItem(52, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 5), "&r下一页\u21E8", "", "&7(" + page + " / " + pages + ")"));
 		menu.addMenuClickHandler(52, new MenuClickHandler() {
 
 			@Override
@@ -1225,28 +1381,41 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 				final Config script = scripts.get(target);
 
 				OfflinePlayer op = Bukkit.getOfflinePlayer(script.getUUID("author"));
-				String author = (op != null && op.getName() != null) ? op.getName(): script.getString("author_name");
+				String author = (op != null && op.getName() != null) ? op.getName():
+						script.getString("author_name");
 
 				if (script.getString("author").equals(p.getUniqueId().toString())) {
-					menu.addItem(index, new CustomItem(this.getItem(), "&b" + script.getString("name"), "&7by &r" + author, "", "&7Downloads: &r" + script.getInt("downloads"), "&7Rating: " + getScriptRatingPercentage(script), "&a" + getScriptRating(script, true) + " \u263A &7- &4\u2639 " + getScriptRating(script, false), "", "&eLeft Click &rto download this Script", "&4(This will override your current Script)"));
+					menu.addItem(index, new CustomItem(this.getItem(), "&b" + script.getString
+							("name"), "&7by &r" + author, "", "&7Downloads: &r" + script.getInt("downloads"), "&7Rating: " +
+							getScriptRatingPercentage(script), "&a" + getScriptRating(script, true) + " \u263A &7- &4\u2639 " +
+							getScriptRating(script, false), "", "&e左键点击 &r下载这个脚本", "&4(这将覆盖你当前的脚本)"));
 				}
 				else {
-					menu.addItem(index, new CustomItem(this.getItem(), "&b" + script.getString("name"), "&7by &r" + author, "", "&7Downloads: &r" + script.getInt("downloads"), "&7Rating: " + getScriptRatingPercentage(script), "&a" + getScriptRating(script, true) + " \u263A &7- &4\u2639 " + getScriptRating(script, false), "", "&eLeft Click &rto download this Script", "&4(This will override your current Script)", "&eShift + Left Click &rto leave a positive Rating", "&eShift + Right Click &rto leave a negative Rating"));
+					menu.addItem(index, new CustomItem(this.getItem(), "&b" + script.getString
+							("name"), "&7by &r" + author, "", "&7Downloads: &r" + script.getInt("downloads"), "&7Rating: " +
+							getScriptRatingPercentage(script), "&a" + getScriptRating(script, true) + " \u263A &7- &4\u2639 " +
+							getScriptRating(script, false), "", "&e左键点击 &r下载这个脚本", "&4(这将覆盖你当前的脚本)", "&eShift + 左键点击 &r给脚本点赞", "&eShift + 右键点击 &r差评这个脚本"));
 				}
 
 				menu.addMenuClickHandler(index, new MenuClickHandler() {
 
 					@Override
-					public boolean onClick(Player p, int slot, ItemStack stack, ClickAction action) {
+					public boolean onClick(Player p, int slot, ItemStack stack, ClickAction
+							action) {
 						Config script2 = new Config(script.getFile());
 
 						if (action.isShiftClicked()) {
-							if (script2.getString("author").equals(p.getUniqueId().toString())) {
-								Messages.local.sendTranslation(p, "android.scripts.rating.own", true);
+							if (script2.getString("author").equals(p.getUniqueId
+									().toString())) {
+								Messages.local.sendTranslation(p,
+										"android.scripts.rating.own", true);
 							}
 							else if (action.isRightClicked()) {
-								if (!script2.getStringList("rating.negative").contains(p.getUniqueId().toString()) && !script2.getStringList("rating.positive").contains(p.getUniqueId().toString())) {
-									List<String> list = script2.getStringList("rating.negative");
+								if (!script2.getStringList
+										("rating.negative").contains(p.getUniqueId().toString()) && !script2.getStringList("rating.positive").contains
+										(p.getUniqueId().toString())) {
+									List<String> list = script2.getStringList
+											("rating.negative");
 									list.add(p.getUniqueId().toString());
 
 									script2.setValue("rating.negative", list);
@@ -1259,12 +1428,16 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 									}
 								}
 								else {
-									Messages.local.sendTranslation(p, "android.scripts.rating.already", true);
+									Messages.local.sendTranslation(p,
+											"android.scripts.rating.already", true);
 								}
 							}
 							else {
-								if (!script2.getStringList("rating.negative").contains(p.getUniqueId().toString()) && !script2.getStringList("rating.positive").contains(p.getUniqueId().toString())) {
-									List<String> list = script2.getStringList("rating.positive");
+								if (!script2.getStringList
+										("rating.negative").contains(p.getUniqueId().toString()) && !script2.getStringList("rating.positive").contains
+										(p.getUniqueId().toString())) {
+									List<String> list = script2.getStringList
+											("rating.positive");
 									list.add(p.getUniqueId().toString());
 
 									script2.setValue("rating.positive", list);
@@ -1277,16 +1450,19 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 									}
 								}
 								else {
-									Messages.local.sendTranslation(p, "android.scripts.rating.already", true);
+									Messages.local.sendTranslation(p,
+											"android.scripts.rating.already", true);
 								}
 							}
 						}
 						else if (!action.isRightClicked()) {
 							try {
-								script2.setValue("downloads", script2.getInt("downloads") + 1);
+								script2.setValue("downloads", script2.getInt
+										("downloads") + 1);
 								script2.save();
 
-								BlockStorage.addBlockInfo(b, "script", script2.getString("code"));
+								BlockStorage.addBlockInfo(b, "script",
+										script2.getString("code"));
 								openScriptEditor(p, b);
 							} catch (Exception e) {
 								e.printStackTrace();
@@ -1304,7 +1480,8 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 	}
 
 	public float getScriptRating(Config script) {
-		return Math.round(((getScriptRating(script, true) * 100.0f) / getScriptRating(script, true) + getScriptRating(script, false)) * 100.0f) / 100.0f;
+		return Math.round(((getScriptRating(script, true) * 100.0f) / getScriptRating(script, true) +
+				getScriptRating(script, false)) * 100.0f) / 100.0f;
 	}
 
 	private int getScriptRating(Config script, boolean positive) {
@@ -1325,102 +1502,104 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 	}
 
 	@SuppressWarnings("deprecation")
-	protected void openScriptComponentEditor(Player p, final Block b, final String script, final int index) throws Exception {
-		ChestMenu menu = new ChestMenu("&eScript Editor");
+	protected void openScriptComponentEditor(Player p, final Block b, final String script, final int index)
+			throws Exception {
+		ChestMenu menu = new ChestMenu("&e脚本编辑器");
 
 		final String[] commands = script.split("-");
 
 		menu.addItem(0, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 7), " "),
-		new MenuClickHandler() {
+				new MenuClickHandler() {
 
-			@Override
-			public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
-				return false;
-			}
+					@Override
+					public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
+						return false;
+					}
 
-		});
+				});
 
 		menu.addItem(1, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 7), " "),
-		new MenuClickHandler() {
+				new MenuClickHandler() {
 
-			@Override
-			public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
-				return false;
-			}
+					@Override
+					public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
+						return false;
+					}
 
-		});
+				});
 
 		menu.addItem(2, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 7), " "),
-		new MenuClickHandler() {
+				new MenuClickHandler() {
 
-			@Override
-			public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
-				return false;
-			}
+					@Override
+					public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
+						return false;
+					}
 
-		});
+				});
 
 		menu.addItem(3, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 7), " "),
-		new MenuClickHandler() {
+				new MenuClickHandler() {
 
-			@Override
-			public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
-				return false;
-			}
+					@Override
+					public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
+						return false;
+					}
 
-		});
+				});
 
 		menu.addItem(4, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 7), " "),
-		new MenuClickHandler() {
+				new MenuClickHandler() {
 
-			@Override
-			public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
-				return false;
-			}
+					@Override
+					public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
+						return false;
+					}
 
-		});
+				});
 
 		menu.addItem(5, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 7), " "),
-		new MenuClickHandler() {
+				new MenuClickHandler() {
 
-			@Override
-			public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
-				return false;
-			}
+					@Override
+					public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
+						return false;
+					}
 
-		});
+				});
 
 		menu.addItem(6, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 7), " "),
-		new MenuClickHandler() {
+				new MenuClickHandler() {
 
-			@Override
-			public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
-				return false;
-			}
+					@Override
+					public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
+						return false;
+					}
 
-		});
+				});
 
 		menu.addItem(7, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 7), " "),
-		new MenuClickHandler() {
+				new MenuClickHandler() {
 
-			@Override
-			public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
-				return false;
-			}
+					@Override
+					public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
+						return false;
+					}
 
-		});
+				});
 
 		menu.addItem(8, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 7), " "),
-		new MenuClickHandler() {
+				new MenuClickHandler() {
 
-			@Override
-			public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
-				return false;
-			}
+					@Override
+					public boolean onClick(Player arg0, int arg1, ItemStack arg2, ClickAction arg3) {
+						return false;
+					}
 
-		});
+				});
 
-		menu.addItem(9, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTYxMzlmZDFjNTY1NGU1NmU5ZTRlMmM4YmU3ZWIyYmQ1YjQ5OWQ2MzM2MTY2NjNmZWVlOTliNzQzNTJhZDY0In19fQ=="), "&rDo nothing"),
+		menu.addItem(9, new CustomItem(CustomSkull.getItem
+				("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTYxMzlmZDFjNTY1NGU1NmU5ZTRlMmM4YmU3ZWIyYmQ1YjQ5OWQ2MzM2MTY2NjNmZWVlOTliNzQzNTJhZDY0In19fQ=="), "&r待命"),
 		new MenuClickHandler() {
 
 			@Override
@@ -1428,7 +1607,8 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 				int i = 0;
 				StringBuilder builder = new StringBuilder("START-");
 				for (String command: commands) {
-					if (i != index && i > 0 && i < commands.length - 1) builder.append(command + "-");
+					if (i != index && i > 0 && i < commands.length - 1) builder.append(command
+							+ "-");
 					i++;
 				}
 				builder.append("REPEAT");
@@ -1448,13 +1628,16 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 					new MenuClickHandler() {
 
 						@Override
-						public boolean onClick(Player p, int arg1, ItemStack arg2, ClickAction arg3) {
+						public boolean onClick(Player p, int arg1, ItemStack arg2,
+											   ClickAction arg3) {
 							int i = 0;
 							StringBuilder builder = new StringBuilder("START-");
 							for (String command: commands) {
 								if (i > 0) {
-									if (i == index) builder.append(part.toString() + "-");
-									else if (i < commands.length - 1) builder.append(command + "-");
+									if (i == index) builder.append
+											(part.toString() + "-");
+									else if (i < commands.length - 1)
+										builder.append(command + "-");
 								}
 								i++;
 							}
@@ -1469,7 +1652,7 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 							return false;
 						}
 					});
-					i++;
+			i++;
 		}
 
 		menu.open(p);
@@ -1558,7 +1741,8 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 		List<ScriptPart> list = new ArrayList<ScriptPart>();
 
 		for (final ScriptPart part: ScriptPart.values()) {
-			if (!part.equals(ScriptPart.START) && !part.equals(ScriptPart.REPEAT) && getAndroidType().isType(part.getRequiredType())) {
+			if (!part.equals(ScriptPart.START) && !part.equals(ScriptPart.REPEAT) && getAndroidType
+					().isType(part.getRequiredType())) {
 				list.add(part);
 			}
 		}

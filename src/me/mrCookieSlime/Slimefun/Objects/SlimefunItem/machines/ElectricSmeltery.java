@@ -187,7 +187,7 @@ public abstract class ElectricSmeltery extends AContainer {
 
 	@Override
 	public String getInventoryTitle() {
-		return "&cElectric Smeltery";
+		return "&c电力冶炼机";
 	}
 
 	@Override

@@ -133,7 +133,7 @@ public class FluidPump extends SlimefunItem{
 	}
 
 	public String getInventoryTitle() {
-		return "&9Fluid Pump";
+		return "&9流体泵";
 	}
 	
 	protected void tick(Block b) {

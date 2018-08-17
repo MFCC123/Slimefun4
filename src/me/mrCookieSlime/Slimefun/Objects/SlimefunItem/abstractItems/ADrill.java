@@ -3,6 +3,7 @@ package me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.mrCookieSlime.Slimefun.Misc.compatibles.AddonFuncUtils;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -103,6 +104,9 @@ public abstract class ADrill extends AContainer {
 			@Override
 			public boolean canOpen(Block b, Player p) {
 				if (!(p.hasPermission("slimefun.inventory.bypass") || CSCoreLib.getLib().getProtectionManager().canAccessChest(p.getUniqueId(), b, true))) {
+					return false;
+				}
+				if (!AddonFuncUtils.canAccessItem(p, b)){
 					return false;
 				}
 				

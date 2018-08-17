@@ -16,6 +16,7 @@ import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.InvUtils;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.Item.CustomItem;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Lists.SlimefunItems;
+import me.mrCookieSlime.Slimefun.Misc.compatibles.AddonFuncUtils;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunBlockHandler;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
@@ -66,7 +67,8 @@ public abstract class AGenerator extends SlimefunItem {
 
 			@Override
 			public boolean canOpen(Block b, Player p) {
-				return p.hasPermission("slimefun.inventory.bypass") || CSCoreLib.getLib().getProtectionManager().canAccessChest(p.getUniqueId(), b, true);
+				boolean perm = p.hasPermission("slimefun.inventory.bypass") || CSCoreLib.getLib().getProtectionManager().canAccessChest(p.getUniqueId(), b, true);
+				return perm && AddonFuncUtils.canAccessItem(p, b);
 			}
 
 			@Override
@@ -125,7 +127,8 @@ public abstract class AGenerator extends SlimefunItem {
 
 			@Override
 			public boolean canOpen(Block b, Player p) {
-				return p.hasPermission("slimefun.inventory.bypass") || CSCoreLib.getLib().getProtectionManager().canAccessChest(p.getUniqueId(), b, true);
+				boolean perm = p.hasPermission("slimefun.inventory.bypass") || CSCoreLib.getLib().getProtectionManager().canAccessChest(p.getUniqueId(), b, true);
+				return perm && AddonFuncUtils.canAccessItem(p, b);
 			}
 
 			@Override

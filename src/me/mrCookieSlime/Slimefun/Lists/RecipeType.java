@@ -13,27 +13,27 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 public class RecipeType {
-	
-	public static final RecipeType MULTIBLOCK = new RecipeType(new CustomItem(Material.BRICK, "&bMultiBlock", 0, new String[] {"", "&a&oBuild it in the World"}));
-	public static final RecipeType ARMOR_FORGE = new RecipeType(new CustomItem(Material.ANVIL, "&bArmor Forge", 0, new String[] {"", "&a&oCraft it in an Armor Forge"}), "ARMOR_FORGE");
-	public static final RecipeType GRIND_STONE = new RecipeType(new CustomItem(Material.DISPENSER, "&bGrind Stone", 0, new String[] {"", "&a&oGrind it using the Grind Stone"}), "GRIND_STONE");
-	public static final RecipeType MOB_DROP = new RecipeType(new CustomItem(Material.MONSTER_EGG, "&bMob Drop", 0, new String[] {"", "&a&oKill the specified Mob to obtain this Item"}));
-	public static final RecipeType SMELTERY = new RecipeType(new CustomItem(Material.FURNACE, "&6Smeltery", 0, new String[] {"", "&a&oSmelt it using a Smeltery"}), "SMELTERY");
-	public static final RecipeType ORE_CRUSHER = new RecipeType(new CustomItem(Material.DISPENSER, "&bOre Crusher", 0, new String[] {"", "&a&oCrush it using the Ore Crusher"}), "ORE_CRUSHER");
-	public static final RecipeType GOLD_PAN = new RecipeType(new CustomItem(Material.BOWL, "&bGold Pan", 0, new String[] {"", "&a&oUse a Gold Pan on Gravel to obtain this Item"}));
-	public static final RecipeType COMPRESSOR = new RecipeType(new CustomItem(Material.PISTON_BASE, "&bCompressor", 0, new String[] {"", "&a&oCompress it using the Compressor"}), "COMPRESSOR");
-	public static final RecipeType PRESSURE_CHAMBER = new RecipeType(new CustomItem(Material.GLASS, "&bPressure Chamber", 0, new String[] {"", "&a&oCompress it using the Pressure Chamber"}), "PRESSURE_CHAMBER");
-	public static final RecipeType OVEN = new RecipeType(new CustomItem(Material.FURNACE, "&bOven", 0, new String[] {"", "&a&oSmelt it in an Oven"}), "OVEN");
-	public static final RecipeType MAGIC_WORKBENCH = new RecipeType(new CustomItem(Material.BOOKSHELF, "&6Magic Workbench", 0, new String[] {"", "&a&oCraft it in a Magic Workbench"}), "MAGIC_WORKBENCH");
-	public static final RecipeType ORE_WASHER = new RecipeType(new CustomItem(Material.CAULDRON_ITEM, "&6Ore Washer", 0, new String[] {"", "&a&oWash it in an Ore Washer"}), "ORE_WASHER");
-	public static final RecipeType ENHANCED_CRAFTING_TABLE = new RecipeType(new CustomItem(Material.WORKBENCH, "&eEnhanced Crafting Table", 0, new String[] {"", "&a&oA regular Crafting Table cannot", "&a&ohold this massive Amount of Power..."}), "ENHANCED_CRAFTING_TABLE");
-	public static final RecipeType JUICER = new RecipeType(new CustomItem(Material.GLASS_BOTTLE, "&eJuicer", 0, new String[] {"", "&a&oUsed for Juice Creation"}), "JUICER");
-	public static final RecipeType ANCIENT_ALTAR = new RecipeType(new CustomItem(Material.ENCHANTMENT_TABLE, "&4Ancient Altar", 0, new String[] {"", "&dYou will need to craft this Item", "&dby performing an Ancient Altar Ritual"}));
-	public static final RecipeType HEATED_PRESSURE_CHAMBER = new RecipeType(new CustomItem(Material.STAINED_GLASS, "&cHeated Pressure Chamber", 8, new String[] {"", "&a&oCraft this Item in a", "&a&oHeated Pressure Chamber"}), "HEATED_PRESSURE_CHAMBER");
-	
-	public static final RecipeType SHAPED_RECIPE = new RecipeType(new CustomItem(Material.WORKBENCH, "&eShaped Recipe", 0, new String[] {"", "&a&oJust a standard Recipe in the Workbench..."}));
-	public static final RecipeType SHAPELESS_RECIPE = new RecipeType(new CustomItem(Material.WORKBENCH, "&eShapeless Recipe", 0, new String[] {"", "&a&oJust a standard Recipe in the Workbench..."}));
-	public static final RecipeType FURNACE = new RecipeType(new CustomItem(Material.FURNACE, "&eFurnace Recipe", 0, new String[] {"", "&a&oJust smelt it in a regular Furnace"}));
+
+	public static final RecipeType MULTIBLOCK = new RecipeType(new CustomItem(Material.BRICK, "&b复合型方块机器", 0, new String[] {"", "&a按界面中的上下顺序", "&a使用方块在地上搭建"}));
+	public static final RecipeType ARMOR_FORGE = new RecipeType(new CustomItem(Material.ANVIL, "&b护甲锻造器", 0, new String[] {"", "&a使用&e护甲锻造器&a制作"}), "ARMOR_FORGE");
+	public static final RecipeType GRIND_STONE = new RecipeType(new CustomItem(Material.DISPENSER, "&b磨石", 0, new String[] {"", "&a使用&e磨石&a制作"}), "GRIND_STONE");
+	public static final RecipeType MOB_DROP = new RecipeType(new CustomItem(Material.MONSTER_EGG, "&b生物掉落", 0, new String[] {"", "&a通过杀死特定的生物掉落"}));
+	public static final RecipeType SMELTERY = new RecipeType(new CustomItem(Material.FURNACE, "&6冶炼厂", 0, new String[] {"", "&a使用&e冶炼厂&a制作"}), "SMELTERY");
+	public static final RecipeType ORE_CRUSHER = new RecipeType(new CustomItem(Material.DISPENSER, "&b碎矿机", 0, new String[] {"", "&a使用&e碎矿机&a进行粉碎"}), "ORE_CRUSHER");
+	public static final RecipeType GOLD_PAN = new RecipeType(new CustomItem(Material.BOWL, "&b淘洗盘", 0, new String[] {"", "&a手持&e淘洗盘&a对砂砾进行淘洗"}));
+	public static final RecipeType COMPRESSOR = new RecipeType(new CustomItem(Material.PISTON_BASE, "&b压缩机", 0, new String[] {"", "&a使用&e压缩机&a进行压缩"}), "COMPRESSOR");
+	public static final RecipeType PRESSURE_CHAMBER = new RecipeType(new CustomItem(Material.GLASS, "&b压力室", 0, new String[] {"", "&a使用&e压缩机&a进行压缩加工"}), "PRESSURE_CHAMBER");
+	public static final RecipeType OVEN = new RecipeType(new CustomItem(Material.FURNACE, "&b烤炉", 0, new String[] {"", "&a&o在烤炉里制作"}), "OVEN");
+	public static final RecipeType MAGIC_WORKBENCH = new RecipeType(new CustomItem(Material.BOOKSHELF, "&6魔法合成台", 0, new String[] {"", "&a使用&e魔法合成台&a进行制作"}), "MAGIC_WORKBENCH");
+	public static final RecipeType ORE_WASHER = new RecipeType(new CustomItem(Material.CAULDRON_ITEM, "&6洗矿机", 0, new String[] {"", "&a使用&e洗矿机&a进行制作"}), "ORE_WASHER");
+	public static final RecipeType ENHANCED_CRAFTING_TABLE = new RecipeType(new CustomItem(Material.WORKBENCH, "&e强化合成台", 0, new String[] {"", "&a远古工艺的基础合成台", "&a普通的合成台无法进行远古工艺制作"}), "ENHANCED_CRAFTING_TABLE");
+	public static final RecipeType JUICER = new RecipeType(new CustomItem(Material.GLASS_BOTTLE, "&e榨汁机", 0, new String[] {"", "&a来点美味的果汁?"}), "JUICER");
+	public static final RecipeType ANCIENT_ALTAR = new RecipeType(new CustomItem(Material.ENCHANTMENT_TABLE, "&4远古祭坛", 0, new String[] {"", "&d你必须通过使用远古祭坛", "&d执行神秘的远古魔法仪式", "&d才能合成出这个物品"}));
+	public static final RecipeType HEATED_PRESSURE_CHAMBER = new RecipeType(new CustomItem(Material.STAINED_GLASS, "&c热压力室", 8, new String[] {"", "&a使用&e热压力室", "&a来制作这个物品"}), "HEATED_PRESSURE_CHAMBER");
+
+	public static final RecipeType SHAPED_RECIPE = new RecipeType(new CustomItem(Material.WORKBENCH, "&e有序合成", 0, new String[] {"", "&a这个合成只需使用普通的合成台"}));
+	public static final RecipeType SHAPELESS_RECIPE = new RecipeType(new CustomItem(Material.WORKBENCH, "&e无序合成", 0, new String[] {"", "&a这个合成只需使用普通的合成台"}));
+	public static final RecipeType FURNACE = new RecipeType(new CustomItem(Material.FURNACE, "&e普通熔炉合成", 0, new String[] {"", "&a&o只需要使用普通的熔炉制作"}));
 	public static final RecipeType NULL = new RecipeType(null);
 	
 	ItemStack item;

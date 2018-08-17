@@ -113,7 +113,11 @@ public class SlimefunCommand implements CommandExecutor, Listener {
 				else Messages.local.sendTranslation(sender, "messages.only-players", true);
 			}
 			else if (args[0].equalsIgnoreCase("open_guide")) {
-				if (sender instanceof Player) { 
+				if (sender instanceof Player) {
+					if (((Player) sender).isSleeping()) {
+						sender.sendMessage("§c你不能在睡觉时使用这个命令");
+						return true;
+					}
 					if (sender.hasPermission("slimefun.command.open_guide")) SlimefunGuide.openGuide((Player) sender, SlimefunStartup.getCfg().getBoolean("guide.default-view-book"));
 					else Messages.local.sendTranslation(sender, "messages.no-permission", true);
 				}
@@ -186,7 +190,7 @@ public class SlimefunCommand implements CommandExecutor, Listener {
 						}
 					}
 					
-					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Installed Addons &8(" + addons.size() + ")"));
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7已安装的扩展 &8(" + addons.size() + ")"));
 					
 					for (String addon: addons) {
 						sender.sendMessage(addon);
@@ -229,7 +233,7 @@ public class SlimefunCommand implements CommandExecutor, Listener {
                         }
                         else Messages.local.sendTranslation(sender, "messages.not-online", true, new Variable("%player%", args[1]));
 			        }
-			        else Messages.local.sendTranslation(sender, "messages.usage", true, new Variable("%usage%", "/sf give <Player> <Slimefun Item> [Amount]"));
+			        else Messages.local.sendTranslation(sender, "messages.usage", true, new Variable("%usage%", "/sf give <玩家名> <SF物品名> [数量]"));
 				}
 				else  Messages.local.sendTranslation(sender, "messages.no-permission", true);
 			}
@@ -244,11 +248,11 @@ public class SlimefunCommand implements CommandExecutor, Listener {
 								e.printStackTrace();
 							}
 						}
-						else sender.sendMessage("&4Unknown Player: &c" + args[1]);
+						else sender.sendMessage("&4未知玩家: &c" + args[1]);
 					}
 					else Messages.local.sendTranslation(sender, "messages.no-permission", true);
 				}
-				else Messages.local.sendTranslation(sender, "messages.usage", true, new Variable("%usage%", "/sf teleporter <Player>"));
+				else Messages.local.sendTranslation(sender, "messages.usage", true, new Variable("%usage%", "/sf teleporter <玩家名>"));
 			}
 			else if (args[0].equalsIgnoreCase("research")) {
 				if (args.length == 3) {
@@ -292,7 +296,7 @@ public class SlimefunCommand implements CommandExecutor, Listener {
 					else Messages.local.sendTranslation(sender, "messages.no-permission", true);
 				}
 				else {
-					Messages.local.sendTranslation(sender, "messages.usage", true, new Variable("%usage%", "/sf research <Player> <all/reset/Research>"));
+					Messages.local.sendTranslation(sender, "messages.usage", true, new Variable("%usage%", "/sf research <玩家名> <all/reset/Research>"));
 				}
 			}
 			else {

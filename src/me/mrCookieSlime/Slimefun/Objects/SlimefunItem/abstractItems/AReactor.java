@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import me.mrCookieSlime.Slimefun.Misc.compatibles.AddonFuncUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -84,7 +85,7 @@ public abstract class AReactor extends SlimefunItem {
 						BlockStorage.addBlockInfo(b, "reactor-mode", "generator");
 					}
 					if (!BlockStorage.hasBlockInfo(b) || BlockStorage.getLocationInfo(b.getLocation(), "reactor-mode").equals("generator")) {
-						menu.replaceExistingItem(4, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTM0M2NlNThkYTU0Yzc5OTI0YTJjOTMzMWNmYzQxN2ZlOGNjYmJlYTliZTQ1YTdhYzg1ODYwYTZjNzMwIn19fQ=="), "&7Focus: &eElectricity", "", "&6Your Reactor will focus on Power Generation", "&6If your Energy Network doesn't need Power", "&6it will not produce any either", "", "&7> Click to change the Focus to &eProduction"));
+						menu.replaceExistingItem(4, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTM0M2NlNThkYTU0Yzc5OTI0YTJjOTMzMWNmYzQxN2ZlOGNjYmJlYTliZTQ1YTdhYzg1ODYwYTZjNzMwIn19fQ=="), "&7优先: &e发电", "", "&6你的反应器将专注于发电", "&6如果你的能量网络无需能源", "&6它将不会生产任何东西", "", "&7> 点击修改为优先 &e生产"));
 						menu.addMenuClickHandler(4, new MenuClickHandler() {
 
 							@Override
@@ -96,7 +97,7 @@ public abstract class AReactor extends SlimefunItem {
 						});
 					}
 					else {
-						menu.replaceExistingItem(4, new CustomItem(SlimefunItems.PLUTONIUM, "&7Focus: &eProduction", "", "&6Your Reactor will focus on producing goods", "&6If your Energy Network doesn't need Power", "&6it will continue to run and simply will", "&6not generate any Power in the mean time", "", "&7> Click to change the Focus to &ePower Generation"));
+						menu.replaceExistingItem(4, new CustomItem(SlimefunItems.PLUTONIUM, "&7优先: &e生产", "", "&6你的反应器会优先生产产品", "&6如果你的能量网络不需要能源", "&6它将继续运行", "&6并且不会生产任何能源", "", "&7> 点击修改为优先 &e发电"));
 						menu.addMenuClickHandler(4, new MenuClickHandler() {
 
 							@Override
@@ -113,7 +114,8 @@ public abstract class AReactor extends SlimefunItem {
 
 			@Override
 			public boolean canOpen(Block b, Player p) {
-				return p.hasPermission("slimefun.inventory.bypass") || CSCoreLib.getLib().getProtectionManager().canAccessChest(p.getUniqueId(), b, true);
+				boolean perm = p.hasPermission("slimefun.inventory.bypass") || CSCoreLib.getLib().getProtectionManager().canAccessChest(p.getUniqueId(), b, true);
+				return perm && AddonFuncUtils.canAccessItem(p, b);
 			}
 
 			@Override
@@ -210,7 +212,7 @@ public abstract class AReactor extends SlimefunItem {
 
 		});
 
-		preset.addItem(1, new CustomItem(SlimefunItems.URANIUM, "&7Fuel Slot", "", "&rThis Slot accepts radioactive Fuel such as:", "&2Uranium &ror &aNeptunium"),
+		preset.addItem(1, new CustomItem(SlimefunItems.URANIUM, "&7燃料槽", "", "&r这里可以放入放射性燃料, 例如:", "&2铀 &r或 &a镎"),
 		new MenuClickHandler() {
 
 			@Override
@@ -233,13 +235,13 @@ public abstract class AReactor extends SlimefunItem {
 		}
 
 		if (needsCooling()) {
-			preset.addItem(7, new CustomItem(this.getCoolant(), "&bCoolant Slot", "", "&rThis Slot accepts Coolant Cells", "&4Without any Coolant Cells, your Reactor", "&4will explode"));
+			preset.addItem(7, new CustomItem(this.getCoolant(), "&b冷却槽", "", "&r这个槽位用于放置反应器冷却单元", "&4如果反应器不配置冷却槽", "&4反应器将会因为过热导致爆炸"));
 		}
 		else {
-			preset.addItem(7, new CustomItem(new MaterialData(Material.BARRIER), "&bCoolant Slot", "", "&rThis Slot accepts Coolant Cells"));
+			preset.addItem(7, new CustomItem(new MaterialData(Material.BARRIER), "&b冷却槽", "", "&r这个槽位用于放置反应器冷却单元"));
 
 			for (int i : border_4) {
-				preset.addItem(i, new CustomItem(new ItemStack(Material.BARRIER), "&cNo Coolant Required"),
+				preset.addItem(i, new CustomItem(new ItemStack(Material.BARRIER),  "&c无需冷却单元"),
 				new MenuClickHandler() {
 
 					@Override

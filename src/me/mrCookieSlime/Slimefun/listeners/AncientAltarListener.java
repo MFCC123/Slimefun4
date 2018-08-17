@@ -172,7 +172,7 @@ public class AncientAltarListener implements Listener {
 		if (stack != null) {
 			PlayerInventory.consumeItemInHand(p);
 			String nametag = StringUtils.formatItemName(stack, false);
-			Item entity = b.getWorld().dropItem(b.getLocation().add(0.5, 1.2, 0.5), new CustomItem(new CustomItem(stack, 1), "&5&dALTAR &3Probe - &e" + System.nanoTime()));
+			Item entity = b.getWorld().dropItem(b.getLocation().add(0.5, 1.2, 0.5), new CustomItem(new CustomItem(stack, 1), "&5&d祭坛 &3灵柱 - &e" + System.nanoTime()));
 			entity.setVelocity(new Vector(0, 0.1, 0));
 			entity.setMetadata("no_pickup", new FixedMetadataValue(SlimefunStartup.instance, "altar_item"));
 			entity.setCustomNameVisible(true);

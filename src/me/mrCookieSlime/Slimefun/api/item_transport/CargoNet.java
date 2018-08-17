@@ -148,16 +148,16 @@ public class CargoNet extends Network {
 
 	public void tick(final Block b) {
 		if (!regulator.equals(b.getLocation())) {
-			CargoHologram.update(b, "&4Multiple Cargo Regulators connected");
+			CargoHologram.update(b, "&4多个货运节点相连");
 			return;
 		}
 		super.tick();
 		if (connectorNodes.isEmpty() && terminusNodes.isEmpty()) {
-			CargoHologram.update(b, "&7Status: &4&lOFFLINE");
+			CargoHologram.update(b, "&7状态: &4&l离线");
 			return;
 		}
 		else {
-			CargoHologram.update(b, "&7Status: &a&lONLINE");
+			CargoHologram.update(b, "&7状态: &a&l在线");
 
 
 			final Map<Integer, List<Location>> output = new HashMap<Integer, List<Location>>();
@@ -495,9 +495,9 @@ public class CargoNet extends Network {
 									ItemMeta im = stack.getItemMeta();
 									List<String> lore = new ArrayList<String>();
 									lore.add("");
-									lore.add(ChatColor.translateAlternateColorCodes('&', "&7Stored Items: &r" + DoubleHandler.getFancyDouble(item.getAmount())));
-									if (stack.getMaxStackSize() > 1) lore.add(ChatColor.translateAlternateColorCodes('&', "&7<Left Click: Request 1 | Right Click: Request " + (item.getAmount() > stack.getMaxStackSize() ? stack.getMaxStackSize(): item.getAmount()) + ">"));
-									else lore.add(ChatColor.translateAlternateColorCodes('&', "&7<Left Click: Request 1>"));
+									lore.add(ChatColor.translateAlternateColorCodes('&', "&7已存储物品: &r" + DoubleHandler.getFancyDouble(item.getAmount())));
+									if (stack.getMaxStackSize() > 1) lore.add(ChatColor.translateAlternateColorCodes('&', "&7<左键点击: 请求 1 个 | 右键点击: 请求 " + (item.getAmount() > stack.getMaxStackSize() ? stack.getMaxStackSize(): item.getAmount()) + " 个>"));
+									else lore.add(ChatColor.translateAlternateColorCodes('&', "&7<左键点击: 请求 1 个>"));
 									lore.add("");
 									if (im.hasLore()) {
 										for (String line: im.getLore()) {

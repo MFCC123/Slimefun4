@@ -330,7 +330,7 @@ public class SlimefunSetup {
 			public boolean onRightClick(ItemUseEvent e, Player p, ItemStack item) {
 				if (SlimefunManager.isItemSimiliar(item, SlimefunItems.PORTABLE_DUSTBIN, true)) {
 					e.setCancelled(true);
-					p.openInventory(Bukkit.createInventory(null, 9 * 3, ChatColor.DARK_RED + "Delete Items"));
+					p.openInventory(Bukkit.createInventory(null, 9 * 3, ChatColor.DARK_RED + "删除物品"));
 					p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_LAND, 1, 1);
 					return true;
 				}
@@ -339,11 +339,11 @@ public class SlimefunSetup {
 		});
 
 		new SlimefunItem(Categories.FOOD, SlimefunItems.BEEF_JERKY, "BEEF_JERKY", RecipeType.ENHANCED_CRAFTING_TABLE,
-		new ItemStack[] {SlimefunItems.SALT, new ItemStack(Material.COOKED_BEEF), null, null, null, null, null, null, null}, new String[] {"Saturation"}, new Integer[] {20})
+		new ItemStack[] {SlimefunItems.SALT, new ItemStack(Material.COOKED_BEEF), null, null, null, null, null, null, null}, new String[] {"饱食"}, new Integer[] {20})
 		.register(true);
 
 		new SlimefunMachine(Categories.MACHINES_1, SlimefunItems.GRIND_STONE, "GRIND_STONE",
-		new ItemStack[] {null, null, null, null, new ItemStack(Material.FENCE), null, null, new CustomItem(Material.DISPENSER, "Dispenser (Facing up)", 0), null},
+		new ItemStack[] {null, null, null, null, new ItemStack(Material.FENCE), null, null, new CustomItem(Material.DISPENSER, "发射器 (口朝上)", 0), null},
 		new ItemStack[] {new ItemStack(Material.BLAZE_ROD), new ItemStack(Material.BLAZE_POWDER, 4), new ItemStack(Material.BONE), new CustomItem(Material.INK_SACK, 15, 4), new ItemStack(Material.GRAVEL), new ItemStack(Material.FLINT), new ItemStack(Material.NETHER_STALK), new CustomItem(SlimefunItems.MAGIC_LUMP_1, 2), new ItemStack(Material.EYE_OF_ENDER), new CustomItem(SlimefunItems.ENDER_LUMP_1, 2), new ItemStack(Material.COBBLESTONE), new ItemStack(Material.GRAVEL), new ItemStack(Material.WHEAT), SlimefunItems.WHEAT_FLOUR, new ItemStack(Material.DIRT), SlimefunItems.STONE_CHUNK},
 		Material.FENCE)
 		.register(true, new MultiBlockInteractionHandler() {
@@ -384,7 +384,7 @@ public class SlimefunSetup {
 		});
 
 		new SlimefunMachine(Categories.MACHINES_1, SlimefunItems.ARMOR_FORGE, "ARMOR_FORGE",
-		new ItemStack[] {null, null, null, null, new ItemStack(Material.ANVIL), null, null, new CustomItem(Material.DISPENSER, "Dispenser (Facing up)", 0), null},
+		new ItemStack[] {null, null, null, null, new ItemStack(Material.ANVIL), null, null, new CustomItem(Material.DISPENSER, "发射器 (口朝上)", 0), null},
 		new ItemStack[] {},
 		Material.ANVIL)
 		.register(true, new MultiBlockInteractionHandler() {
@@ -456,7 +456,7 @@ public class SlimefunSetup {
 		});
 
 		new SlimefunMachine(Categories.MACHINES_1, SlimefunItems.ORE_CRUSHER, "ORE_CRUSHER",
-		new ItemStack[] {null, null, null, null, new ItemStack(Material.NETHER_FENCE), null, new ItemStack(Material.IRON_FENCE), new CustomItem(Material.DISPENSER, "Dispenser (Facing up)", 0), new ItemStack(Material.IRON_FENCE)},
+		new ItemStack[] {null, null, null, null, new ItemStack(Material.NETHER_FENCE), null, new ItemStack(Material.IRON_FENCE), new CustomItem(Material.DISPENSER, "发射器 (口朝上)", 0), new ItemStack(Material.IRON_FENCE)},
 		new ItemStack[] {new ItemStack(Material.IRON_ORE), new CustomItem(SlimefunItems.IRON_DUST, (Boolean) Slimefun.getItemValue("ORE_CRUSHER", "double-ores") ? 2: 1), new ItemStack(Material.GOLD_ORE), new CustomItem(SlimefunItems.GOLD_DUST, (Boolean) Slimefun.getItemValue("ORE_CRUSHER", "double-ores") ? 2: 1), new ItemStack(Material.NETHERRACK, 16), SlimefunItems.SULFATE, SlimefunItems.SIFTED_ORE, SlimefunItems.CRUSHED_ORE, SlimefunItems.CRUSHED_ORE, SlimefunItems.PULVERIZED_ORE, SlimefunItems.PURE_ORE_CLUSTER, SlimefunItems.TINY_URANIUM, new ItemStack(Material.COBBLESTONE, 8), new ItemStack(Material.SAND, 1), new ItemStack(Material.GOLD_INGOT), SlimefunItems.GOLD_DUST, SlimefunItems.GOLD_4K, SlimefunItems.GOLD_DUST},
 		Material.NETHER_FENCE)
 		.register(true, new MultiBlockInteractionHandler() {
@@ -497,7 +497,7 @@ public class SlimefunSetup {
 		});
 
 		new SlimefunMachine(Categories.MACHINES_1, SlimefunItems.COMPRESSOR, "COMPRESSOR",
-		new ItemStack[] {null, null, null, null, new ItemStack(Material.NETHER_FENCE), null, new ItemStack(Material.PISTON_BASE), new CustomItem(Material.DISPENSER, "Dispenser (Facing up)", 0), new ItemStack(Material.PISTON_BASE)},
+		new ItemStack[] {null, null, null, null, new ItemStack(Material.NETHER_FENCE), null, new ItemStack(Material.PISTON_BASE), new CustomItem(Material.DISPENSER, "发射器 (口朝上)", 0), new ItemStack(Material.PISTON_BASE)},
 		new ItemStack[] {new ItemStack(Material.COAL, 8), SlimefunItems.CARBON, new CustomItem(SlimefunItems.STEEL_INGOT, 8), SlimefunItems.STEEL_PLATE, new CustomItem(SlimefunItems.CARBON, 4), SlimefunItems.COMPRESSED_CARBON, new CustomItem(SlimefunItems.STONE_CHUNK, 4), new ItemStack(Material.COBBLESTONE), new CustomItem(SlimefunItems.REINFORCED_ALLOY_INGOT, 8), SlimefunItems.REINFORCED_PLATE},
 		Material.NETHER_FENCE)
 		.register(true, new MultiBlockInteractionHandler() {
@@ -726,7 +726,7 @@ public class SlimefunSetup {
 		.register(true);
 
 		new SlimefunMachine(Categories.MACHINES_1, SlimefunItems.SMELTERY, "SMELTERY",
-		new ItemStack[] {null, new ItemStack(Material.NETHER_FENCE), null, new ItemStack(Material.NETHER_BRICK), new CustomItem(Material.DISPENSER, "Dispencer (Faced up)", 0), new ItemStack(Material.NETHER_BRICK), null, new ItemStack(Material.FLINT_AND_STEEL), null},
+		new ItemStack[] {null, new ItemStack(Material.NETHER_FENCE), null, new ItemStack(Material.NETHER_BRICK), new CustomItem(Material.DISPENSER, "发射器 (口朝上)", 0), new ItemStack(Material.NETHER_BRICK), null, new ItemStack(Material.FLINT_AND_STEEL), null},
 		new ItemStack[] {SlimefunItems.IRON_DUST, new ItemStack(Material.IRON_INGOT)}, Material.NETHER_FENCE,
 		new String[] {"chance.fireBreak"}, new Integer[] {34})
 		.register(true, new MultiBlockInteractionHandler() {
@@ -825,7 +825,7 @@ public class SlimefunSetup {
 		.register(true);
 		
 		new SlimefunMachine(Categories.MACHINES_1, SlimefunItems.PRESSURE_CHAMBER, "PRESSURE_CHAMBER",
-		new ItemStack[] {new ItemStack(Material.STEP), new CustomItem(Material.DISPENSER, "Dispenser (Facing down)", 0), new ItemStack(Material.STEP), new ItemStack(Material.PISTON_BASE), new ItemStack(Material.GLASS), new ItemStack(Material.PISTON_BASE), new ItemStack(Material.PISTON_BASE), new ItemStack(Material.CAULDRON_ITEM), new ItemStack(Material.PISTON_BASE)},
+		new ItemStack[] {new ItemStack(Material.STEP), new CustomItem(Material.DISPENSER, "发射器 (口朝下)", 0), new ItemStack(Material.STEP), new ItemStack(Material.PISTON_BASE), new ItemStack(Material.GLASS), new ItemStack(Material.PISTON_BASE), new ItemStack(Material.PISTON_BASE), new ItemStack(Material.CAULDRON_ITEM), new ItemStack(Material.PISTON_BASE)},
 		new ItemStack[] {SlimefunItems.CARBON_CHUNK, SlimefunItems.SYNTHETIC_DIAMOND, SlimefunItems.RAW_CARBONADO, SlimefunItems.CARBONADO},
 		Material.CAULDRON)
 		.register(true, new MultiBlockInteractionHandler() {
@@ -2819,7 +2819,7 @@ public class SlimefunSetup {
 		.register(true);
 
 		new SlimefunMachine(Categories.MACHINES_1, SlimefunItems.JUICER, "JUICER",
-		new ItemStack[] {null, new ItemStack(Material.GLASS), null, null, new ItemStack(Material.NETHER_FENCE), null, null, new CustomItem(Material.DISPENSER, "Dispenser (Facing up)", 0), null},
+		new ItemStack[] {null, new ItemStack(Material.GLASS), null, null, new ItemStack(Material.NETHER_FENCE), null, null, new CustomItem(Material.DISPENSER, "发射器 (口朝上)", 0), null},
 		new ItemStack[] {
 				new ItemStack(Material.APPLE), SlimefunItems.APPLE_JUICE,
 				new ItemStack(Material.MELON), SlimefunItems.MELON_JUICE,
@@ -2888,7 +2888,7 @@ public class SlimefunSetup {
 		.register(true);
 
 		new SlimefunItem(Categories.MAGIC, SlimefunItems.REPAIRED_SPAWNER, "REINFORCED_SPAWNER", RecipeType.ANCIENT_ALTAR,
-		new ItemStack[] {SlimefunItems.RUNE_ENDER, new CustomItem(Material.EXP_BOTTLE, "&aFlask of Knowledge", 0), SlimefunItems.ESSENCE_OF_AFTERLIFE, new CustomItem(Material.EXP_BOTTLE, "&aFlask of Knowledge", 0), SlimefunItems.BROKEN_SPAWNER, new CustomItem(Material.EXP_BOTTLE, "&aFlask of Knowledge", 0), SlimefunItems.ESSENCE_OF_AFTERLIFE, new CustomItem(Material.EXP_BOTTLE, "&aFlask of Knowledge", 0), SlimefunItems.RUNE_ENDER})
+		new ItemStack[] {SlimefunItems.RUNE_ENDER, new CustomItem(Material.EXP_BOTTLE, "&a弗拉斯克之瓶", 0), SlimefunItems.ESSENCE_OF_AFTERLIFE, new CustomItem(Material.EXP_BOTTLE, "&aFlask of Knowledge", 0), SlimefunItems.BROKEN_SPAWNER, new CustomItem(Material.EXP_BOTTLE, "&aFlask of Knowledge", 0), SlimefunItems.ESSENCE_OF_AFTERLIFE, new CustomItem(Material.EXP_BOTTLE, "&aFlask of Knowledge", 0), SlimefunItems.RUNE_ENDER})
 		.register(true, new BlockPlaceHandler() {
 
 			@Override
@@ -3123,7 +3123,7 @@ public class SlimefunSetup {
 			public boolean onRightClick(ItemUseEvent e, Player p, ItemStack item) {
 				if (SlimefunManager.isItemSimiliar(item, SlimefunItems.FLASK_OF_KNOWLEDGE, true) && p.getLevel() >= 1) {
 					p.setLevel(p.getLevel() - 1);
-					p.getInventory().addItem(new CustomItem(Material.EXP_BOTTLE, "&aFlask of Knowledge", 0));
+					p.getInventory().addItem(new CustomItem(Material.EXP_BOTTLE, "&a弗拉斯克之瓶", 0));
 					PlayerInventory.consumeItemInHand(p);
 					PlayerInventory.update(p);
 					return true;
@@ -3132,7 +3132,7 @@ public class SlimefunSetup {
 			}
 		});
 
-		new SlimefunItem(Categories.BIRTHDAY, new CustomItem(new MaterialData(Material.CAKE), "&bBirthday Cake"), "BIRTHDAY_CAKE", RecipeType.ENHANCED_CRAFTING_TABLE,
+		new SlimefunItem(Categories.BIRTHDAY, new CustomItem(new MaterialData(Material.CAKE), "&b生日蛋糕"), "BIRTHDAY_CAKE", RecipeType.ENHANCED_CRAFTING_TABLE,
 		new ItemStack[] {null, new ItemStack(Material.TORCH), null, new ItemStack(Material.SUGAR), new ItemStack(Material.CAKE), new ItemStack(Material.SUGAR), null, null, null})
 		.register(true);
 
@@ -3422,7 +3422,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&bElectric Furnace";
+				return "&b电力熔炉";
 			}
 
 			@Override
@@ -3447,7 +3447,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&bElectric Furnace";
+				return "&b电力熔炉";
 			}
 
 			@Override
@@ -3472,7 +3472,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&bElectric Furnace";
+				return "&b电力熔炉";
 			}
 
 			@Override
@@ -3581,7 +3581,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&cElectric Ingot Factory";
+				return "&c电力制锭机";
 			}
 
 			@Override
@@ -3606,7 +3606,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&cElectric Ingot Factory";
+				return "&c电力制锭机";
 			}
 
 			@Override
@@ -3631,7 +3631,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&cElectric Ingot Factory";
+				return "&c电力制锭机";
 			}
 
 			@Override
@@ -3705,7 +3705,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&bElectric Ore Grinder";
+				return "&b电力碎矿机";
 			}
 
 			@Override
@@ -3739,7 +3739,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&bElectric Ore Grinder";
+				return "&b电力碎矿机";
 			}
 
 			@Override
@@ -3803,7 +3803,7 @@ public class SlimefunSetup {
 		new ItemStack[] {null, SlimefunItems.ELECTRIC_ORE_GRINDER, null, SlimefunItems.LEAD_INGOT, SlimefunItems.MEDIUM_CAPACITOR, SlimefunItems.LEAD_INGOT, SlimefunItems.LEAD_INGOT, SlimefunItems.HEATING_COIL, SlimefunItems.LEAD_INGOT}){
 			@Override
 			public String getInventoryTitle() {
-				return "&bElectric Ingot Pulverizer";
+				return "&b电力碎锭机";
 			}
 
 			@Override
@@ -3876,7 +3876,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&cCoal Generator";
+				return "&c煤炭发电机";
 			}
 
 			@Override
@@ -3938,7 +3938,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&2Bio Reactor";
+				return "&2生化发电机";
 			}
 
 			@Override
@@ -3996,8 +3996,8 @@ public class SlimefunSetup {
 					if (e.getClickedBlock() != null && ChargableBlock.isChargable(e.getClickedBlock())) {
 						e.setCancelled(true);
 						p.sendMessage("");
-						p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bStored Energy: &3" + DoubleHandler.getFancyDouble(ChargableBlock.getCharge(e.getClickedBlock())) + " J"));
-						p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bCapacity: &3" + DoubleHandler.getFancyDouble(ChargableBlock.getMaxCharge(e.getClickedBlock())) + " J"));
+						p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b存储的电力: &3" + DoubleHandler.getFancyDouble(ChargableBlock.getCharge(e.getClickedBlock())) + " J"));
+						p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b缓存: &3" + DoubleHandler.getFancyDouble(ChargableBlock.getMaxCharge(e.getClickedBlock())) + " J"));
 						p.sendMessage("");
 					}
 					return true;
@@ -4695,7 +4695,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&4Lava Generator";
+				return "&4岩浆发电机";
 			}
 
 			@Override
@@ -4721,7 +4721,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&cCombustion Reactor";
+				return "&c石油发电机";
 			}
 
 			@Override
@@ -4791,7 +4791,7 @@ public class SlimefunSetup {
 
 			@Override
 			public void onPlace(Player p, Block b, SlimefunItem item) {
-				BlockStorage.addBlockInfo(b, "text", "&bHi, I am a Hologram, &3configure me using the Projector");
+				BlockStorage.addBlockInfo(b, "text", "&b在这里写全息文字内容");
 				BlockStorage.addBlockInfo(b, "offset", "-0.5");
 				BlockStorage.addBlockInfo(b, "owner", p.getUniqueId().toString());
 
@@ -4891,7 +4891,7 @@ public class SlimefunSetup {
 
 			@Override
 			public void onPlace(Player p, Block b, SlimefunItem item) {
-				BlockStorage.addBlockInfo(b, "floor", "&rFloor #0");
+				BlockStorage.addBlockInfo(b, "floor", "&r楼层 #0");
 				BlockStorage.addBlockInfo(b, "owner", p.getUniqueId().toString());
 			}
 
@@ -4911,7 +4911,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&cFood Fabricator";
+				return "&c食品加工机";
 			}
 
 			@Override
@@ -4936,7 +4936,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&cFood Fabricator";
+				return "&c食品加工机";
 			}
 
 			@Override
@@ -5001,7 +5001,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&cFood Composter";
+				return "&c食品堆肥机";
 			}
 
 			@Override
@@ -5026,7 +5026,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&cFood Composter";
+				return "&c食品堆肥机";
 			}
 
 			@Override
@@ -5121,7 +5121,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&bFreezer";
+				return "&b制冷机";
 			}
 
 			@Override
@@ -5146,7 +5146,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&bFreezer";
+				return "&b制冷机";
 			}
 
 			@Override
@@ -5192,7 +5192,7 @@ public class SlimefunSetup {
 
             @Override
 			public String getInventoryTitle() {
-				return "&2Nuclear Reactor";
+				return "&2核能发电机";
 			}
 
 			@Override
@@ -5233,7 +5233,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&fNether Star Reactor";
+				return "&f下界之星发电机";
 			}
 
 			@Override
@@ -5304,11 +5304,11 @@ public class SlimefunSetup {
 
 				if (BlockStorage.getBlockInfo(e.getClickedBlock(), "visualizer") == null) {
 					BlockStorage.addBlockInfo(e.getClickedBlock(), "visualizer", "disabled");
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cCargo Net Visualizer: " + "&4\u2718"));
+					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c运输网络可视化: " + "&4\u2718"));
 				}
 				else {
 					BlockStorage.addBlockInfo(e.getClickedBlock(), "visualizer", null);
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cCargo Net Visualizer: " + "&2\u2714"));
+					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c运输网络可视化: " + "&2\u2714"));
 				}
 				return true;
 			}
@@ -5339,10 +5339,10 @@ public class SlimefunSetup {
 				if (!item.getName().equals("CARGO_NODE")) return false;
 
 				if (CargoNet.isConnected(e.getClickedBlock())) {
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Connected: " + "&2\u2714"));
+					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7已连接: " + "&2\u2714"));
 				}
 				else {
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Connected: " + "&4\u2718"));
+					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7已连接: " + "&4\u2718"));
 				}
 				return true;
 			}
@@ -5392,7 +5392,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&cCarbon Press";
+				return "&c碳压缩机";
 			}
 
 			@Override
@@ -5442,7 +5442,7 @@ public class SlimefunSetup {
 
 			@Override
 			public String getInventoryTitle() {
-				return "&cCarbon Press";
+				return "&c碳压缩机";
 			}
 
 			@Override

@@ -71,7 +71,7 @@ public class GPSNetwork {
 	
 	@SuppressWarnings("deprecation")
 	public void openTransmitterControlPanel(Player p) throws Exception {
-		ChestMenu menu = new ChestMenu("&9Control Panel");
+		ChestMenu menu = new ChestMenu("&9控制面板");
 		
 		for (int slot: border) {
 			menu.addItem(slot, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 7), " "),
@@ -85,7 +85,7 @@ public class GPSNetwork {
 			});
 		}
 		
-		menu.addItem(2, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjBjOWMxYTAyMmY0MGI3M2YxNGI0Y2JhMzdjNzE4YzZhNTMzZjNhMjg2NGI2NTM2ZDVmNDU2OTM0Y2MxZiJ9fX0="), "&7Transmitter Overview &e(Selected)"));
+		menu.addItem(2, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjBjOWMxYTAyMmY0MGI3M2YxNGI0Y2JhMzdjNzE4YzZhNTMzZjNhMjg2NGI2NTM2ZDVmNDU2OTM0Y2MxZiJ9fX0="), "&7发射器概览 &e(已选择)"));
 		menu.addMenuClickHandler(2, new MenuClickHandler() {
 			
 			@Override
@@ -94,7 +94,7 @@ public class GPSNetwork {
 			}
 		});
 		
-		menu.addItem(4, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGRjZmJhNThmYWYxZjY0ODQ3ODg0MTExODIyYjY0YWZhMjFkN2ZjNjJkNDQ4MWYxNGYzZjNiY2I2MzMwIn19fQ=="), "&7Network Info", "", "&8\u21E8 &7Status: " + (getNetworkComplexity(p.getUniqueId()) > 0 ? "&2&lONLINE": "&4&lOFFLINE"), "&8\u21E8 &7Complexity: &r" + getNetworkComplexity(p.getUniqueId())));
+		menu.addItem(4, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGRjZmJhNThmYWYxZjY0ODQ3ODg0MTExODIyYjY0YWZhMjFkN2ZjNjJkNDQ4MWYxNGYzZjNiY2I2MzMwIn19fQ=="), "&7网络信息", "", "&8\u21E8 &7状态: " + (getNetworkComplexity(p.getUniqueId()) > 0 ? "&2&l在线": "&4&l离线"), "&8\u21E8 &7复杂度: &r" + getNetworkComplexity(p.getUniqueId())));
 		menu.addMenuClickHandler(4, new MenuClickHandler() {
 			
 			@Override
@@ -103,7 +103,7 @@ public class GPSNetwork {
 			}
 		});
 		
-		menu.addItem(6, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzljODg4MWU0MjkxNWE5ZDI5YmI2MWExNmZiMjZkMDU5OTEzMjA0ZDI2NWRmNWI0MzliM2Q3OTJhY2Q1NiJ9fX0="), "&7Waypoint Overview &r(Select)"));
+		menu.addItem(6, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzljODg4MWU0MjkxNWE5ZDI5YmI2MWExNmZiMjZkMDU5OTEzMjA0ZDI2NWRmNWI0MzliM2Q3OTJhY2Q1NiJ9fX0="), "&7&7路径点概览 &r(选择)"));
 		menu.addMenuClickHandler(6, new MenuClickHandler() {
 			
 			@Override
@@ -122,7 +122,7 @@ public class GPSNetwork {
 			if (index >= inventory.length) break;
 			int slot = inventory[index];
 			
-			menu.addItem(slot, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjBjOWMxYTAyMmY0MGI3M2YxNGI0Y2JhMzdjNzE4YzZhNTMzZjNhMjg2NGI2NTM2ZDVmNDU2OTM0Y2MxZiJ9fX0="), "&bGPS Transmitter", "&8\u21E8 &7World: &r" + l.getWorld().getName(), "&8\u21E8 &7X: &r" + l.getX(), "&8\u21E8 &7Y: &r" + l.getY(), "&8\u21E8 &7Z: &r" + l.getZ(), "", "&8\u21E8 &7Signal Strength: &r" + l.getBlockY(), "&8\u21E8 &7Ping: &r" + DoubleHandler.fixDouble(1000D / l.getY()) + "ms"));
+			menu.addItem(slot, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjBjOWMxYTAyMmY0MGI3M2YxNGI0Y2JhMzdjNzE4YzZhNTMzZjNhMjg2NGI2NTM2ZDVmNDU2OTM0Y2MxZiJ9fX0="), "&bGPS 信号发射器", "&8\u21E8 &7世界: &r" + l.getWorld().getName(), "&8\u21E8 &7X: &r" + l.getX(), "&8\u21E8 &7Y: &r" + l.getY(), "&8\u21E8 &7Z: &r" + l.getZ(), "", "&8\u21E8 &7信号强度: &r" + l.getBlockY(), "&8\u21E8 &7延迟: &r" + DoubleHandler.fixDouble(1000D / l.getY()) + "ms"));
 			menu.addMenuClickHandler(slot, new MenuClickHandler() {
 				
 				@Override
@@ -139,7 +139,7 @@ public class GPSNetwork {
 	
 	public static ItemStack getPlanet(Map.Entry<String, Location> entry) throws Exception {
 		Location l = entry.getValue();
-		if (entry.getKey().startsWith("&4Deathpoint")) {
+		if (entry.getKey().startsWith("&4死亡点")) {
 			return CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWFlMzg1NWY5NTJjZDRhMDNjMTQ4YTk0NmUzZjgxMmE1OTU1YWQzNWNiY2I1MjYyN2VhNGFjZDQ3ZDMwODEifX19");
 		}
 		else if (l.getWorld().getEnvironment().equals(Environment.NETHER)) {
@@ -155,7 +155,7 @@ public class GPSNetwork {
 	
 	@SuppressWarnings("deprecation")
 	public void openWaypointControlPanel(Player p) throws Exception {
-		ChestMenu menu = new ChestMenu("&9Control Panel");
+		ChestMenu menu = new ChestMenu("&9控制面板");
 		
 		for (int slot: border) {
 			menu.addItem(slot, new CustomItem(new MaterialData(Material.STAINED_GLASS_PANE, (byte) 7), " "),
@@ -169,7 +169,7 @@ public class GPSNetwork {
 			});
 		}
 		
-		menu.addItem(2, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjBjOWMxYTAyMmY0MGI3M2YxNGI0Y2JhMzdjNzE4YzZhNTMzZjNhMjg2NGI2NTM2ZDVmNDU2OTM0Y2MxZiJ9fX0="), "&7Transmitter Overview &r(Select)"));
+		menu.addItem(2, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjBjOWMxYTAyMmY0MGI3M2YxNGI0Y2JhMzdjNzE4YzZhNTMzZjNhMjg2NGI2NTM2ZDVmNDU2OTM0Y2MxZiJ9fX0="), "&7信号发射器概览 &r(选择)"));
 		menu.addMenuClickHandler(2, new MenuClickHandler() {
 			
 			@Override
@@ -183,7 +183,7 @@ public class GPSNetwork {
 			}
 		});
 		
-		menu.addItem(4, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGRjZmJhNThmYWYxZjY0ODQ3ODg0MTExODIyYjY0YWZhMjFkN2ZjNjJkNDQ4MWYxNGYzZjNiY2I2MzMwIn19fQ=="), "&7Network Info", "", "&8\u21E8 &7Status: " + (getNetworkComplexity(p.getUniqueId()) > 0 ? "&2&lONLINE": "&4&lOFFLINE"), "&8\u21E8 &7Complexity: &r" + getNetworkComplexity(p.getUniqueId())));
+		menu.addItem(4, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGRjZmJhNThmYWYxZjY0ODQ3ODg0MTExODIyYjY0YWZhMjFkN2ZjNjJkNDQ4MWYxNGYzZjNiY2I2MzMwIn19fQ=="), "&7网络信息", "", "&8\u21E8 &7状态: " + (getNetworkComplexity(p.getUniqueId()) > 0 ? "&2&l在线": "&4&l离线"), "&8\u21E8 &7复杂度: &r" + getNetworkComplexity(p.getUniqueId())));
 		menu.addMenuClickHandler(4, new MenuClickHandler() {
 			
 			@Override
@@ -192,7 +192,7 @@ public class GPSNetwork {
 			}
 		});
 		
-		menu.addItem(6, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzljODg4MWU0MjkxNWE5ZDI5YmI2MWExNmZiMjZkMDU5OTEzMjA0ZDI2NWRmNWI0MzliM2Q3OTJhY2Q1NiJ9fX0="), "&7Waypoint Overview &e(Selected)"));
+		menu.addItem(6, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzljODg4MWU0MjkxNWE5ZDI5YmI2MWExNmZiMjZkMDU5OTEzMjA0ZDI2NWRmNWI0MzliM2Q3OTJhY2Q1NiJ9fX0="), "&7路径点概览 &e(已选择)"));
 		menu.addMenuClickHandler(6, new MenuClickHandler() {
 			
 			@Override
@@ -209,7 +209,7 @@ public class GPSNetwork {
 			Location l = entry.getValue();
 			ItemStack globe = getPlanet(entry);
 			
-			menu.addItem(slot, new CustomItem(globe, entry.getKey(), "&8\u21E8 &7World: &r" + l.getWorld().getName(), "&8\u21E8 &7X: &r" + l.getX(), "&8\u21E8 &7Y: &r" + l.getY(), "&8\u21E8 &7Z: &r" + l.getZ(), "", "&8\u21E8 &cClick to delete"));
+			menu.addItem(slot, new CustomItem(globe, entry.getKey(), "&8\u21E8 &7世界: &r" + l.getWorld().getName(), "&8\u21E8 &7X: &r" + l.getX(), "&8\u21E8 &7Y: &r" + l.getY(), "&8\u21E8 &7Z: &r" + l.getZ(), "", "&8\u21E8 &c点击删除"));
 			menu.addMenuClickHandler(slot, new MenuClickHandler() {
 				
 				@Override
@@ -285,14 +285,14 @@ public class GPSNetwork {
 			Messages.local.sendTranslation(p, "gps.insufficient-complexity", true, new Variable("%complexity%", String.valueOf(600)));
 			return;
 		}
-		ChestMenu menu = new ChestMenu("&4Scan Results");
+		ChestMenu menu = new ChestMenu("&4扫描结果");
 		
 		int index = 0;
 		
 		for (OreGenResource resource: OreGenSystem.listResources()) {
 			int supply = OreGenSystem.getSupplies(resource, chunk, true);
 			
-			menu.addItem(index, new CustomItem(resource.getIcon(), "&7Resource: &e" + resource.getName(), "", "&7Scanned Chunk:", "&8\u21E8 &7X: " + chunk.getX() + " Z: " + chunk.getZ(), "", "&7Result: &e" + supply + " " + resource.getMeasurementUnit()),
+			menu.addItem(index, new CustomItem(resource.getIcon(), "&7资源: &e" + resource.getName(), "", "&7已扫描区块:", "&8\u21E8 &7X: " + chunk.getX() + " Z: " + chunk.getZ(), "", "&7结果: &e" + supply + " " + resource.getMeasurementUnit()),
 			new MenuClickHandler() {
 				
 				@Override
@@ -316,7 +316,7 @@ public class GPSNetwork {
 		p.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, 1F, 1F);
 		TeleportationSequence.players.add(p.getUniqueId());
 		
-		ChestMenu menu = new ChestMenu("&3Teleporter");
+		ChestMenu menu = new ChestMenu("&3传送器");
 		
 		menu.addMenuCloseHandler(new MenuCloseHandler() {
 			
@@ -338,7 +338,7 @@ public class GPSNetwork {
 			});
 		}
 		
-		menu.addItem(4, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzljODg4MWU0MjkxNWE5ZDI5YmI2MWExNmZiMjZkMDU5OTEzMjA0ZDI2NWRmNWI0MzliM2Q3OTJhY2Q1NiJ9fX0="), "&7Waypoint Overview &e(Select a Destination)"));
+		menu.addItem(4, new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzljODg4MWU0MjkxNWE5ZDI5YmI2MWExNmZiMjZkMDU5OTEzMjA0ZDI2NWRmNWI0MzliM2Q3OTJhY2Q1NiJ9fX0="), "&7路径点概览 &e(选择一个目标)"));
 		menu.addMenuClickHandler(4, new MenuClickHandler() {
 			
 			@Override
@@ -356,7 +356,7 @@ public class GPSNetwork {
 			final Location l = entry.getValue();
 			ItemStack globe = getPlanet(entry);
 			
-			menu.addItem(slot, new CustomItem(globe, entry.getKey(), "&8\u21E8 &7World: &r" + l.getWorld().getName(), "&8\u21E8 &7X: &r" + l.getX(), "&8\u21E8 &7Y: &r" + l.getY(), "&8\u21E8 &7Z: &r" + l.getZ(), "&8\u21E8 &7Estimated Teleportation Time: &r" + (50 / TeleportationSequence.getSpeed(Slimefun.getGPSNetwork().getNetworkComplexity(uuid), source, l)) + "s", "", "&8\u21E8 &cClick to select"));
+			menu.addItem(slot, new CustomItem(globe, entry.getKey(), "&8\u21E8 &7世界: &r" + l.getWorld().getName(), "&8\u21E8 &7X: &r" + l.getX(), "&8\u21E8 &7Y: &r" + l.getY(), "&8\u21E8 &7Z: &r" + l.getZ(), "&8\u21E8 &7预计传送时间: &r" + (50 / TeleportationSequence.getSpeed(Slimefun.getGPSNetwork().getNetworkComplexity(uuid), source, l)) + "s", "", "&8\u21E8 &c点击选择"));
 			menu.addMenuClickHandler(slot, new MenuClickHandler() {
 				
 				@Override

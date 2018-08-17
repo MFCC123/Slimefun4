@@ -37,7 +37,7 @@ public class AnimalGrowthAccelerator extends SlimefunItem {
 	public AnimalGrowthAccelerator(Category category, ItemStack item, String name, RecipeType recipeType, ItemStack[] recipe) {
 		super(category, item, name, recipeType, recipe);
 		
-		new BlockMenuPreset(name, "&bGrowth Accelerator") {
+		new BlockMenuPreset(name, "&b动物成长加速器") {
 			
 			@Override
 			public void init() {

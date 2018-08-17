@@ -83,8 +83,8 @@ public class BlockStorage {
 	public BlockStorage(final World w) {
 		if (worlds.containsKey(w.getName())) return;
 		this.world = w;
-		System.out.println("[Slimefun] Loading Blocks for World \"" + w.getName() + "\"");
-		System.out.println("[Slimefun] This may take a long time...");
+		System.out.println("[远古工艺] 正在加载世界中的方块 \"" + w.getName() + "\"");
+		System.out.println("[远古工艺] 可能需要花费一些时间...");
 		
 		File f = new File(path_blocks + w.getName());
 		if (f.exists()) {
@@ -95,7 +95,7 @@ public class BlockStorage {
 				for (File file: f.listFiles()) {
 					if (file.getName().endsWith(".sfb")) {
 						if (timestamp + info_delay < System.currentTimeMillis()) {
-							System.out.println("[Slimefun] Loading Blocks... " + Math.round((((done * 100.0f) / total) * 100.0f) / 100.0f) + "% done (\"" + w.getName() + "\")");
+							System.out.println("[远古工艺] 加载方块中... " + Math.round((((done * 100.0f) / total) * 100.0f) / 100.0f) + "% 完成 (\"" + w.getName() + "\")");
 							timestamp = System.currentTimeMillis();
 						}
 						
@@ -117,7 +117,7 @@ public class BlockStorage {
 									if (!loaded_tickers.contains(chunk_string)) loaded_tickers.add(chunk_string);
 								}
 							} catch (Exception x) {
-								System.err.println("[Slimefun] Failed to load " + file.getName() + "(ERR: " + key + ")");
+								System.err.println("[远古工艺] 加载失败 " + file.getName() + "(ERR: " + key + ")");
 								x.printStackTrace();
 							}
 						}
@@ -126,9 +126,9 @@ public class BlockStorage {
 				}
 			} finally {
 				long time = (System.currentTimeMillis() - start);
-				System.out.println("[Slimefun] Loading Blocks... 100% (FINISHED - " + time + "ms)");
-				System.out.println("[Slimefun] Loaded a total of " + totalBlocks + " Blocks for World \"" + world.getName() + "\"");
-				if (totalBlocks > 0) System.out.println("[Slimefun] Avg: " + DoubleHandler.fixDouble((double) time / (double) totalBlocks, 3) + "ms/Block");
+				System.out.println("[远古工艺] 加载方块中... 100% (已完成 - " + time + "ms)");
+				System.out.println("[远古工艺] 共计加载 " + totalBlocks + " 个方块，位于世界 \"" + world.getName() + "\"");
+				if (totalBlocks > 0) System.out.println("[远古工艺] Avg: " + DoubleHandler.fixDouble((double) time / (double) totalBlocks, 3) + "ms/方块");
 			}
 		}
 		else f.mkdirs();
@@ -140,7 +140,7 @@ public class BlockStorage {
 				try {
 					if (world.getName().equals(key.split(";")[0])) map_chunks.put(key, cfg.getString(key));
 				} catch (Exception x) {
-					System.err.println("[Slimefun] Failed to load " + chunks.getName() + " for World \"" + world.getName() + "\" (ERR: " + key + ")");
+					System.err.println("[远古工艺] 加载失败 " + chunks.getName() + " 位于世界 \"" + world.getName() + "\" (ERR: " + key + ")");
 					x.printStackTrace();
 				}
 			}
@@ -206,7 +206,7 @@ public class BlockStorage {
 		
 		if (changes == 0) return;
 		
-		System.out.println("[Slimefun] Saving Blocks for World \"" + world.getName() + "\" (" + changes + " Changes queued)");
+		System.out.println("[远古工艺] 正在为世界 \"" + world.getName() + "\" 保存方块信息 (" + changes + " 个改变位于队列中)");
 		
 		Map<String, Config> cache = new HashMap<String, Config>(cache_blocks);
 		
@@ -326,11 +326,11 @@ public class BlockStorage {
 			return new BlockInfoConfig(parseJSON(json));
 		} catch(Exception x) {
 			System.err.println(x.getClass().getName());
-			System.err.println("[Slimefun] Failed to parse BlockInfo for Block @ " + l.getBlockX() + ", " + l.getBlockY() + ", " + l.getBlockZ());
+			System.err.println("[远古工艺] Failed to parse BlockInfo for Block @ " + l.getBlockX() + ", " + l.getBlockY() + ", " + l.getBlockZ());
 			System.err.println(json);
-			System.err.println("[Slimefun] ");
-			System.err.println("[Slimefun] IGNORE THIS ERROR UNLESS IT IS SPAMMING");
-			System.err.println("[Slimefun] ");
+			System.err.println("[远古工艺] ");
+			System.err.println("[远古工艺] IGNORE THIS ERROR UNLESS IT IS SPAMMING");
+			System.err.println("[远古工艺] ");
 			x.printStackTrace();
 			return null;
 		}
@@ -395,6 +395,10 @@ public class BlockStorage {
 
 	public static void setBlockInfo(Location l, Config cfg, boolean updateTicker) {
 		BlockStorage storage = getStorage(l.getWorld());
+		//此处多加的检测是为了规避有时获取storage为null的问题
+        if (storage == null) {
+            storage = getForcedStorage(l.getWorld());
+        }
 		storage.storage.put(l, cfg);
 		if (BlockMenuPreset.isInventory(cfg.getString("id"))) {
 			if (BlockMenuPreset.isUniversalInventory(cfg.getString("id"))) {
@@ -652,7 +656,7 @@ public class BlockStorage {
 			return cfg;
 		} catch (Exception x) {
 			System.err.println(x.getClass().getName());
-			System.err.println("[Slimefun] Failed to parse ChunkInfo for Chunk @ " + chunk.getX() + ", " + chunk.getZ());
+			System.err.println("[远古工艺] Failed to parse ChunkInfo for Chunk @ " + chunk.getX() + ", " + chunk.getZ());
 			try {
 				System.err.println(getJSONData(chunk));
 			} catch (Exception x2) {

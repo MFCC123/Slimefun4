@@ -163,6 +163,15 @@ public class ItemListener implements Listener {
 		if (e.getParentEvent() != null && !e.getParentEvent().getHand().equals(EquipmentSlot.HAND)) {
 			return;
 		}
+		//用于检查菜单是否右键了不该右键的方块
+		if (e.getClickedBlock() != null) {
+			if (e.getClickedBlock().getType().equals(Material.BED_BLOCK)) {
+				return;
+			}
+			if (isContainer(e.getClickedBlock())) {
+				return;
+			}
+		}
 
 		final Player p = e.getPlayer();
 		ItemStack item = e.getItem();
@@ -397,4 +406,29 @@ public class ItemListener implements Listener {
 	        if(e.getRawSlot() < inventory.getSize()) e.setCancelled(SlimefunItem.getByItem(e.getCursor()) != null);
         }
     }
+
+    /** 检查是否为容器 */
+    private static boolean isContainer(Block block) {
+		if (block.getType().toString().endsWith("SHULKER_BOX")) {
+			return true;
+		}
+		switch (block.getType()) {
+			case CHEST:
+			case ENDER_CHEST:
+			case DISPENSER:
+			case HOPPER:
+			case TRAPPED_CHEST:
+			case BREWING_STAND:
+			case FURNACE:
+			case BURNING_FURNACE:
+			case WORKBENCH:
+			case ENCHANTMENT_TABLE:
+			case WALL_SIGN:
+			case SIGN:
+			case SIGN_POST:
+				return true;
+			default:
+				return false;
+		}
+	}
 }

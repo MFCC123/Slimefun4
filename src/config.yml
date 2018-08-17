@@ -1,11 +1,11 @@
 options:
-  auto-update: true
+  auto-update: false
   armor-update-interval: 10
   give-guide-on-first-join: true
   print-out-loading: false
   print-out-github-data-retrieving: false
   enable-armor-effects: true
-  prefix: '&a&lSlimefun &7>'
+  prefix: '&a&l远古工艺 &7>'
   auto-save-delay-in-minutes: 10
   show-vanilla-recipes-in-guide: true
   allow-free-creative-research: true

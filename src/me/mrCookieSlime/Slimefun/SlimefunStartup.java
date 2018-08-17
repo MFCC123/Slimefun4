@@ -2,6 +2,8 @@ package me.mrCookieSlime.Slimefun;
 
 import java.io.File;
 
+import com.bekvon.bukkit.residence.protection.FlagPermissions;
+import me.mrCookieSlime.Slimefun.Setup.*;
 import me.mrCookieSlime.Slimefun.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -42,12 +44,6 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.machines.AutoEnchanter;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.machines.ElectricDustWasher;
-import me.mrCookieSlime.Slimefun.Setup.Files;
-import me.mrCookieSlime.Slimefun.Setup.Messages;
-import me.mrCookieSlime.Slimefun.Setup.MiscSetup;
-import me.mrCookieSlime.Slimefun.Setup.ResearchSetup;
-import me.mrCookieSlime.Slimefun.Setup.SlimefunManager;
-import me.mrCookieSlime.Slimefun.Setup.SlimefunSetup;
 import me.mrCookieSlime.Slimefun.URID.AutoSavingTask;
 import me.mrCookieSlime.Slimefun.URID.URID;
 import me.mrCookieSlime.Slimefun.WorldEdit.WESlimefunManager;
@@ -81,6 +77,8 @@ public class SlimefunStartup extends JavaPlugin {
 	private boolean clearlag = false;
 	private boolean exoticGarden = false;
 	private boolean coreProtect = false;
+	private boolean plotSquared = false;
+	private boolean residence = false;
 
 	// Supported Versions of Minecraft
 	final String[] supported = {"v1_9_", "v1_10_", "v1_11_", "v1_12_"};
@@ -88,6 +86,13 @@ public class SlimefunStartup extends JavaPlugin {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onEnable() {
+		if (Bukkit.getServer().getPluginManager().isPluginEnabled("PlotSquared")) {
+			this.plotSquared = true;
+		}
+		if (getServer().getPluginManager().getPlugin("Residence") != null) {
+			FlagPermissions.addFlag("sf-machines");
+			this.residence = true;
+		}
 		CSCoreLibLoader loader = new CSCoreLibLoader(this);
 		if (loader.load()) {
 
@@ -112,26 +117,26 @@ public class SlimefunStartup extends JavaPlugin {
 				
 				// Looks like you are using an unsupported Minecraft Version
 				if (!compatibleVersion) {
-					System.err.println("### Slimefun failed to load!");
+					System.err.println("### 远古工艺加载失败!");
 					System.err.println("###");
-					System.err.println("### You are using the wrong Version of Minecraft!!!");
+					System.err.println("### 你当前使用的Minecraft版本Slimefun不支持!!!");
 					System.err.println("###");
-					System.err.println("### You are using Minecraft " + ReflectionUtils.getVersion());
-					System.err.println("### but Slimefun v" + getDescription().getVersion() + " requires you to be using");
+					System.err.println("### 你正在使用Minecraft " + ReflectionUtils.getVersion());
+					System.err.println("### 但Slimefun v" + getDescription().getVersion() + " 只能运行在");
 					System.err.println("### Minecraft " + versions.toString());
 					System.err.println("###");
-					System.err.println("### Please use an older Version of Slimefun and disable auto-updating");
-					System.err.println("### or consider updating your Server Software.");
+					System.err.println("### 请尝试使用旧版并关闭自动更新");
+					System.err.println("### 或者更新你的服务器.");
 					getServer().getPluginManager().disablePlugin(this);
 					return;
 				}
 			}
 
 			instance = this;
-			System.out.println("[Slimefun] Loading Files...");
+			System.out.println("[远古工艺] 加载文件中...");
 			Files.cleanup();
 
-			System.out.println("[Slimefun] Loading Config...");
+			System.out.println("[远古工艺] 加载配置中...");
 
 			utils = new PluginUtils(this);
 			utils.setupConfig();
@@ -165,16 +170,18 @@ public class SlimefunStartup extends JavaPlugin {
 
 			SlimefunManager.plugin = this;
 
-			System.out.println("[Slimefun] Loading Items...");
+			System.out.println("[远古工艺] 加载物品中...");
 			MiscSetup.setupItemSettings();
 			try {
 				SlimefunSetup.setupItems();
+				//初始化自添加的物品
+				NarItemSetup.setupItems();
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 			MiscSetup.loadDescriptions();
 
-			System.out.println("[Slimefun] Loading Researches...");
+			System.out.println("[远古工艺] 加载研究中...");
 			Research.enabled = getResearchCfg().getBoolean("enable-researching");
 			ResearchSetup.setupResearches();
 
@@ -182,7 +189,7 @@ public class SlimefunStartup extends JavaPlugin {
 
 			BlockStorage.info_delay = config.getInt("URID.info-delay");
 
-			System.out.println("[Slimefun] Loading World Generators...");
+			System.out.println("[远古工艺] 加载世界生成器中...");
 
 			// Generating Oil as an OreGenResource (its a cool API)
 			OreGenSystem.registerResource(new OilResource());
@@ -250,7 +257,7 @@ public class SlimefunStartup extends JavaPlugin {
 				public void onWorldUnload(WorldUnloadEvent e) {
 					BlockStorage storage = BlockStorage.getStorage(e.getWorld());
 					if (storage != null) storage.save(true);
-					else System.err.println("[Slimefun] Could not save Slimefun Blocks for World \"" + e.getWorld().getName() + "\"");
+					else System.err.println("[远古工艺] Could not save Slimefun Blocks for World \"" + e.getWorld().getName() + "\"");
 				}
 
 			}, this);
@@ -284,10 +291,10 @@ public class SlimefunStartup extends JavaPlugin {
 				try {
 					Class.forName("com.sk89q.worldedit.extent.Extent");
 					new WESlimefunManager();
-					System.out.println("[Slimefun] Successfully hooked into WorldEdit!");
+					System.out.println("[远古工艺] Successfully hooked into WorldEdit!");
 				} catch (Exception x) {
-					System.err.println("[Slimefun] Failed to hook into WorldEdit!");
-					System.err.println("[Slimefun] Maybe consider updating WorldEdit or Slimefun?");
+					System.err.println("[远古工艺] Failed to hook into WorldEdit!");
+					System.err.println("[远古工艺] Maybe consider updating WorldEdit or Slimefun?");
 				}
 			}
 
@@ -363,7 +370,7 @@ public class SlimefunStartup extends JavaPlugin {
 			}, 80L, 60 * 60 * 20L);
 			
 			// Hooray!
-			System.out.println("[Slimefun] Finished!");
+			System.out.println("[远古工艺] 已完成!");
 
 			clearlag = getServer().getPluginManager().isPluginEnabled("ClearLag");
 
@@ -407,7 +414,7 @@ public class SlimefunStartup extends JavaPlugin {
 					storage.save(true);
 				}
 				else {
-					System.err.println("[Slimefun] Could not save Slimefun Blocks for World \"" + world.getName() + "\"");
+					System.err.println("[远古工艺] Could not save Slimefun Blocks for World \"" + world.getName() + "\"");
 				}
 			}
 
@@ -522,4 +529,8 @@ public class SlimefunStartup extends JavaPlugin {
 	public CoreProtectAPI getCoreProtectAPI() {
 		return coreProtectAPI;
 	}
+
+	public boolean isPlotSquaredInstalled() { return plotSquared; }
+
+	public boolean isResidenceInstalled() { return residence; }
 }
