@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import me.mrCookieSlime.Slimefun.Misc.compatibles.AddonFuncUtils;
+import me.mrCookieSlime.Slimefun.Misc.compatibles.ProtectionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -115,7 +115,7 @@ public abstract class AReactor extends SlimefunItem {
 			@Override
 			public boolean canOpen(Block b, Player p) {
 				boolean perm = p.hasPermission("slimefun.inventory.bypass") || CSCoreLib.getLib().getProtectionManager().canAccessChest(p.getUniqueId(), b, true);
-				return perm && AddonFuncUtils.canAccessItem(p, b);
+				return perm && ProtectionUtils.canAccessItem(p, b);
 			}
 
 			@Override

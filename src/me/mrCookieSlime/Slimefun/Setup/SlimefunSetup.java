@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 
+import me.mrCookieSlime.Slimefun.Misc.compatibles.ProtectionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
@@ -697,27 +698,29 @@ public class SlimefunSetup {
 
 			@Override
 			public boolean onRightClick(ItemUseEvent e, Player p, ItemStack item) {
-				if (SlimefunManager.isItemSimiliar(item, SlimefunItems.GOLD_PAN, true)) {
-					if (e.getClickedBlock() != null && e.getClickedBlock().getType() == Material.GRAVEL) {
-						if (CSCoreLib.getLib().getProtectionManager().canBuild(p.getUniqueId(), e.getClickedBlock(), true)) {
-							List<ItemStack> drops = new ArrayList<ItemStack>();
-							if (SlimefunStartup.chance(100, (Integer) Slimefun.getItemValue("GOLD_PAN", "chance.SIFTED_ORE"))) drops.add(SlimefunItems.SIFTED_ORE);
-								else if (SlimefunStartup.chance(100, (Integer) Slimefun.getItemValue("GOLD_PAN", "chance.CLAY"))) drops.add(new ItemStack(Material.CLAY_BALL));
-								else if (SlimefunStartup.chance(100, (Integer) Slimefun.getItemValue("GOLD_PAN", "chance.FLINT"))) drops.add(new ItemStack(Material.FLINT));
-
-
-							
-								e.getClickedBlock().getWorld().playEffect(e.getClickedBlock().getLocation(), Effect.STEP_SOUND, e.getClickedBlock().getType());
-								e.getClickedBlock().setType(Material.AIR);
-								for (ItemStack drop: drops) {
-									e.getClickedBlock().getWorld().dropItemNaturally(e.getClickedBlock().getLocation(), drop);
-							}
-						}
-					}
-					e.setCancelled(true);
+				if (!SlimefunManager.isItemSimiliar(item, SlimefunItems.GOLD_PAN, true)) {
+					return false;
+				}
+				e.setCancelled(true);
+				if (e.getClickedBlock() == null || !e.getClickedBlock().getType().equals(Material.GRAVEL)) {
 					return true;
 				}
-				else return false;
+				if (!CSCoreLib.getLib().getProtectionManager().canBuild(p.getUniqueId(), e.getClickedBlock(), true)) {
+					return true;
+				}
+				if (ProtectionUtils.canBuild(p, e.getClickedBlock())) {
+					List<ItemStack> drops = new ArrayList<ItemStack>();
+					if (SlimefunStartup.chance(100, (Integer) Slimefun.getItemValue("GOLD_PAN", "chance.SIFTED_ORE"))) drops.add(SlimefunItems.SIFTED_ORE);
+					else if (SlimefunStartup.chance(100, (Integer) Slimefun.getItemValue("GOLD_PAN", "chance.CLAY"))) drops.add(new ItemStack(Material.CLAY_BALL));
+					else if (SlimefunStartup.chance(100, (Integer) Slimefun.getItemValue("GOLD_PAN", "chance.FLINT"))) drops.add(new ItemStack(Material.FLINT));
+
+					e.getClickedBlock().getWorld().playEffect(e.getClickedBlock().getLocation(), Effect.STEP_SOUND, e.getClickedBlock().getType());
+					e.getClickedBlock().setType(Material.AIR);
+					for (ItemStack drop: drops) {
+						e.getClickedBlock().getWorld().dropItemNaturally(e.getClickedBlock().getLocation(), drop);
+					}
+				}
+				return true;
 			}
 		});
 

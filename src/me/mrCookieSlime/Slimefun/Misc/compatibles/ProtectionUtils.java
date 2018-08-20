@@ -1,7 +1,9 @@
 package me.mrCookieSlime.Slimefun.Misc.compatibles;
 
 import com.bekvon.bukkit.residence.Residence;
+import com.bekvon.bukkit.residence.containers.Flags;
 import com.bekvon.bukkit.residence.protection.ClaimedResidence;
+import com.bekvon.bukkit.residence.protection.FlagPermissions;
 import com.intellectualcrafters.plot.object.Location;
 import com.intellectualcrafters.plot.object.Plot;
 import me.mrCookieSlime.Slimefun.SlimefunStartup;
@@ -9,13 +11,12 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 
-public class AddonFuncUtils {
+public class ProtectionUtils {
     public static boolean canAccessItem(Player p, Block b){
         if (p.isOp()){
             p.sendMessage("§8[§e远古工艺§8] §c越权打开了他人的机器");
             return true;
         }
-
         if (SlimefunStartup.instance.isPlotSquaredInstalled()){
             Location plotLoc = new Location(b.getLocation().getWorld().getName(), b.getLocation().getBlockX(), b.getLocation().getBlockY(), b.getLocation().getBlockZ());
             Plot plot = Plot.getPlot(plotLoc);
@@ -37,7 +38,35 @@ public class AddonFuncUtils {
                 }
             }
         }
+        return true;
+    }
 
+    public static boolean canBuild(Player player, Block block) {
+        if (player.isOp()){
+            player.sendMessage("§8[§e远古工艺§8] §c越权打开了他人的机器");
+            return true;
+        }
+        if (SlimefunStartup.instance.isPlotSquaredInstalled()){
+            Location plotLoc = new Location(block.getLocation().getWorld().getName(), block.getLocation().getBlockX(), block.getLocation().getBlockY(), block.getLocation().getBlockZ());
+            Plot plot = Plot.getPlot(plotLoc);
+            if (plot != null) {
+                if (!plot.isAdded(player.getUniqueId())){
+                    player.sendMessage("§8[§e远古工艺§8] §c抱歉，你不可以在这里建造或破坏. 请联系地皮主人给你权限吧！");
+                    return false;
+                }
+            }
+        }
+        if (SlimefunStartup.instance.isResidenceInstalled()) {
+            ClaimedResidence res = Residence.getInstance().getResidenceManager().getByLoc(block.getLocation());
+            if (res != null) {
+                if (!player.hasPermission("residence.bypass.use")) {
+                    if ((!res.getPermissions().playerHas(player.getName(), player.getWorld().getName(), "destroy", true))) {
+                        player.sendMessage("§8[§b远古工艺§8] §c你不可以在这里建造或破坏");
+                        return false;
+                    }
+                }
+            }
+        }
         return true;
     }
 }
