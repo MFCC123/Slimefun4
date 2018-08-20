@@ -42,8 +42,14 @@ public class ProtectionUtils {
     }
 
     public static boolean canBuild(Player player, Block block) {
+        return canBuild(player, block, true);
+    }
+
+    public static boolean canBuild(Player player, Block block, boolean notify) {
         if (player.isOp()){
-            player.sendMessage("§8[§e远古工艺§8] §c越权打开了他人的机器");
+            if (notify) {
+                player.sendMessage("§8[§e远古工艺§8] §c越权打开了他人的机器");
+            }
             return true;
         }
         if (SlimefunStartup.instance.isPlotSquaredInstalled()){
@@ -51,7 +57,9 @@ public class ProtectionUtils {
             Plot plot = Plot.getPlot(plotLoc);
             if (plot != null) {
                 if (!plot.isAdded(player.getUniqueId())){
-                    player.sendMessage("§8[§e远古工艺§8] §c抱歉，你不可以在这里建造或破坏. 请联系地皮主人给你权限吧！");
+                    if (notify) {
+                        player.sendMessage("§8[§e远古工艺§8] §c抱歉，你不可以在这里建造或破坏. 请联系地皮主人给你权限吧！");
+                    }
                     return false;
                 }
             }
@@ -61,7 +69,9 @@ public class ProtectionUtils {
             if (res != null) {
                 if (!player.hasPermission("residence.bypass.use")) {
                     if ((!res.getPermissions().playerHas(player.getName(), player.getWorld().getName(), "destroy", true))) {
-                        player.sendMessage("§8[§b远古工艺§8] §c你不可以在这里建造或破坏");
+                        if (notify) {
+                            player.sendMessage("§8[§b远古工艺§8] §c你不可以在这里建造或破坏");
+                        }
                         return false;
                     }
                 }

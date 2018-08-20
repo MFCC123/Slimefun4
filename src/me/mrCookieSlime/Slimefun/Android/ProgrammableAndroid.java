@@ -17,6 +17,7 @@ import me.mrCookieSlime.ExoticGarden.ExoticGarden;
 import me.mrCookieSlime.Slimefun.Android.ScriptComparators.ScriptReputationSorter;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Lists.SlimefunItems;
+import me.mrCookieSlime.Slimefun.Misc.compatibles.ProtectionUtils;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunBlockHandler;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
@@ -834,8 +835,10 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 
 	private void mine(Block b, Block block) {
 		Collection<ItemStack> drops = block.getDrops();
-		if (!blockblacklist.contains(block.getType()) && !drops.isEmpty() && CSCoreLib.getLib
-				().getProtectionManager().canBuild(UUID.fromString(BlockStorage.getLocationInfo(b.getLocation(), "owner")), block))
+		UUID owner = UUID.fromString(BlockStorage.getLocationInfo(b.getLocation(), "owner"));
+		if (!blockblacklist.contains(block.getType()) && !drops.isEmpty() &&
+				CSCoreLib.getLib().getProtectionManager().canBuild(owner, block) &&
+				ProtectionUtils.canBuild(Bukkit.getPlayer(owner), block, false))
 		{
 			SlimefunItem item = BlockStorage.check(block);
 			if (item != null) {
@@ -868,8 +871,10 @@ public abstract class ProgrammableAndroid extends SlimefunItem {
 	@SuppressWarnings("deprecation")
 	private void movedig(Block b, BlockFace face, Block block) {
 		Collection<ItemStack> drops = block.getDrops();
-		if (!blockblacklist.contains(block.getType()) && !drops.isEmpty() && CSCoreLib.getLib
-				().getProtectionManager().canBuild(UUID.fromString(BlockStorage.getLocationInfo(b.getLocation(), "owner")), block))
+		UUID owner = UUID.fromString(BlockStorage.getLocationInfo(b.getLocation(), "owner"));
+		if (!blockblacklist.contains(block.getType()) && !drops.isEmpty() &&
+				CSCoreLib.getLib().getProtectionManager().canBuild(owner, block) &&
+				ProtectionUtils.canBuild(Bukkit.getPlayer(owner), block, false))
 		{
 			try {
 				SlimefunItem item = BlockStorage.check(block);
