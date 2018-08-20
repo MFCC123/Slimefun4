@@ -866,7 +866,7 @@ public class SlimefunGuide {
 					if (survival && !Slimefun.hasUnlocked(p, sfitem.getItem(), false) && sfitem.getResearch() != null) {
 						if (Slimefun.hasPermission(p, sfitem, false)) {
 						    final Research research = sfitem.getResearch();
-							menu.addItem(index, new CustomItem(Material.BARRIER, "&r" + StringUtils.formatItemName(sfitem.getItem(), false), 0, new String[] {"&4&l未解锁", "", "&a> Click to unlock", "", "&7Cost: &b" + research.getCost() + " Level"}));
+							menu.addItem(index, new CustomItem(Material.BARRIER, "&r" + StringUtils.formatItemName(sfitem.getItem(), false), 0, new String[] {"&4&l未解锁", "", "&a> 点击解锁", "", "&7消耗: &b" + research.getCost() + " 级"}));
 							menu.addMenuClickHandler(index, new MenuClickHandler() {
 								
 								@Override
