@@ -163,27 +163,30 @@ public class ItemListener implements Listener {
 		if (e.getParentEvent() != null && !e.getParentEvent().getHand().equals(EquipmentSlot.HAND)) {
 			return;
 		}
-		//用于检查菜单是否右键了不该右键的方块
-		if (e.getClickedBlock() != null) {
-			if (e.getClickedBlock().getType().equals(Material.BED_BLOCK)) {
-				return;
-			}
-			if (isContainer(e.getClickedBlock())) {
-				return;
-			}
-		}
-
 		final Player p = e.getPlayer();
 		ItemStack item = e.getItem();
 		if (SlimefunManager.isItemSimiliar(item, SlimefunGuide.getItem(BookDesign.BOOK), true)) {
+			//用于检查菜单是否右键了不该右键的方块
+			if (checkMenuClick(e)) {
+				e.setCancelled(true);
+				return;
+			}
 			if (p.isSneaking()) SlimefunGuide.openSettings(p, item);
 			else SlimefunGuide.openGuide(p, true);
 		}
 		else if (SlimefunManager.isItemSimiliar(item, SlimefunGuide.getItem(BookDesign.CHEST), true)) {
+			if (checkMenuClick(e)) {
+				e.setCancelled(true);
+				return;
+			}
 			if (p.isSneaking()) SlimefunGuide.openSettings(p, item);
 			else SlimefunGuide.openGuide(p, false);
 		}
 		else if (SlimefunManager.isItemSimiliar(item, SlimefunGuide.getItem(BookDesign.CHEAT_SHEET), true)) {
+			if (checkMenuClick(e)) {
+				e.setCancelled(true);
+				return;
+			}
 			if (p.isSneaking()) SlimefunGuide.openSettings(p, item);
 			else p.chat("/sf cheat");
 		}
@@ -266,6 +269,18 @@ public class ItemListener implements Listener {
 			}
 		}
 		else e.setCancelled(true);
+	}
+
+	private boolean checkMenuClick(ItemUseEvent e) {
+		if (e.getClickedBlock() != null) {
+            if (e.getClickedBlock().getType().equals(Material.BED_BLOCK)) {
+				return true;
+            }
+            if (isContainer(e.getClickedBlock())) {
+				return true;
+            }
+        }
+		return false;
 	}
 
 	private boolean canPlaceBlock(Player p, Block relative) {
