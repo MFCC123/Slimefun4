@@ -122,7 +122,7 @@ public abstract class OilPump extends AContainer {
 					BlockStorage.getInventory(b).replaceExistingItem(slot, InvUtils.decreaseItem(BlockStorage.getInventory(b).getItemInSlot(slot), 1));
 					processing.put(b, r);
 					progress.put(b, r.getTicks());
-					OreGenSystem.setSupplies(OreGenSystem.getResource("原油"), b.getChunk(), OreGenSystem.getSupplies(OreGenSystem.getResource("Oil"), b.getChunk(), false) - 1);
+					OreGenSystem.setSupplies(OreGenSystem.getResource("原油"), b.getChunk(), OreGenSystem.getSupplies(OreGenSystem.getResource("原油"), b.getChunk(), false) - 1);
 					break;
 				}
 			}

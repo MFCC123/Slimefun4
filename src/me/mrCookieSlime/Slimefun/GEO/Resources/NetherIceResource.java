@@ -11,12 +11,12 @@ public class NetherIceResource implements OreGenResource {
 	@Override
 	public int getDefaultSupply(Biome biome) {
 		switch (biome) {
-		case HELL: {
-			return 32;
-		}
-		default: {
-			return 0;
-		}
+			case HELL: {
+				return 32;
+			}
+			default: {
+				return 0;
+			}
 		}
 	}
 
